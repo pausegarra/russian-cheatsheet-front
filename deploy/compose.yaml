@@ -1,0 +1,9 @@
+version: '3.2'
+
+services:
+  russian-cheatsheet-front:
+    container_name: russian-cheatsheet-front
+    image: psegarra/russian-cheatsheet-front:${VERSION}
+    ports:
+      - "3034:5173"
+    restart: always

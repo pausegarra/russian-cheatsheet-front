@@ -10,4 +10,7 @@ build: ## Build the application.
 install: ## Install the dependencies.
 	yarn
 
+build-docker: ## Build the docker image.
+	docker build -t russian-cheatsheet-front .
+
 .PHONY: help dev build
