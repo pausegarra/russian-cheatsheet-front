@@ -5,5 +5,5 @@ services:
     container_name: russian-cheatsheet-front
     image: psegarra/russian-cheatsheet-front:${VERSION}
     ports:
-      - "3034:5173"
+      - "3034:80"
     restart: always
