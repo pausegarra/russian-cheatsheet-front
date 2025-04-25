@@ -27,8 +27,8 @@ export function Layout({children}: props) {
           hiddenFrom="sm"
           size="sm"
         />
-        <div>
-          <img src="logo.svg" alt="logo" width={150}/>
+        <div className={"logo"}>
+          <img src="logo.svg" alt="logo" width={120}/>
         </div>
       </AppShell.Header>
 

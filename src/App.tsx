@@ -4,6 +4,7 @@ import { KeycloakProfile } from "keycloak-js";
 import { authService } from "./modules/auth/root.ts";
 import { Layout } from "./modules/common/components/layout.tsx";
 import { CommonModule } from "./modules/common/common.module.tsx";
+import "./app.css"
 
 function App() {
   const [user, setUser] = useState<KeycloakProfile>({});
