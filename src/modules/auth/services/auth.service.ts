@@ -1,6 +1,6 @@
 import Keycloak from "keycloak-js";
 import { AuthService } from "../contracts/auth-service.ts";
-import { UserEntity } from "../user.entity.ts";
+import { UserEntity } from "../entities/user.entity.ts";
 
 export class AuthServiceImpl implements AuthService {
 
