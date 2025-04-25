@@ -2,7 +2,8 @@ import { Button } from "@mantine/core";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { KeycloakProfile } from "keycloak-js";
-import { authService } from "./modules/auth/root.ts";
+import { authService } from "../auth/root.ts";
+import { Layout } from "./components/layout.tsx";
 
 function App() {
   const [user, setUser] = useState<KeycloakProfile>({});
@@ -13,10 +14,12 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Button onClick={() => authService.login()}>Login</Button>}/>
-        <Route path="/alphabet" element={<pre>{JSON.stringify(user, null, 2)}</pre>}/>
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Button onClick={() => authService.login()}>Login</Button>}/>
+          <Route path="/alphabet" element={<pre>{JSON.stringify(user, null, 2)}</pre>}/>
+        </Routes>
+      </Layout>
     </BrowserRouter>
   )
 }
