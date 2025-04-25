@@ -1,22 +1,21 @@
-import {Button} from "@mantine/core";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {keycloak} from "./keycloak.ts";
-import * as React from "react";
+import { Button } from "@mantine/core";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { KeycloakProfile } from "keycloak-js";
+import { authService } from "./modules/auth/root.ts";
 
 function App() {
-  const [user, setUser] = React.useState<any>(null);
+  const [user, setUser] = useState<KeycloakProfile>({});
 
-  React.useEffect(() => {
-    keycloak.loadUserProfile().then((user) => {
-      setUser(user);
-    })
-  }, [])
+  useEffect(() => {
+    authService.loadUserProfile().then(setUser)
+  } , [])
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Button onClick={() => keycloak.login()}>Login</Button>} />
-        <Route path="/alphabet" element={<pre>{JSON.stringify(user, null, 2)}</pre>} />
+        <Route path="/" element={<Button onClick={() => authService.login()}>Login</Button>}/>
+        <Route path="/alphabet" element={<pre>{JSON.stringify(user, null, 2)}</pre>}/>
       </Routes>
     </BrowserRouter>
   )
