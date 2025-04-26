@@ -11,6 +11,7 @@ export function WordRow({word}: props) {
       <Table.Td>{word.russian}</Table.Td>
       <Table.Td>{word.english}</Table.Td>
       <Table.Td>{word.spanish}</Table.Td>
+      <Table.Td>{word.type}</Table.Td>
     </Table.Tr>
   )
 }
