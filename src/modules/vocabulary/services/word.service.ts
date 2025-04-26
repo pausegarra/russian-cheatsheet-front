@@ -8,9 +8,9 @@ export class WordService {
     private readonly fetch: IFetchService
   ) {}
 
-  public async getWords(page: number): Promise<Paginated<WordEntity>> {
+  public async getWords(page: number, search: string): Promise<Paginated<WordEntity>> {
     const pageSubtracted = page - 1;
-    return await this.fetch.get<Paginated<WordEntity>>("/api/words?page=" + pageSubtracted);
+    return await this.fetch.get<Paginated<WordEntity>>(`/api/words?page=${pageSubtracted}&search=${search}`);
   }
 
 }
