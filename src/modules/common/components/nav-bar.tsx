@@ -16,6 +16,11 @@ export function NavBar() {
       >
         Alphabet
       </Nav>
+      <Nav
+        to="/vocabulary"
+      >
+        Vocabulary
+      </Nav>
     </>
   )
 }
