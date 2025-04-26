@@ -1,4 +1,4 @@
-import { AppShell, Burger } from "@mantine/core";
+import { AppShell, Burger, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { ReactNode } from "react";
 import { NavBar } from "./nav-bar.tsx";
@@ -21,15 +21,17 @@ export function Layout({children}: props) {
       padding="md"
     >
       <AppShell.Header>
-        <Burger
-          opened={opened}
-          onClick={toggle}
-          hiddenFrom="sm"
-          size="sm"
-        />
-        <div className={"logo"}>
-          <img src="logo.svg" alt="logo" width={120}/>
-        </div>
+        <Group h="100%" px="md" justify="space-between">
+          <Burger
+            opened={opened}
+            onClick={toggle}
+            hiddenFrom="sm"
+            size="sm"
+          />
+          <div className="logo">
+            <img src="logo.svg" alt="logo" width={120} />
+          </div>
+        </Group>
       </AppShell.Header>
 
       <AppShell.Navbar p="md">
