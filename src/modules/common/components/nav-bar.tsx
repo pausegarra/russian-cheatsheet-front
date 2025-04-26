@@ -12,6 +12,11 @@ export function NavBar() {
         Home
       </Nav>
       <Nav
+        to="/russian-cases"
+      >
+        Russian Cases
+      </Nav>
+      <Nav
         to="/alphabet"
       >
         Alphabet
