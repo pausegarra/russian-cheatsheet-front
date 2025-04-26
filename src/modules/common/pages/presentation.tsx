@@ -1,11 +1,12 @@
 import {
-  Button,
+  Alert,
   Card,
   Container,
   Stack,
   Text,
   Title,
 } from "@mantine/core";
+import { IconAlertCircle } from "@tabler/icons-react";
 
 export function Presentation() {
   return (
@@ -32,11 +33,11 @@ export function Presentation() {
             <Text size="md">
               🎯 Focus on what's important without getting lost in endless textbooks.
             </Text>
-            <Button variant="light" fullWidth mt="md">
-              Start Learning
-            </Button>
           </Stack>
         </Card>
+        <Alert icon={<IconAlertCircle size="1.5rem" />} title="Work in Progress" color="yellow" variant="light">
+          This project is still under development. Features and content may change frequently!
+        </Alert>
       </Stack>
     </Container>
   )
