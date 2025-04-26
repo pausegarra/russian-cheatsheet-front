@@ -1,3 +1,3 @@
 import { FetchService } from "@betino/fetch";
 
-export const fetchService = new FetchService("http://localhost:8080");
+export const fetchService = new FetchService(import.meta.env.VITE_API_URL);
