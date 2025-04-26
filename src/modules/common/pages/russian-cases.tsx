@@ -1,8 +1,8 @@
-import { Container, Title, Text, Card, Stack, Table, Divider } from '@mantine/core';
+import { Card, Divider, Stack, Table, Text, Title } from '@mantine/core';
 
 export default function RussianCasesWithEndings() {
   return (
-    <Container size="md" py="xl">
+    <>
       <Stack gap="xl">
         <Title order={1}>
           Russian Cases For Dummies
@@ -164,6 +164,6 @@ export default function RussianCasesWithEndings() {
           Remember: learning Russian cases is like learning to juggle hats. 🎩 It’s confusing at first, but you get better with practice!
         </Text>
       </Stack>
-    </Container>
+    </>
   );
 }
