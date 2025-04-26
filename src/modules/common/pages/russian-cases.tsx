@@ -4,11 +4,11 @@ export default function RussianCasesWithEndings() {
   return (
     <Container size="md" py="xl">
       <Stack gap="xl">
-        <Title order={1} align="center">
-          Russian Cases Explained (With Endings and Examples)
+        <Title order={1}>
+          Russian Cases For Dummies
         </Title>
 
-        <Text size="lg" align="center">
+        <Text size="lg">
           In Russian, words change depending on what they are doing in the sentence.
           Below you will find simple explanations, examples, and ending cheat tables.
         </Text>
@@ -119,7 +119,7 @@ export default function RussianCasesWithEndings() {
               <strong>Example:</strong> Я пишу ручкой. (I write with a pen.)
             </Text>
 
-            <Table striped highlightOnHover >
+            <Table striped highlightOnHover>
               <thead>
               <tr>
                 <th>Gender</th>
