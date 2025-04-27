@@ -13,4 +13,8 @@ export class WordService {
     return await this.fetch.get<Paginated<WordEntity>>(`/api/words?page=${pageSubtracted}&search=${search}`);
   }
 
+  public getWord(id: string): Promise<WordEntity> {
+    return this.fetch.get<WordEntity>(`/api/words/${id}`);
+  }
+
 }
