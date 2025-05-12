@@ -4,7 +4,7 @@ import "./app.css"
 import { alphabetRoutes } from "./modules/alphabet/alphabet.module.tsx";
 import { vocabularyRoutes } from "./modules/vocabulary/vocabulary.module.tsx";
 import { authRoutes } from "./modules/auth/auth.module.tsx";
-import { AuthProvider } from "./modules/auth/contexts/session.context.tsx";
+import { AuthProvider } from "./modules/auth/contexts/auth.context.tsx";
 
 function App() {
   return (

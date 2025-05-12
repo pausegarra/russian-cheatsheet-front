@@ -1,13 +1,6 @@
-import { createContext, useEffect, useState } from "react";
-import { UserEntity } from "../entities/user.entity.ts";
+import { useEffect, useState } from "react";
 import { authService } from "../root.ts";
-
-type AuthContextType = {
-  user: UserEntity;
-  permissions: string[];
-}
-
-const AuthContext = createContext<AuthContextType | null>(null);
+import { AuthContext, AuthContextType } from "./auth.provider.ts";
 
 type props = {
   children: React.ReactNode;

@@ -1,16 +1,18 @@
 import { Button, Stack } from "@mantine/core";
 import { authService } from "../root.ts";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/auth.provider.ts";
 
 export function LoginPage() {
   const navigate = useNavigate();
+  const user = useContext(AuthContext);
 
   useEffect(() => {
-    if (authService.isAuthenticated()) {
+    if (user !== null) {
       navigate("/");
     }
-  }, [navigate])
+  }, [navigate, user])
 
   return (
     <Stack align="center" justify="center" h="100vh">

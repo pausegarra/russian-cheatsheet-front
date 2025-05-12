@@ -30,12 +30,20 @@ export class AuthServiceImpl implements AuthService {
     this.keycloak.login();
   }
 
+  logout(): void {
+    this.keycloak.logout();
+  }
+
   async getPermissions(): Promise<string[]> {
-    const headers = {
-      "Authorization": `Bearer ${this.keycloak.token}`
+    try {
+      const headers = {
+        "Authorization": `Bearer ${this.keycloak.token}`
+      }
+      const permissions = await this.http.get<{permissions: string[]}>("/api/auth/profile/permissions", {}, headers);
+      return permissions.permissions;
+    } catch (e) {
+      return [];
     }
-    const permissions = await this.http.get<{permissions: string[]}>("/api/auth/profile/permissions", {}, headers);
-    return permissions.permissions;
   }
 
   isAuthenticated(): boolean {
