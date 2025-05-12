@@ -6,6 +6,7 @@ import { WordRow } from "../components/WordRow.tsx";
 import { Paginated } from "../../common/responses/paginated.ts";
 import { useDebouncedState } from "@mantine/hooks";
 import { IconSearch } from "@tabler/icons-react";
+import { Layout } from "../../common/components/layout.tsx";
 
 export function ListVocabulary() {
 
@@ -18,7 +19,7 @@ export function ListVocabulary() {
   }, [page, search]);
 
   return (
-    <>
+    <Layout>
       <Title>Vocabulary</Title>
       <TextInput
         mt="xl"
@@ -48,6 +49,6 @@ export function ListVocabulary() {
 
         <Pagination total={words.totalPages} value={words.page + 1} onChange={setPage}/>
       </Stack>
-    </>
+    </Layout>
   )
 }

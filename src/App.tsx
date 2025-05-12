@@ -1,18 +1,19 @@
-import { BrowserRouter } from "react-router-dom";
-import { Layout } from "./modules/common/components/layout.tsx";
-import { CommonModule } from "./modules/common/common.module.tsx";
+import { BrowserRouter, Routes } from "react-router-dom";
+import { commonRoutes } from "./modules/common/common.module.tsx";
 import "./app.css"
-import { AlphabetModule } from "./modules/alphabet/alphabet.module.tsx";
-import { VocabularyModule } from "./modules/vocabulary/vocabulary.module.tsx";
+import { alphabetRoutes } from "./modules/alphabet/alphabet.module.tsx";
+import { vocabularyRoutes } from "./modules/vocabulary/vocabulary.module.tsx";
+import { authRoutes } from "./modules/auth/auth.module.tsx";
 
 function App() {
   return (
     <BrowserRouter>
-      <Layout>
-        <CommonModule/>
-        <AlphabetModule/>
-        <VocabularyModule/>
-      </Layout>
+      <Routes>
+        {...commonRoutes}
+        {...alphabetRoutes}
+        {...vocabularyRoutes}
+        {...authRoutes}
+      </Routes>
     </BrowserRouter>
   )
 }

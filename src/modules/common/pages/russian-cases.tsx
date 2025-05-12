@@ -1,8 +1,9 @@
 import { Card, Divider, Stack, Table, Text, Title } from '@mantine/core';
+import { Layout } from "../components/layout.tsx";
 
 export default function RussianCasesWithEndings() {
   return (
-    <>
+    <Layout>
       <Stack gap="xl">
         <Title order={1}>
           Russian Cases For Dummies
@@ -164,6 +165,6 @@ export default function RussianCasesWithEndings() {
           Remember: learning Russian cases is like learning to juggle hats. 🎩 It’s confusing at first, but you get better with practice!
         </Text>
       </Stack>
-    </>
+    </Layout>
   );
 }
