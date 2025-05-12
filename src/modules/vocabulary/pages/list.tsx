@@ -1,12 +1,14 @@
-import { Pagination, Stack, Table, TextInput, Title } from "@mantine/core";
+import { Button, Group, Pagination, Stack, Table, TextInput, Title } from "@mantine/core";
 import { WordEntity } from "../entities/word.entity.ts";
 import { useEffect, useState } from "react";
 import { wordService } from "../root.ts";
 import { WordRow } from "../components/WordRow.tsx";
 import { Paginated } from "../../common/responses/paginated.ts";
 import { useDebouncedState } from "@mantine/hooks";
-import { IconSearch } from "@tabler/icons-react";
+import { IconPlus, IconSearch } from "@tabler/icons-react";
 import { Layout } from "../../common/components/layout.tsx";
+import { Link } from "react-router-dom";
+import { HasPermission } from "../../common/components/has-permission.tsx";
 
 export function ListVocabulary() {
 
@@ -20,7 +22,14 @@ export function ListVocabulary() {
 
   return (
     <Layout>
-      <Title>Vocabulary</Title>
+      <Group align={"center"} justify={"space-between"} h="100%">
+        <Title>Vocabulary</Title>
+        <HasPermission permission={"words#create"}>
+          <Button component={Link} to={"/vocabulary/create"} variant="gradient" gradient={{ from: "blue", to: "cyan" }} leftSection={<IconPlus size={16}/>}>
+            Add Word
+          </Button>
+        </HasPermission>
+      </Group>
       <TextInput
         mt="xl"
         defaultValue={search}

@@ -14,7 +14,7 @@ export const AuthProvider = ({children}: props) => {
     const permissions = getPermissions();
 
     Promise.all([profile, permissions]).then(([profile, permissions]) => {
-      setUser({user: profile, permissions});
+      setUser({user: profile, permissions, isLoading: false});
     });
   }, []);
 
