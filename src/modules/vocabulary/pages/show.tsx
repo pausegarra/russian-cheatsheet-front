@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { wordService } from "../root.ts";
 import { Divider, Stack, Title } from "@mantine/core";
 import { ConjugationTable } from "../components/conjugation-row.tsx";
+import { Layout } from "../../common/components/layout.tsx";
 
 export function ShowVocabulary() {
   const {id} = useParams();
@@ -14,7 +15,7 @@ export function ShowVocabulary() {
   }, [id]);
 
   return (
-    <>
+    <Layout>
       <Title order={2} mb="lg">Vocabulary: {word.russian} ({word.english})</Title>
       <Divider my="md" />
 
@@ -71,7 +72,7 @@ export function ShowVocabulary() {
           ]} />
         </Stack>
       )}
-    </>
+    </Layout>
   )
 
 }

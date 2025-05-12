@@ -2,6 +2,7 @@ import { AppShell, Burger, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { ReactNode } from "react";
 import { NavBar } from "./nav-bar.tsx";
+import { UserButton } from "../../auth/components/user-button.component.tsx";
 
 type props = {
   children: ReactNode;
@@ -31,6 +32,7 @@ export function Layout({children}: props) {
           <div className="logo">
             <img src="logo.svg" alt="logo" width={120} />
           </div>
+          <UserButton/>
         </Group>
       </AppShell.Header>
 

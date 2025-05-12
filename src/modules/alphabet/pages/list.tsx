@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { alphabetService } from "../root.ts";
 import { LetterEntity } from "../entities/letter.entity.ts";
 import { LetterRow } from "../components/LetterRow.tsx";
+import { Layout } from "../../common/components/layout.tsx";
 
 export function ListAlphabet() {
 
@@ -13,7 +14,7 @@ export function ListAlphabet() {
   }, []);
 
   return (
-    <>
+    <Layout>
       <Title>Alphabet</Title>
       <Table>
         <Table.Thead>
@@ -29,6 +30,6 @@ export function ListAlphabet() {
           ))}
         </Table.Tbody>
       </Table>
-    </>
+    </Layout>
   )
 }
