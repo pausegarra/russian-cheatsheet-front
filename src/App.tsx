@@ -7,6 +7,7 @@ import { authRoutes } from "./modules/auth/auth.module.tsx";
 import { AuthProvider } from "./modules/auth/contexts/auth.context.tsx";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorFallback } from "./modules/common/components/error.tsx";
+import '@mantine/notifications/styles.css';
 
 function App() {
   return (

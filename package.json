@@ -14,7 +14,7 @@
     "@mantine/core": "^7.17.5",
     "@mantine/form": "^8.0.1",
     "@mantine/hooks": "^7.17.5",
-    "@mantine/notifications": "^7.17.5",
+    "@mantine/notifications": "^8.0.1",
     "@tabler/icons-react": "^3.31.0",
     "keycloak-js": "^26.1.5",
     "react": "^19.0.0",
