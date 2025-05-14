@@ -1,6 +1,7 @@
 import { ReactNode, useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../auth/contexts/auth.provider.ts";
 import { useErrorBoundary } from "react-error-boundary";
+import { authService } from "../../auth/root.ts";
 
 type props = {
   children: ReactNode;
@@ -13,7 +14,11 @@ export function Protected({children, permission}: props) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (user === null) {
+    if (user?.isLoading || user === null) {
+      return;
+    }
+
+    if (!authService.isAuthenticated()) {
       showBoundary("You must be logged in to access this page");
       return;
     }
