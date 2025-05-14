@@ -50,4 +50,8 @@ export class AuthServiceImpl implements AuthService {
     return this.keycloak.authenticated == true;
   }
 
+  getAccessToken(): string | undefined {
+    return this.keycloak.token
+  }
+
 }

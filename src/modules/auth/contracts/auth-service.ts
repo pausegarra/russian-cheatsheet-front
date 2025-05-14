@@ -14,4 +14,6 @@ export interface AuthService {
 
   logout(): void;
 
+  getAccessToken(): string | undefined;
+
 }

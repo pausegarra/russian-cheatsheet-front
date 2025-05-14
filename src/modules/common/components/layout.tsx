@@ -30,7 +30,7 @@ export function Layout({children}: props) {
             size="sm"
           />
           <div className="logo">
-            <img src="logo.svg" alt="logo" width={120} />
+            <img src="/logo.svg" alt="logo" width={120} />
           </div>
           <UserButton/>
         </Group>
