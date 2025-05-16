@@ -14,17 +14,16 @@ export function Protected({children, permission}: props) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (user?.isLoading || user === null) {
-      return;
-    }
-
     if (!authService.isAuthenticated()) {
       showBoundary("You must be logged in to access this page");
+      setIsLoading(false);
       return;
     }
 
-    if (permission && !user.permissions?.includes(permission)) {
+
+    if (user?.isLoading && permission && !user?.permissions?.includes(permission)) {
       showBoundary("Resource not found");
+      setIsLoading(false);
       return;
     }
 

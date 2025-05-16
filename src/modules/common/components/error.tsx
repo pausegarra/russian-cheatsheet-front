@@ -8,7 +8,7 @@ export function ErrorFallback({error}: FallbackProps) {
       <Stack align={"center"}>
         <Title order={2}>Something went wrong</Title>
         <Text c="red" ta="center">
-          {error}
+          {JSON.stringify(error)}
         </Text>
         <Button variant="light" color="red" component={Link} to={"/"}>
           Go to home

@@ -9,7 +9,7 @@ export function LoginPage() {
   const user = useContext(AuthContext);
 
   useEffect(() => {
-    if (user !== null) {
+    if (authService.isAuthenticated()) {
       navigate("/");
     }
   }, [navigate, user])

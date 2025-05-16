@@ -7,7 +7,7 @@ import { authService } from "../root.ts";
 export function UserButton() {
   const user = useContext(AuthContext);
 
-  if (user === null) {
+  if (!authService.isAuthenticated()) {
     return null;
   }
 

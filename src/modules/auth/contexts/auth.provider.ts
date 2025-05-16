@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { UserEntity } from "../entities/user.entity.ts";
 
 export type AuthContextType = {
-  user: UserEntity;
+  user: UserEntity | null;
   permissions: string[];
   isLoading: boolean;
 }
