@@ -1,12 +1,16 @@
-import { Button, Group, Modal, Stack, Text, Title } from "@mantine/core";
+import { Title } from "@mantine/core";
 import { Layout } from "../../common/components/layout.tsx";
 import { WordForm } from "../components/word-form.tsx";
 import { WordEntity } from "../entities/word.entity.ts";
 import { wordService } from "../root.ts";
-import { useDisclosure } from "@mantine/hooks";
-import { Link } from "react-router-dom";
 import { useRef } from "react";
 import { useForm } from "@mantine/form";
+import { WordAlreadyExists } from "../exception/WordAlreadyExists.ts";
+import { useErrorBoundary } from "react-error-boundary";
+import { Unauthenticated } from "../../common/exception/unauithenticated.ts";
+import { BadRequest } from "../../common/exception/bad-request.ts";
+import { Forbidden } from "../../common/exception/forbidden.ts";
+import { notificationsService } from "../../common/root.ts";
 
 export function CreateVocabulary() {
   const form = useForm<WordEntity>({
@@ -52,17 +56,37 @@ export function CreateVocabulary() {
       }
     }
   })
-  const [opened, {open, close}] = useDisclosure(false);
   const wordIdRef = useRef<string | null>(null);
+  const {showBoundary} = useErrorBoundary();
 
   async function handleSubmit(values: WordEntity) {
-    wordIdRef.current = await wordService.createWord(values);
-    open()
-  }
+    try {
+      wordIdRef.current = await wordService.createWord(values);
+      notificationsService.success('Word created');
+      form.reset();
+    } catch (e) {
+      if (e instanceof WordAlreadyExists) {
+        notificationsService.error(e.message);
+        return;
+      }
 
-  function handleReset() {
-    form.reset();
-    close();
+      if (e instanceof BadRequest) {
+        notificationsService.error(e.message);
+        return;
+      }
+
+      if (e instanceof Unauthenticated) {
+        showBoundary("You must be logged in");
+        return;
+      }
+
+      if (e instanceof Forbidden) {
+        showBoundary("You don't have permissions");
+        return;
+      }
+
+      showBoundary(e.message);
+    }
   }
 
   return (
@@ -74,18 +98,6 @@ export function CreateVocabulary() {
           <WordForm form={form}/>
         </form>
       </Layout>
-
-      <Modal opened={opened} onClose={close} withCloseButton={false} centered={true}>
-        <Stack gap="md" align="center">
-          <Title>Word created!</Title>
-          <Text>What do you want to do next?</Text>
-          <Group align={"center"} justify={"center"}>
-            <Button onClick={close} component={Link} to={`/vocabulary/${wordIdRef.current}`} variant={"gradient"} c={"black"} gradient={{ from: "yellow", to: "orange" }}>View word</Button>
-            <Button onClick={handleReset} variant={"gradient"} gradient={{ from: "blue", to: "cyan" }}>Create another</Button>
-            <Button onClick={close} component={Link} to={"/vocabulary"} variant={"gradient"} gradient={{ from: "blue", to: "cyan" }}>View all words</Button>
-          </Group>
-        </Stack>
-      </Modal>
     </>
   )
 }

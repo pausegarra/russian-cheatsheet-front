@@ -2,6 +2,11 @@ import { WordEntity } from "../entities/word.entity.ts";
 import { IFetchService } from "@betino/fetch";
 import { Paginated } from "../../common/responses/paginated.ts";
 import { AuthService } from "../../auth/contracts/auth-service.ts";
+import { WordAlreadyExists } from "../exception/WordAlreadyExists.ts";
+import { UnahandledError } from "../../common/exception/unahandled-error.ts";
+import { Forbidden } from "../../common/exception/forbidden.ts";
+import { BadRequest } from "../../common/exception/bad-request.ts";
+import { Unauthenticated } from "../../common/exception/unauithenticated.ts";
 
 export class WordService {
 
@@ -20,11 +25,31 @@ export class WordService {
   }
 
   public async createWord(word: WordEntity): Promise<string> {
-    const token = this.authService.getAccessToken()
-    const response = await this.fetch.post<{ resourceId: string }>(`/api/words`, word, {
-      Authorization: `Bearer ${token}`
-    });
-    return response.resourceId;
+    try {
+      const token = this.authService.getAccessToken()
+      const response = await this.fetch.post<{ resourceId: string }>(`/api/words`, word, {
+        Authorization: `Bearer ${token}`
+      });
+      return response.resourceId;
+    } catch (e) {
+      if (e.status === 400 && e.error.code === 'WORD_ALREADY_EXISTS') {
+        throw new WordAlreadyExists(word.russian);
+      }
+
+      if (e.status === 400 && e.error.code === 'ILLEGAL_ARGUMENT') {
+        throw new BadRequest(e.error.message);
+      }
+
+      if (e.status === 401) {
+        throw new Unauthenticated();
+      }
+
+      if (e.status === 403) {
+        throw new Forbidden();
+      }
+
+      throw new UnahandledError(e.message);
+    }
   }
 
 }
