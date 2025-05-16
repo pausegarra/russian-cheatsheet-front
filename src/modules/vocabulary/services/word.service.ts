@@ -24,6 +24,13 @@ export class WordService {
     return this.fetch.get<WordEntity>(`/api/words/${id}`);
   }
 
+  public async updateWord(word: WordEntity): Promise<void> {
+    const token = this.authService.getAccessToken()
+    await this.fetch.patch<{ resourceId: string }>(`/api/words/${word.id}`, word, {
+      Authorization: `Bearer ${token}`
+    });
+  }
+
   public async createWord(word: WordEntity): Promise<string> {
     try {
       const token = this.authService.getAccessToken()

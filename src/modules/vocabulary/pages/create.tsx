@@ -1,4 +1,4 @@
-import { Title } from "@mantine/core";
+import { Button, Divider, Title } from "@mantine/core";
 import { Layout } from "../../common/components/layout.tsx";
 import { WordForm } from "../components/word-form.tsx";
 import { WordEntity } from "../entities/word.entity.ts";
@@ -11,6 +11,7 @@ import { Unauthenticated } from "../../common/exception/unauithenticated.ts";
 import { BadRequest } from "../../common/exception/bad-request.ts";
 import { Forbidden } from "../../common/exception/forbidden.ts";
 import { notificationsService } from "../../common/root.ts";
+import { IconPlus } from "@tabler/icons-react";
 
 export function CreateVocabulary() {
   const form = useForm<WordEntity>({
@@ -96,6 +97,12 @@ export function CreateVocabulary() {
 
         <form onSubmit={form.onSubmit(handleSubmit)}>
           <WordForm form={form}/>
+
+          <Divider my="md" />
+
+          <Button type={"submit"} variant={"gradient"} gradient={{ from: "blue", to: "cyan" }} leftSection={<IconPlus size={16}/>}>
+            Add
+          </Button>
         </form>
       </Layout>
     </>

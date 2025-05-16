@@ -1,10 +1,12 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { WordEntity } from "../entities/word.entity.ts";
 import { useEffect, useState } from "react";
 import { wordService } from "../root.ts";
-import { Divider, Grid, Title } from "@mantine/core";
+import { Button, Divider, Grid, Group, Title } from "@mantine/core";
 import { ConjugationTable } from "../components/conjugation-row.tsx";
 import { Layout } from "../../common/components/layout.tsx";
+import { HasPermission } from "../../common/components/has-permission.tsx";
+import { IconEdit, IconPlus } from "@tabler/icons-react";
 
 export function ShowVocabulary() {
   const {id} = useParams();
@@ -16,7 +18,14 @@ export function ShowVocabulary() {
 
   return (
     <Layout>
-      <Title order={2} mb="lg">Vocabulary: {word.russian} ({word.english})</Title>
+      <Group align={"center"} justify={"space-between"} h="100%">
+        <Title>Vocabulary {word.russian} ({word.english})</Title>
+        <HasPermission permission={"words#update"}>
+          <Button component={Link} c={"black"} to={`/vocabulary/${id}/edit`} variant="gradient" gradient={{ from: "yellow", to: "orange" }} leftSection={<IconEdit size={16}/>}>
+            Edit Word
+          </Button>
+        </HasPermission>
+      </Group>
       <Divider my="md" />
 
       {word.type === 'VERB' && word.conjugations && (

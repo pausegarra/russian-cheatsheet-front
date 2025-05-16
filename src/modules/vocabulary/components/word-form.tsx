@@ -1,5 +1,5 @@
 import { UseFormReturnType } from "@mantine/form";
-import { Button, Divider, Grid, Select, TextInput, Title } from "@mantine/core";
+import { Divider, Grid, Select, TextInput, Title } from "@mantine/core";
 import { WordEntity } from "../entities/word.entity.ts";
 import { WordConjugationForm } from "./word-conjugation-form.tsx";
 import {
@@ -10,7 +10,6 @@ import {
   perfectivePastConjugations,
   perfectivePresentConjugations
 } from "../constants.ts";
-import { IconPlus } from "@tabler/icons-react";
 
 type props = {
   form: UseFormReturnType<WordEntity>;
@@ -80,12 +79,6 @@ export function WordForm({form}: props) {
           </Grid>
         </>
       )}
-
-      <Divider my="md" />
-
-      <Button type={"submit"} variant={"gradient"} gradient={{ from: "blue", to: "cyan" }} leftSection={<IconPlus size={16}/>}>
-        Add
-      </Button>
     </>
   )
 }
