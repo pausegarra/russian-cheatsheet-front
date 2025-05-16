@@ -17,7 +17,7 @@ export function UserButton() {
         <Button variant="subtle" color="gray" rightSection={<IconChevronDown size={14} />}>
           <Group gap="xs">
             <Avatar radius="xl" size="sm" />
-            <Text size="sm">{user?.user.fullName}</Text>
+            <Text size="sm">{user?.user?.fullName}</Text>
           </Group>
         </Button>
       </Menu.Target>
