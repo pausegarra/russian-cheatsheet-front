@@ -6,7 +6,7 @@ import { Button, Divider, Grid, Group, Title } from "@mantine/core";
 import { ConjugationTable } from "../components/conjugation-row.tsx";
 import { Layout } from "../../common/components/layout.tsx";
 import { HasPermission } from "../../common/components/has-permission.tsx";
-import { IconEdit, IconPlus } from "@tabler/icons-react";
+import { IconEdit } from "@tabler/icons-react";
 
 export function ShowVocabulary() {
   const {id} = useParams();

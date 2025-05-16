@@ -38,7 +38,7 @@ export class WordService {
         Authorization: `Bearer ${token}`
       });
       return response.resourceId;
-    } catch (e) {
+    } catch (e: any) {
       if (e.status === 400 && e.error.code === 'WORD_ALREADY_EXISTS') {
         throw new WordAlreadyExists(word.russian);
       }

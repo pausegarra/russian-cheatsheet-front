@@ -1,11 +1,4 @@
-import {
-  Alert,
-  Card,
-  Container,
-  Stack,
-  Text,
-  Title,
-} from "@mantine/core";
+import { Alert, Card, Container, Stack, Text, Title, } from "@mantine/core";
 import { IconAlertCircle } from "@tabler/icons-react";
 import { Layout } from "../components/layout";
 
