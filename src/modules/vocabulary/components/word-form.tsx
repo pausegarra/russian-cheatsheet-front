@@ -81,7 +81,7 @@ export function WordForm({form}: props) {
         </>
       )}
 
-      {(form.values.type !== 'VERB' && form.values.type !== "") && form.values.cases && (
+      {(form.values.type !== 'VERB' && form.values.type !== 'ADVERB' && form.values.type !== "") && form.values.cases && (
         <>
           <Divider my="md" />
 
