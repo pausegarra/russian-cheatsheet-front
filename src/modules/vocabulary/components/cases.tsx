@@ -13,47 +13,33 @@ export function WordCases({cases}: props) {
         <Table.Thead>
           <Table.Tr>
             <Table.Th>Case</Table.Th>
-            <Table.Th>Masculine</Table.Th>
-            <Table.Th>Feminine</Table.Th>
-            <Table.Th>Neuter</Table.Th>
+            <Table.Th>Value</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
           <Table.Tr>
             <Table.Td><strong>Nominative</strong></Table.Td>
-            <Table.Td>{cases.nominativeMasculine}</Table.Td>
-            <Table.Td>{cases.nominativeFeminine}</Table.Td>
-            <Table.Td>{cases.nominativeNeuter}</Table.Td>
+            <Table.Td>{cases.nominative}</Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Genitive</strong></Table.Td>
-            <Table.Td>{cases.genitiveMasculine}</Table.Td>
-            <Table.Td>{cases.genitiveFeminine}</Table.Td>
-            <Table.Td>{cases.genitiveNeuter}</Table.Td>
+            <Table.Td>{cases.genitive}</Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Dative</strong></Table.Td>
-            <Table.Td>{cases.dativeMasculine}</Table.Td>
-            <Table.Td>{cases.dativeFeminine}</Table.Td>
-            <Table.Td>{cases.dativeNeuter}</Table.Td>
+            <Table.Td>{cases.dative}</Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Accusative</strong></Table.Td>
-            <Table.Td>{cases.accusativeMasculine}</Table.Td>
-            <Table.Td>{cases.accusativeFeminine}</Table.Td>
-            <Table.Td>{cases.accusativeNeuter}</Table.Td>
+            <Table.Td>{cases.accusative}</Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Instrumental</strong></Table.Td>
-            <Table.Td>{cases.instrumentalMasculine}</Table.Td>
-            <Table.Td>{cases.instrumentalFeminine}</Table.Td>
-            <Table.Td>{cases.instrumentalNeuter}</Table.Td>
+            <Table.Td>{cases.instrumental}</Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Prepositional</strong></Table.Td>
-            <Table.Td>{cases.prepositionalMasculine}</Table.Td>
-            <Table.Td>{cases.prepositionalFeminine}</Table.Td>
-            <Table.Td>{cases.prepositionalNeuter}</Table.Td>
+            <Table.Td>{cases.prepositional}</Table.Td>
           </Table.Tr>
         </Table.Tbody>
       </Table>

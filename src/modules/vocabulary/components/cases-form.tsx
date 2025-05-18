@@ -13,9 +13,7 @@ export function CasesForm({form}: props) {
         <Table.Thead>
           <Table.Tr>
             <Table.Th>Case</Table.Th>
-            <Table.Th>Masculine</Table.Th>
-            <Table.Th>Feminine</Table.Th>
-            <Table.Th>Neuter</Table.Th>
+            <Table.Th>Value</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
@@ -23,127 +21,30 @@ export function CasesForm({form}: props) {
             <Table.Td><strong>Nominative</strong></Table.Td>
             <Table.Td>
               <TextInput
-                {...form.getInputProps('cases.nominativeMasculine')}
-                size={"xs"}
-              />
-            </Table.Td>
-            <Table.Td>
-              <TextInput
-                {...form.getInputProps('cases.nominativeFeminine')}
-                size={"xs"}
-              />
-            </Table.Td>
-            <Table.Td>
-              <TextInput
-                {...form.getInputProps('cases.nominativeNeuter')}
+                {...form.getInputProps('cases.nominative')}
                 size={"xs"}
               />
             </Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Genitive</strong></Table.Td>
-            <Table.Td>
-              <TextInput
-                {...form.getInputProps('cases.genitiveMasculine')}
-                size={"xs"}
-              />
-            </Table.Td>
-            <Table.Td>
-              <TextInput
-                {...form.getInputProps('cases.genitiveFeminine')}
-                size={"xs"}
-              />
-            </Table.Td>
-            <Table.Td>
-              <TextInput
-                {...form.getInputProps('cases.genitiveNeuter')}
-                size={"xs"}
-              />
-            </Table.Td>
+            <Table.Td><TextInput {...form.getInputProps('cases.genitive')} size={"xs"}/></Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Dative</strong></Table.Td>
-            <Table.Td>
-              <TextInput
-                {...form.getInputProps('cases.dativeMasculine')}
-                size={"xs"}
-              />
-            </Table.Td>
-            <Table.Td>
-              <TextInput
-                {...form.getInputProps('cases.dativeFeminine')}
-                size={"xs"}
-              />
-            </Table.Td>
-            <Table.Td>
-              <TextInput
-                {...form.getInputProps('cases.dativeNeuter')}
-                size={"xs"}
-              />
-            </Table.Td>
+            <Table.Td><TextInput {...form.getInputProps('cases.dative')} size={"xs"}/></Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Accusative</strong></Table.Td>
-            <Table.Td>
-              <TextInput
-                {...form.getInputProps('cases.accusativeMasculine')}
-                size={"xs"}
-              />
-            </Table.Td>
-            <Table.Td>
-              <TextInput
-                {...form.getInputProps('cases.accusativeFeminine')}
-                size={"xs"}
-              />
-            </Table.Td>
-            <Table.Td>
-              <TextInput
-                {...form.getInputProps('cases.accusativeNeuter')}
-                size={"xs"}
-              />
-            </Table.Td>
+            <Table.Td><TextInput {...form.getInputProps('cases.accusative')} size={"xs"}/></Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Instrumental</strong></Table.Td>
-            <Table.Td>
-              <TextInput
-                {...form.getInputProps('cases.instrumentalMasculine')}
-                size={"xs"}
-              />
-            </Table.Td>
-            <Table.Td>
-              <TextInput
-                {...form.getInputProps('cases.instrumentalFeminine')}
-                size={"xs"}
-              />
-            </Table.Td>
-            <Table.Td>
-              <TextInput
-                {...form.getInputProps('cases.instrumentalNeuter')}
-                size={"xs"}
-              />
-            </Table.Td>
+            <Table.Td><TextInput {...form.getInputProps('cases.instrumental')} size={"xs"}/></Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Prepositional</strong></Table.Td>
-            <Table.Td>
-              <TextInput
-                {...form.getInputProps('cases.prepositionalMasculine')}
-                size={"xs"}
-              />
-            </Table.Td>
-            <Table.Td>
-              <TextInput
-                {...form.getInputProps('cases.prepositionalFeminine')}
-                size={"xs"}
-              />
-            </Table.Td>
-            <Table.Td>
-              <TextInput
-                {...form.getInputProps('cases.prepositionalNeuter')}
-                size={"xs"}
-              />
-            </Table.Td>
+            <Table.Td><TextInput {...form.getInputProps('cases.prepositional')} size={"xs"}/></Table.Td>
           </Table.Tr>
         </Table.Tbody>
       </Table>

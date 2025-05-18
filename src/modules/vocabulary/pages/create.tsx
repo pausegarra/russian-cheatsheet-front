@@ -54,24 +54,12 @@ export function CreateVocabulary() {
         perfectiveFutureThirdPersonPlural: ''
       },
       cases: {
-        nominativeMasculine: '',
-        nominativeFeminine: '',
-        nominativeNeuter: '',
-        genitiveMasculine: '',
-        genitiveFeminine: '',
-        genitiveNeuter: '',
-        dativeMasculine: '',
-        dativeFeminine: '',
-        dativeNeuter: '',
-        accusativeMasculine: '',
-        accusativeFeminine: '',
-        accusativeNeuter: '',
-        instrumentalMasculine: '',
-        instrumentalFeminine: '',
-        instrumentalNeuter: '',
-        prepositionalMasculine: '',
-        prepositionalFeminine: '',
-        prepositionalNeuter: ''
+        nominative: '',
+        genitive: '',
+        dative: '',
+        accusative: '',
+        instrumental: '',
+        prepositional: ''
       }
     }
   })
