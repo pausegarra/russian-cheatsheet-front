@@ -10,6 +10,7 @@ import {
   perfectivePastConjugations,
   perfectivePresentConjugations
 } from "../constants.ts";
+import { CasesForm } from "./cases-form.tsx";
 
 type props = {
   form: UseFormReturnType<WordEntity>;
@@ -77,6 +78,16 @@ export function WordForm({form}: props) {
               <WordConjugationForm form={form} title='Perfective - Past' rows={perfectivePastConjugations} />
             </Grid.Col>
           </Grid>
+        </>
+      )}
+
+      {(form.values.type !== 'VERB' && form.values.type !== "") && form.values.cases && (
+        <>
+          <Divider my="md" />
+
+          <Title order={3} mb="md">Cases</Title>
+
+          <CasesForm form={form} />
         </>
       )}
     </>

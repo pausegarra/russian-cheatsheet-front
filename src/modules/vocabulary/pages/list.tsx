@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 import { HasPermission } from "../../common/components/has-permission.tsx";
 
 export function ListVocabulary() {
-
   const [words, setWords] = useState<Paginated<WordEntity>>({} as Paginated<WordEntity>);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useDebouncedState('', 500);

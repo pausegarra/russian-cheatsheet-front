@@ -1,21 +1,35 @@
 import { Link, useParams } from "react-router-dom";
 import { WordEntity } from "../entities/word.entity.ts";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { wordService } from "../root.ts";
 import { Button, Divider, Grid, Group, Text, Title } from "@mantine/core";
-import { ConjugationTable } from "../components/conjugation-row.tsx";
 import { Layout } from "../../common/components/layout.tsx";
 import { HasPermission } from "../../common/components/has-permission.tsx";
 import { IconEdit } from "@tabler/icons-react";
 import { Conjugations } from "../components/conjugations.tsx";
+import { useFetch } from "../../common/hooks/use-fetch.ts";
+import { useErrorBoundary } from "react-error-boundary";
+import { WordCases } from "../components/cases.tsx";
 
 export function ShowVocabulary() {
   const {id} = useParams();
   const [word, setWord] = useState<WordEntity>({} as WordEntity);
+  const fetch = useFetch();
+  const {showBoundary} = useErrorBoundary();
+
+  const getWord = useCallback(async () => {
+    const word = await fetch(async () => await wordService.getWord(id || ''));
+    if (!word) {
+      showBoundary('Word not found');
+      return;
+    }
+
+    setWord(word);
+  }, [id]);
 
   useEffect(() => {
-    wordService.getWord(id || '').then(setWord)
-  }, [id]);
+    getWord();
+  }, [getWord]);
 
   return (
     <Layout>
@@ -47,6 +61,8 @@ export function ShowVocabulary() {
       <Divider my="md" />
 
       {word.type === 'VERB' && word.conjugations && <Conjugations conjugations={word.conjugations} />}
+
+      {word.type !== 'VERB' && word.cases && <WordCases cases={word.cases} />}
     </Layout>
   )
 
