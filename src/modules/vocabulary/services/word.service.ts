@@ -3,10 +3,7 @@ import { IFetchService } from "@betino/fetch";
 import { Paginated } from "../../common/responses/paginated.ts";
 import { AuthService } from "../../auth/contracts/auth-service.ts";
 import { WordAlreadyExists } from "../exception/WordAlreadyExists.ts";
-import { UnahandledError } from "../../common/exception/unahandled-error.ts";
-import { Forbidden } from "../../common/exception/forbidden.ts";
 import { BadRequest } from "../../common/exception/bad-request.ts";
-import { Unauthenticated } from "../../common/exception/unauithenticated.ts";
 
 export class WordService {
 
@@ -47,15 +44,7 @@ export class WordService {
         throw new BadRequest(e.error.message);
       }
 
-      if (e.status === 401) {
-        throw new Unauthenticated();
-      }
-
-      if (e.status === 403) {
-        throw new Forbidden();
-      }
-
-      throw new UnahandledError(e.message);
+      throw e;
     }
   }
 

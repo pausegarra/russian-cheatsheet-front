@@ -3,15 +3,13 @@ import { Layout } from "../../common/components/layout.tsx";
 import { WordForm } from "../components/word-form.tsx";
 import { WordEntity } from "../entities/word.entity.ts";
 import { wordService } from "../root.ts";
-import { useRef } from "react";
 import { useForm } from "@mantine/form";
 import { WordAlreadyExists } from "../exception/WordAlreadyExists.ts";
 import { useErrorBoundary } from "react-error-boundary";
-import { Unauthenticated } from "../../common/exception/unauithenticated.ts";
 import { BadRequest } from "../../common/exception/bad-request.ts";
-import { Forbidden } from "../../common/exception/forbidden.ts";
 import { notificationsService } from "../../common/root.ts";
 import { IconPlus } from "@tabler/icons-react";
+import { useFetch } from "../../common/hooks/use-fetch.ts";
 
 export function CreateVocabulary() {
   const form = useForm<WordEntity>({
@@ -57,12 +55,12 @@ export function CreateVocabulary() {
       }
     }
   })
-  const wordIdRef = useRef<string | null>(null);
   const {showBoundary} = useErrorBoundary();
+  const fetch = useFetch();
 
   async function handleSubmit(values: WordEntity) {
     try {
-      wordIdRef.current = await wordService.createWord(values);
+      await fetch(async () => await wordService.createWord(values));
       notificationsService.success('Word created');
       form.reset();
     } catch (e) {
@@ -73,16 +71,6 @@ export function CreateVocabulary() {
 
       if (e instanceof BadRequest) {
         notificationsService.error(e.message);
-        return;
-      }
-
-      if (e instanceof Unauthenticated) {
-        showBoundary("You must be logged in");
-        return;
-      }
-
-      if (e instanceof Forbidden) {
-        showBoundary("You don't have permissions");
         return;
       }
 

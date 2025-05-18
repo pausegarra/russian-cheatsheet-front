@@ -8,15 +8,25 @@ import { useForm } from "@mantine/form";
 import { WordForm } from "../components/word-form.tsx";
 import { IconEdit } from "@tabler/icons-react";
 import { notificationsService } from "../../common/root.ts";
+import { useFetch } from "../../common/hooks/use-fetch.ts";
+import { useErrorBoundary } from "react-error-boundary";
 
 export function EditWordPage() {
   const {id} = useParams();
+  const fetch = useFetch();
+  const {showBoundary} = useErrorBoundary();
   const form = useForm<WordEntity>({
     initialValues: {} as WordEntity
   })
 
-  const getWord = useCallback(() => {
-    wordService.getWord(id || '').then(form.setValues)
+  const getWord = useCallback(async () => {
+    const word = await fetch(async () => await wordService.getWord(id || ''));
+    if (!word) {
+      showBoundary('Word not found');
+      return;
+    }
+
+    form.setValues(word);
   }, [id, form]);
 
   useEffect(() => {
@@ -24,7 +34,7 @@ export function EditWordPage() {
   }, []);
 
   async function handleSubmit(values: WordEntity) {
-    await wordService.updateWord(values);
+    await fetch(async () => await wordService.updateWord(values));
     getWord();
     notificationsService.success('Word updated');
   }
