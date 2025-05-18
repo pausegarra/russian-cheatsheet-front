@@ -1,4 +1,4 @@
-import { Grid, Table, Text, Title } from "@mantine/core";
+import { Table, Title } from "@mantine/core";
 import { WordCasesEntity } from "../entities/cases.entity.ts";
 
 type props = {
