@@ -9,7 +9,7 @@ type props = {
 export function Conjugations({conjugations}: props) {
   return (
     <Grid>
-      <Grid.Col span={6}>
+      <Grid.Col span={{base: 12, md: 6}}>
         <ConjugationTable title='Imperfective - Present' rows={[
           { label: 'я', value: conjugations.imperfectivePresentFirstPersonSingular },
           { label: 'ты', value: conjugations.imperfectivePresentSecondPersonSingular },
@@ -20,7 +20,7 @@ export function Conjugations({conjugations}: props) {
         ]} />
       </Grid.Col>
 
-      <Grid.Col span={6}>
+      <Grid.Col span={{base: 12, md: 6}}>
         <ConjugationTable title='Perfective - Present' rows={[
           { label: 'я', value: conjugations.perfectivePresentFirstPersonSingular },
           { label: 'ты', value: conjugations.perfectivePresentSecondPersonSingular },
@@ -31,7 +31,7 @@ export function Conjugations({conjugations}: props) {
         ]} />
       </Grid.Col>
 
-      <Grid.Col span={6}>
+      <Grid.Col span={{base: 12, md: 6}}>
         <ConjugationTable title='Imperfective - Future' rows={[
           { label: 'я', value: conjugations.imperfectiveFutureFirstPersonSingular },
           { label: 'ты', value: conjugations.imperfectiveFutureSecondPersonSingular },
@@ -42,7 +42,7 @@ export function Conjugations({conjugations}: props) {
         ]} />
       </Grid.Col>
 
-      <Grid.Col span={6}>
+      <Grid.Col span={{base: 12, md: 6}}>
         <ConjugationTable title='Perfective - Future' rows={[
           { label: 'я', value: conjugations.perfectiveFutureFirstPersonSingular },
           { label: 'ты', value: conjugations.perfectiveFutureSecondPersonSingular },
@@ -53,7 +53,7 @@ export function Conjugations({conjugations}: props) {
         ]} />
       </Grid.Col>
 
-      <Grid.Col span={6}>
+      <Grid.Col span={{base: 12, md: 6}}>
         <ConjugationTable title='Imperfective - Past' rows={[
           { label: 'Masculine', value: conjugations.imperfectivePastMasculine },
           { label: 'Feminine', value: conjugations.imperfectivePastFeminine },
@@ -62,7 +62,7 @@ export function Conjugations({conjugations}: props) {
         ]} />
       </Grid.Col>
 
-      <Grid.Col span={6}>
+      <Grid.Col span={{base: 12, md: 6}}>
         <ConjugationTable title='Perfective - Past' rows={[
           { label: 'Masculine', value: conjugations.perfectivePastMasculine },
           { label: 'Feminine', value: conjugations.perfectivePastFeminine },
