@@ -2,11 +2,12 @@ import { Link, useParams } from "react-router-dom";
 import { WordEntity } from "../entities/word.entity.ts";
 import { useEffect, useState } from "react";
 import { wordService } from "../root.ts";
-import { Button, Divider, Grid, Group, Title } from "@mantine/core";
+import { Button, Divider, Grid, Group, Text, Title } from "@mantine/core";
 import { ConjugationTable } from "../components/conjugation-row.tsx";
 import { Layout } from "../../common/components/layout.tsx";
 import { HasPermission } from "../../common/components/has-permission.tsx";
 import { IconEdit } from "@tabler/icons-react";
+import { Conjugations } from "../components/conjugations.tsx";
 
 export function ShowVocabulary() {
   const {id} = useParams();
@@ -28,71 +29,24 @@ export function ShowVocabulary() {
       </Group>
       <Divider my="md" />
 
-      {word.type === 'VERB' && word.conjugations && (
-        <Grid>
-          <Grid.Col span={6}>
-            <ConjugationTable title='Imperfective - Present' rows={[
-              { label: 'я', value: word.conjugations.imperfectivePresentFirstPersonSingular },
-              { label: 'ты', value: word.conjugations.imperfectivePresentSecondPersonSingular },
-              { label: 'он/она/оно', value: word.conjugations.imperfectivePresentThirdPersonSingular },
-              { label: 'мы', value: word.conjugations.imperfectivePresentFirstPersonPlural },
-              { label: 'вы', value: word.conjugations.imperfectivePresentSecondPersonPlural },
-              { label: 'они', value: word.conjugations.imperfectivePresentThirdPersonPlural },
-            ]} />
-          </Grid.Col>
+      <Grid>
+        <Grid.Col span={3}>
+          <Text><strong>Russian:</strong> {word.russian}</Text>
+        </Grid.Col>
+        <Grid.Col span={3}>
+          <Text><strong>English:</strong> {word.english}</Text>
+        </Grid.Col>
+        <Grid.Col span={3}>
+          <Text><strong>Spanish:</strong> {word.spanish}</Text>
+        </Grid.Col>
+        <Grid.Col span={3}>
+          <Text><strong>Type:</strong> {word.type}</Text>
+        </Grid.Col>
+      </Grid>
 
-          <Grid.Col span={6}>
-            <ConjugationTable title='Perfective - Present' rows={[
-              { label: 'я', value: word.conjugations.perfectivePresentFirstPersonSingular },
-              { label: 'ты', value: word.conjugations.perfectivePresentSecondPersonSingular },
-              { label: 'он/она/оно', value: word.conjugations.perfectivePresentThirdPersonSingular },
-              { label: 'мы', value: word.conjugations.perfectivePresentFirstPersonPlural },
-              { label: 'вы', value: word.conjugations.perfectivePresentSecondPersonPlural },
-              { label: 'они', value: word.conjugations.perfectivePresentThirdPersonPlural },
-            ]} />
-          </Grid.Col>
+      <Divider my="md" />
 
-          <Grid.Col span={6}>
-            <ConjugationTable title='Imperfective - Future' rows={[
-              { label: 'я', value: word.conjugations.imperfectiveFutureFirstPersonSingular },
-              { label: 'ты', value: word.conjugations.imperfectiveFutureSecondPersonSingular },
-              { label: 'он/она/оно', value: word.conjugations.imperfectiveFutureThirdPersonSingular },
-              { label: 'мы', value: word.conjugations.imperfectiveFutureFirstPersonPlural },
-              { label: 'вы', value: word.conjugations.imperfectiveFutureSecondPersonPlural },
-              { label: 'они', value: word.conjugations.imperfectiveFutureThirdPersonPlural },
-            ]} />
-          </Grid.Col>
-
-          <Grid.Col span={6}>
-            <ConjugationTable title='Perfective - Future' rows={[
-              { label: 'я', value: word.conjugations.perfectiveFutureFirstPersonSingular },
-              { label: 'ты', value: word.conjugations.perfectiveFutureSecondPersonSingular },
-              { label: 'он/она/оно', value: word.conjugations.perfectiveFutureThirdPersonSingular },
-              { label: 'мы', value: word.conjugations.perfectiveFutureFirstPersonPlural },
-              { label: 'вы', value: word.conjugations.perfectiveFutureSecondPersonPlural },
-              { label: 'они', value: word.conjugations.perfectiveFutureThirdPersonPlural },
-            ]} />
-          </Grid.Col>
-
-          <Grid.Col span={6}>
-            <ConjugationTable title='Imperfective - Past' rows={[
-              { label: 'Masculine', value: word.conjugations.imperfectivePastMasculine },
-              { label: 'Feminine', value: word.conjugations.imperfectivePastFeminine },
-              { label: 'Neuter', value: word.conjugations.imperfectivePastNeuter },
-              { label: 'Plural', value: word.conjugations.imperfectivePastPlural },
-            ]} />
-          </Grid.Col>
-
-          <Grid.Col span={6}>
-            <ConjugationTable title='Perfective - Past' rows={[
-              { label: 'Masculine', value: word.conjugations.perfectivePastMasculine },
-              { label: 'Feminine', value: word.conjugations.perfectivePastFeminine },
-              { label: 'Neuter', value: word.conjugations.perfectivePastNeuter },
-              { label: 'Plural', value: word.conjugations.perfectivePastPlural },
-            ]} />
-          </Grid.Col>
-        </Grid>
-      )}
+      {word.type === 'VERB' && word.conjugations && <Conjugations conjugations={word.conjugations} />}
     </Layout>
   )
 
