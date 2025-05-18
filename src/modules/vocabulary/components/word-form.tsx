@@ -52,7 +52,7 @@ export function WordForm({form}: props) {
         </Grid.Col>
       </Grid>
 
-      {form.values.type === 'VERB' && form.values.conjugations && (
+      {form.values.type === 'VERB' && (
         <>
           <Divider my="md" />
 
@@ -81,7 +81,7 @@ export function WordForm({form}: props) {
         </>
       )}
 
-      {(form.values.type !== 'VERB' && form.values.type !== 'ADVERB' && form.values.type !== "") && form.values.cases && (
+      {(form.values.type !== 'VERB' && form.values.type !== 'ADVERB' && form.values.type !== "") && (
         <>
           <Divider my="md" />
 
