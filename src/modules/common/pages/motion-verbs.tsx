@@ -16,9 +16,10 @@ export default function MotionVerbs() {
         <Card shadow="sm" padding="lg" radius="md">
           <Stack gap="md">
             <Title order={2}>1. Full List of Base Motion Verbs</Title>
-            <Text>
-              These verbs form the core. Most of them exist in a pair:
-              unidirectional (once, toward a goal) and multidirectional (habitual or general movement).
+            <Text size="lg">
+              Russian motion verbs are a huge headache — trust me.
+              They change depending on direction, frequency, purpose, and whether you're walking or using transport.
+              Below you'll find structured tables, common prefixes, examples, and typical mistakes to help you survive them.
             </Text>
 
             <List withPadding size="sm">
