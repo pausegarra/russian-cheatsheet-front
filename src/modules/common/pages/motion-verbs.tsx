@@ -8,18 +8,17 @@ export default function MotionVerbs() {
         <Title order={1}>Russian Motion Verbs</Title>
 
         <Text size="lg">
-          Russian motion verbs change depending on direction, frequency, and
-          means of travel. Below you'll find their types, prefixes, examples,
-          and common pitfalls.
+          Russian motion verbs are a huge headache — trust me.
+          They change depending on direction, frequency, purpose, and whether you're walking or using transport.
+          Below you'll find structured tables, common prefixes, examples, and typical mistakes to help you survive them.
         </Text>
 
         <Card shadow="sm" padding="lg" radius="md">
           <Stack gap="md">
             <Title order={2}>1. Full List of Base Motion Verbs</Title>
-            <Text size="lg">
-              Russian motion verbs are a huge headache — trust me.
-              They change depending on direction, frequency, purpose, and whether you're walking or using transport.
-              Below you'll find structured tables, common prefixes, examples, and typical mistakes to help you survive them.
+            <Text>
+              These verbs form the core. Most of them exist in a pair:
+              unidirectional (once, toward a goal) and multidirectional (habitual or general movement).
             </Text>
 
             <List withPadding size="sm">
