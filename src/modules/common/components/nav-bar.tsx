@@ -26,6 +26,11 @@ export function NavBar() {
       >
         Vocabulary
       </Nav>
+      <Nav
+        to="/motion-verbs"
+      >
+        Motion Verbs
+      </Nav>
     </>
   )
 }
