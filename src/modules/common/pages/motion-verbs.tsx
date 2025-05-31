@@ -15,7 +15,7 @@ export default function MotionVerbs() {
 
         <Card shadow="sm" padding="lg" radius="md">
           <Stack gap="md">
-            <Title order={2}>1. Full List of Base Motion Verbs</Title>
+            <Title order={2}>1. List of Basic Motion Verbs</Title>
             <Text>
               These verbs form the core. Most of them exist in a pair:
               unidirectional (once, toward a goal) and multidirectional (habitual or general movement).
@@ -135,95 +135,6 @@ export default function MotionVerbs() {
             </Card>
           </Grid.Col>
         </Grid>
-
-        <Card shadow="sm" padding="lg" radius="md">
-          <Stack gap="md">
-            <Title order={2}>4. Common Pitfalls</Title>
-
-            <Grid>
-              <Grid.Col span={{ base: 12, md: 6 }}>
-                <List spacing="sm" size="sm" withPadding>
-                  <List.Item>
-                    <Text>
-                      ❌ <strong>Я иду в школу каждый день</strong>
-                      <br />"I go to school every day"
-                      <br />
-                      ✅ <strong>Я хожу в школу каждый день</strong>
-                      <br />"I go to school every day"
-                      <br />
-                      → Use <i>ходить</i> (multidirectional) for repeated actions.
-                    </Text>
-                  </List.Item>
-
-                  <List.Item>
-                    <Text>
-                      ❌ <strong>Я ходил в кино вчера</strong>
-                      <br />"I went to the cinema yesterday" (incorrect aspect)
-                      <br />
-                      ✅ <strong>Я сходил в кино вчера</strong>
-                      <br />"I went to the cinema yesterday" (completed action)
-                      <br />
-                      → Use perfective form (e.g., <i>сходил</i>) for one-time completed actions.
-                    </Text>
-                  </List.Item>
-
-                  <List.Item>
-                    <Text>
-                      ❌ <strong>Я могу идти туда на автобусе</strong>
-                      <br />"I can go there by bus"
-                      <br />
-                      ✅ <strong>Я могу поехать туда на автобусе</strong>
-                      <br />"I can go there by bus"
-                      <br />
-                      → Use <i>ехать</i> or <i>поехать</i> for transport, not <i>идти</i>.
-                    </Text>
-                  </List.Item>
-                </List>
-              </Grid.Col>
-
-              <Grid.Col span={{ base: 12, md: 6 }}>
-                <List spacing="sm" size="sm" withPadding>
-                  <List.Item>
-                    <Text>
-                      ❌ <strong>Он пришёл в офис и потом ушёл домой</strong>
-                      <br />"He arrived at the office and then left for home"
-                      <br />
-                      ✅ <strong>Он сначала пришёл в офис, а потом ушёл домой</strong>
-                      <br />"He first came to the office, and then left for home"
-                      <br />
-                      → Clarify sequence when using multiple motion verbs.
-                    </Text>
-                  </List.Item>
-
-                  <List.Item>
-                    <Text>
-                      ❌ <strong>Мы едем в лес и обратно каждый день</strong>
-                      <br />"We go to the forest and back every day"
-                      <br />
-                      ✅ <strong>Мы ездим в лес и обратно каждый день</strong>
-                      <br />"We go to the forest and back every day"
-                      <br />
-                      → Use <i>ездим</i> (multidirectional) for habitual round-trips.
-                    </Text>
-                  </List.Item>
-
-                  <List.Item>
-                    <Text>
-                      ❌ <strong>Я ушёл в магазин</strong> (while still at home)
-                      <br />"I left for the store" (but you haven’t yet)
-                      <br />
-                      ✅ <strong>Я собираюсь уйти в магазин</strong>
-                      <br />"I'm about to leave for the store"
-                      <br />
-                      → Don’t use perfective past unless the action is completed.
-                    </Text>
-                  </List.Item>
-                </List>
-              </Grid.Col>
-            </Grid>
-          </Stack>
-        </Card>
-
 
       </Stack>
     </Layout>

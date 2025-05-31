@@ -14,7 +14,7 @@ export class WordService {
 
   public async getWords(page: number, search: string): Promise<Paginated<WordEntity>> {
     const pageSubtracted = page - 1;
-    return await this.fetch.get<Paginated<WordEntity>>(`/api/words?page=${pageSubtracted}&search=${search}`);
+    return await this.fetch.get<Paginated<WordEntity>>(`/api/words?page=${pageSubtracted}&search=${search}&pageSize=25`);
   }
 
   public getWord(id: string): Promise<WordEntity> {
