@@ -13,4 +13,10 @@ install: ## Install the dependencies.
 build-docker: ## Build the docker image.
 	docker build -t russian-cheatsheet-front .
 
+CURRENT_VERSION := $(shell grep '"version"' package.json | sed -E 's/.*"version": "(.*)".*/\1/')
+
+tag: ## Tag the version.
+	git tag $(CURRENT_VERSION)
+	git push origin $(CURRENT_VERSION)
+
 .PHONY: help dev build
