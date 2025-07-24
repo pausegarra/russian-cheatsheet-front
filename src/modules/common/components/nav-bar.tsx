@@ -12,14 +12,14 @@ export function NavBar() {
         Home
       </Nav>
       <Nav
-        to="/russian-cases"
-      >
-        Russian Cases
-      </Nav>
-      <Nav
         to="/alphabet"
       >
         Alphabet
+      </Nav>
+      <Nav
+        to="/russian-cases"
+      >
+        Russian Cases
       </Nav>
       <Nav
         to="/vocabulary"
@@ -30,6 +30,11 @@ export function NavBar() {
         to="/motion-verbs"
       >
         Motion Verbs
+      </Nav>
+      <Nav
+        to="/prepositions"
+      >
+        Prepositions
       </Nav>
     </>
   )
