@@ -1,14 +1,13 @@
 import { LetterEntity } from "../entities/letter.entity.ts";
-import { IFetchService } from "@betino/fetch";
 
 export class AlphabetService {
 
   constructor(
-    private readonly fetch: IFetchService
+    private readonly words: LetterEntity[]
   ) {}
 
-  public async getAlphabet(): Promise<LetterEntity[]> {
-    return await this.fetch.get<LetterEntity[]>("/api/letters");
+  public getAlphabet(): LetterEntity[] {
+    return this.words;
   }
 
 }

@@ -1,0 +1,200 @@
+[
+  {
+    "_id": "4b204b27-ce30-4b1e-b71a-421f19fbe4c9",
+    "_cyrillic": "А",
+    "_latin": "A",
+    "_ipa": "/a/"
+  },
+  {
+    "_id": "f859536d-bd3d-470c-a7d9-2bfeb7ce79d1",
+    "_cyrillic": "Б",
+    "_latin": "B",
+    "_ipa": "/b/"
+  },
+  {
+    "_id": "34cfaa6a-003f-4a12-a681-0c5be6b63b08",
+    "_cyrillic": "В",
+    "_latin": "V",
+    "_ipa": "/v/"
+  },
+  {
+    "_id": "70c52663-1547-41ba-b534-32c20499239c",
+    "_cyrillic": "Г",
+    "_latin": "G",
+    "_ipa": "/ɡ/"
+  },
+  {
+    "_id": "3acb4696-3333-422a-ac12-41caa876efc7",
+    "_cyrillic": "Д",
+    "_latin": "D",
+    "_ipa": "/d/"
+  },
+  {
+    "_id": "fee80dae-efee-4288-b78e-67890490af67",
+    "_cyrillic": "Е",
+    "_latin": "E",
+    "_ipa": "/je/"
+  },
+  {
+    "_id": "448966e0-cc10-464a-999b-694db705b906",
+    "_cyrillic": "Ё",
+    "_latin": "Yo",
+    "_ipa": "/jo/"
+  },
+  {
+    "_id": "d3a67429-4fd7-4fef-8592-889b2bc63ace",
+    "_cyrillic": "Ж",
+    "_latin": "Zh",
+    "_ipa": "/ʐ/"
+  },
+  {
+    "_id": "c1fb4700-d51c-4e79-84c9-b05ed97be1c3",
+    "_cyrillic": "З",
+    "_latin": "Z",
+    "_ipa": "/z/"
+  },
+  {
+    "_id": "c40baa31-e9e8-485e-a766-c339d7e231ba",
+    "_cyrillic": "И",
+    "_latin": "I",
+    "_ipa": "/i/"
+  },
+  {
+    "_id": "3265de55-0d79-4b86-b498-a18af6426596",
+    "_cyrillic": "Й",
+    "_latin": "Y",
+    "_ipa": "/j/"
+  },
+  {
+    "_id": "2f0eddb7-0ebc-4ee8-a5e2-22a286b86446",
+    "_cyrillic": "К",
+    "_latin": "K",
+    "_ipa": "/k/"
+  },
+  {
+    "_id": "f4dac8de-01a0-4c71-a59c-2691423be497",
+    "_cyrillic": "Л",
+    "_latin": "L",
+    "_ipa": "/l/"
+  },
+  {
+    "_id": "23b0dbc8-f66c-430d-8ee9-b42def16c912",
+    "_cyrillic": "М",
+    "_latin": "M",
+    "_ipa": "/m/"
+  },
+  {
+    "_id": "d30ad2e3-1197-4d99-8139-be8d1ea10599",
+    "_cyrillic": "Н",
+    "_latin": "N",
+    "_ipa": "/n/"
+  },
+  {
+    "_id": "dedb9d78-f307-4b9a-9b84-ac7b7677ddea",
+    "_cyrillic": "О",
+    "_latin": "O",
+    "_ipa": "/o/"
+  },
+  {
+    "_id": "49f023e1-9a18-4f28-b408-90db8ecb28d7",
+    "_cyrillic": "П",
+    "_latin": "P",
+    "_ipa": "/p/"
+  },
+  {
+    "_id": "b8b22146-7e51-477c-8ce2-1729b1d52470",
+    "_cyrillic": "Р",
+    "_latin": "R",
+    "_ipa": "/r/"
+  },
+  {
+    "_id": "96cfd177-2b52-43f9-a7bf-17321f9bec26",
+    "_cyrillic": "С",
+    "_latin": "S",
+    "_ipa": "/s/"
+  },
+  {
+    "_id": "b4015d43-a8ed-4c86-80d7-12e40d78ab62",
+    "_cyrillic": "Т",
+    "_latin": "T",
+    "_ipa": "/t/"
+  },
+  {
+    "_id": "8d6c6307-d311-4ef4-9892-6c811d754e51",
+    "_cyrillic": "У",
+    "_latin": "U",
+    "_ipa": "/u/"
+  },
+  {
+    "_id": "1fc4179c-2f5e-4f13-849c-cbf78de2474e",
+    "_cyrillic": "Ф",
+    "_latin": "F",
+    "_ipa": "/f/"
+  },
+  {
+    "_id": "2d653fda-47b3-4a8a-9610-c33918671a28",
+    "_cyrillic": "Х",
+    "_latin": "Kh",
+    "_ipa": "/x/"
+  },
+  {
+    "_id": "1127c2ec-8417-4841-a80a-61e8ca47aec9",
+    "_cyrillic": "Ц",
+    "_latin": "Ts",
+    "_ipa": "/ts/"
+  },
+  {
+    "_id": "a5bf0b86-5247-40cc-9228-5c1de23cec28",
+    "_cyrillic": "Ч",
+    "_latin": "Ch",
+    "_ipa": "/tʃ/"
+  },
+  {
+    "_id": "e9e0c82a-7f88-45a7-b1f2-47bca06a3586",
+    "_cyrillic": "Ш",
+    "_latin": "Sh",
+    "_ipa": "/ʂ/"
+  },
+  {
+    "_id": "517fc268-b43c-4adc-8de6-5b008f86ac31",
+    "_cyrillic": "Щ",
+    "_latin": "Shch",
+    "_ipa": "/ɕɕ/"
+  },
+  {
+    "_id": "653da45f-0f3c-482e-9dfc-ce51aeaa79d6",
+    "_cyrillic": "Ъ",
+    "_latin": "Hard Sign",
+    "_ipa": "-"
+  },
+  {
+    "_id": "d5429f74-26ba-4cf8-a71d-aa492c6eab84",
+    "_cyrillic": "Ы",
+    "_latin": "Y",
+    "_ipa": "/ɨ/"
+  },
+  {
+    "_id": "8240b99e-b689-4819-8e57-5cbc8d90c44a",
+    "_cyrillic": "Ь",
+    "_latin": "Soft Sign",
+    "_ipa": "-"
+  },
+  {
+    "_id": "ef99283c-5bae-4fc2-8c36-8c187520eaa3",
+    "_cyrillic": "Э",
+    "_latin": "E",
+    "_ipa": "/e/"
+  },
+  {
+    "_id": "6ec316e4-a812-41d8-95c0-2a8e243d13bc",
+    "_cyrillic": "Ю",
+    "_latin": "Yu",
+    "_ipa": "/ju/"
+  },
+  {
+    "_id": "159622d0-b332-4bdf-8b3f-fa6a06f05679",
+    "_cyrillic": "Я",
+    "_latin": "Ya",
+    "_ipa": "/ja/"
+  }
+]

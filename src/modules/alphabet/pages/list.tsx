@@ -10,7 +10,7 @@ export function ListAlphabet() {
   const [letters, setLetters] = useState<LetterEntity[]>([]);
 
   useEffect(() => {
-    alphabetService.getAlphabet().then(setLetters)
+    setLetters(alphabetService.getAlphabet());
   }, []);
 
   return (
