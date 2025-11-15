@@ -47,3 +47,8 @@ export const perfectivePastConjugations = [
   { form: 'Neuter', conjugationName: 'perfectivePastNeuter' },
   { form: 'Plural', conjugationName: 'perfectivePastPlural' },
 ]
+
+export const wordTypeOptions = [
+  "NOUN", "PRONOUN", "VERB", "ADJECTIVE", "ADVERB", "NUMERAL", "ORDINAL", "PREPOSITION", "CONJUNCTION", "PARTICLE", "INTERJECTION", "GERUND", "PARTICIPLE", "PREFIX",
+  "SUFFIX", "ROOT", "LETTER", "SENTENCE", "OTHER"
+]

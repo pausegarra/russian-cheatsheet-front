@@ -1,5 +1,6 @@
 import { ConjugationEntity } from "./conjugation.entity.ts";
 import { WordCasesEntity } from "./cases.entity.ts";
+import { WordDeclinationMatrixEntity } from "./word-declination-matrix.ts";
 
 export interface WordEntity {
   id: string;
@@ -8,5 +9,7 @@ export interface WordEntity {
   spanish: string;
   type: string;
   conjugations: ConjugationEntity;
-  cases: WordCasesEntity;
+  declinations: WordCasesEntity;
+  declinationMatrix: WordDeclinationMatrixEntity;
+  publishedAt: string | null;
 }

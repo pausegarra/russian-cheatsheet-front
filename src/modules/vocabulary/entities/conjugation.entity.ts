@@ -18,13 +18,6 @@ export interface ConjugationEntity {
   imperfectiveFutureSecondPersonPlural: string;
   imperfectiveFutureThirdPersonPlural: string;
 
-  perfectivePresentFirstPersonSingular: string;
-  perfectivePresentSecondPersonSingular: string;
-  perfectivePresentThirdPersonSingular: string;
-  perfectivePresentFirstPersonPlural: string;
-  perfectivePresentSecondPersonPlural: string;
-  perfectivePresentThirdPersonPlural: string;
-
   perfectivePastMasculine: string;
   perfectivePastFeminine: string;
   perfectivePastNeuter: string;

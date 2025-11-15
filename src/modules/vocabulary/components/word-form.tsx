@@ -8,9 +8,10 @@ import {
   imperfectivePresentConjugations,
   perfectiveFutureConjugations,
   perfectivePastConjugations,
-  perfectivePresentConjugations
+  perfectivePresentConjugations, wordTypeOptions
 } from "../constants.ts";
 import { CasesForm } from "./cases-form.tsx";
+import { WordDeclinationMatrixForm } from "./declinations-matrix-form.tsx";
 
 type props = {
   form: UseFormReturnType<WordEntity>;
@@ -46,7 +47,7 @@ export function WordForm({form}: props) {
           <Select
             label="Type"
             placeholder="Pick a tupe"
-            data={["VERB", "NOUN", "ADJECTIVE", "ADVERB"]}
+            data={wordTypeOptions}
             {...form.getInputProps('type')}
           />
         </Grid.Col>
@@ -63,7 +64,7 @@ export function WordForm({form}: props) {
               <WordConjugationForm form={form} title='Imperfective - Present' rows={imperfectivePresentConjugations}/>
             </Grid.Col>
             <Grid.Col span={6}>
-              <WordConjugationForm form={form} title='Perfective - Present' rows={perfectivePresentConjugations} />
+              <WordConjugationForm disabled={true} form={form} title='Perfective - Present' rows={perfectivePresentConjugations} />
             </Grid.Col>
             <Grid.Col span={6}>
               <WordConjugationForm form={form} title='Imperfective - Future' rows={imperfectiveFutureConjugations} />
@@ -81,13 +82,28 @@ export function WordForm({form}: props) {
         </>
       )}
 
-      {(form.values.type !== 'VERB' && form.values.type !== 'ADVERB' && form.values.type !== "") && (
+      {(form.values.type === 'NOUN') && (
         <>
           <Divider my="md" />
 
           <Title order={3} mb="md">Cases</Title>
 
           <CasesForm form={form} />
+        </>
+      )}
+
+      {(
+        form.values.type === "ADJECTIVE" ||
+        form.values.type === "PRONOUN" ||
+        form.values.type === "PARTICIPLE" ||
+        form.values.type === "ORDINAL"
+      ) && (
+        <>
+          <Divider my="md" />
+
+          <Title order={3} mb="md">Declinations</Title>
+
+          <WordDeclinationMatrixForm form={form} />
         </>
       )}
     </>

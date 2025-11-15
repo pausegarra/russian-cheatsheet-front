@@ -10,22 +10,22 @@ import { Layout } from "../../common/components/layout.tsx";
 import { Link } from "react-router-dom";
 import { HasPermission } from "../../common/components/has-permission.tsx";
 
-export function ListVocabulary() {
+export function ListUnpublished() {
   const [words, setWords] = useState<Paginated<WordEntity>>({} as Paginated<WordEntity>);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useDebouncedState('', 500);
 
   useEffect(() => {
-    wordService.getWords(page, search).then(setWords)
+    wordService.getWordsUnpublished(page, search).then(setWords)
   }, [page, search]);
 
   return (
     <Layout>
       <Group align={"center"} justify={"space-between"} h="100%">
-        <Title>Vocabulary</Title>
+        <Title>Vocabulary Unpublished</Title>
         <HasPermission permission={"words#publish"}>
-          <Button component={Link} to={"/vocabulary/unpublished"} variant="gradient" gradient={{ from: "blue", to: "cyan" }}>
-            View unpublished
+          <Button component={Link} to={"/vocabulary"} variant="gradient" gradient={{ from: "orange", to: "yellow" }}>
+            View published
           </Button>
         </HasPermission>
       </Group>
