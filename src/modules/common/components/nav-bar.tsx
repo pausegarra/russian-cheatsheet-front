@@ -31,11 +31,6 @@ export function NavBar() {
       >
         Motion Verbs
       </Nav>
-      <Nav
-        to="/prepositions"
-      >
-        Prepositions
-      </Nav>
     </>
   )
 }
