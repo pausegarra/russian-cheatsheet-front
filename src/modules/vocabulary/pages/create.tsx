@@ -36,12 +36,6 @@ export function CreateVocabulary() {
         imperfectiveFutureFirstPersonPlural: '',
         imperfectiveFutureSecondPersonPlural: '',
         imperfectiveFutureThirdPersonPlural: '',
-        perfectivePresentFirstPersonSingular: '',
-        perfectivePresentSecondPersonSingular: '',
-        perfectivePresentThirdPersonSingular: '',
-        perfectivePresentFirstPersonPlural: '',
-        perfectivePresentSecondPersonPlural: '',
-        perfectivePresentThirdPersonPlural: '',
         perfectivePastMasculine: '',
         perfectivePastFeminine: '',
         perfectivePastNeuter: '',
@@ -53,14 +47,41 @@ export function CreateVocabulary() {
         perfectiveFutureSecondPersonPlural: '',
         perfectiveFutureThirdPersonPlural: ''
       },
-      cases: {
+      declinations: {
         nominative: '',
         genitive: '',
         dative: '',
         accusative: '',
         instrumental: '',
         prepositional: ''
-      }
+      },
+      declinationMatrix: {
+        nominativeMasculine: '',
+        nominativeFeminine: '',
+        nominativeNeuter: '',
+        nominativePlural: '',
+        accusativeMasculine: '',
+        accusativeFeminine: '',
+        accusativeNeuter: '',
+        accusativePlural: '',
+        genitiveMasculine: '',
+        genitiveFeminine: '',
+        genitiveNeuter: '',
+        genitivePlural: '',
+        dativeMasculine: '',
+        dativeFeminine: '',
+        dativeNeuter: '',
+        dativePlural: '',
+        instrumentalMasculine: '',
+        instrumentalFeminine: '',
+        instrumentalNeuter: '',
+        instrumentalPlural: '',
+        prepositionalMasculine: '',
+        prepositionalFeminine: '',
+        prepositionalNeuter: '',
+        prepositionalPlural: ''
+      },
+      publishedAt: null
     }
   })
   const {showBoundary} = useErrorBoundary();

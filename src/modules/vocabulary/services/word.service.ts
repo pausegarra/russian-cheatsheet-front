@@ -14,7 +14,15 @@ export class WordService {
 
   public async getWords(page: number, search: string): Promise<Paginated<WordEntity>> {
     const pageSubtracted = page - 1;
-    return await this.fetch.get<Paginated<WordEntity>>(`/api/words?page=${pageSubtracted}&search=${search}&pageSize=25`);
+    return await this.fetch.get<Paginated<WordEntity>>(`/api/words?page=${pageSubtracted}&search=${search}&perPage=25`);
+  }
+
+  public async getWordsUnpublished(page: number, search: string): Promise<Paginated<WordEntity>> {
+    const token = this.authService.getAccessToken()
+    const pageSubtracted = page - 1;
+    return await this.fetch.get<Paginated<WordEntity>>(`/api/words/unpublished?page=${pageSubtracted}&search=${search}&perPage=25`, {}, {
+      Authorization: `Bearer ${token}`
+    });
   }
 
   public getWord(id: string): Promise<WordEntity> {
@@ -25,6 +33,16 @@ export class WordService {
     const token = this.authService.getAccessToken()
     await this.fetch.put<{ resourceId: string }>(`/api/words/${word.id}`, word, {
       Authorization: `Bearer ${token}`
+    });
+  }
+
+  public async publishWord(word: WordEntity): Promise<void> {
+    const token = this.authService.getAccessToken()
+    await fetch(`${import.meta.env.VITE_API_URL}/api/words/${word.id}/publish`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
     });
   }
 

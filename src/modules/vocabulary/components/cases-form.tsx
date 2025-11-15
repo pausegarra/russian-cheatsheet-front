@@ -21,30 +21,30 @@ export function CasesForm({form}: props) {
             <Table.Td><strong>Nominative</strong></Table.Td>
             <Table.Td>
               <TextInput
-                {...form.getInputProps('cases.nominative')}
+                {...form.getInputProps('declinations.nominative')}
                 size={"xs"}
               />
             </Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Genitive</strong></Table.Td>
-            <Table.Td><TextInput {...form.getInputProps('cases.genitive')} size={"xs"}/></Table.Td>
+            <Table.Td><TextInput {...form.getInputProps('declinations.genitive')} size={"xs"}/></Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Dative</strong></Table.Td>
-            <Table.Td><TextInput {...form.getInputProps('cases.dative')} size={"xs"}/></Table.Td>
+            <Table.Td><TextInput {...form.getInputProps('declinations.dative')} size={"xs"}/></Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Accusative</strong></Table.Td>
-            <Table.Td><TextInput {...form.getInputProps('cases.accusative')} size={"xs"}/></Table.Td>
+            <Table.Td><TextInput {...form.getInputProps('declinations.accusative')} size={"xs"}/></Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Instrumental</strong></Table.Td>
-            <Table.Td><TextInput {...form.getInputProps('cases.instrumental')} size={"xs"}/></Table.Td>
+            <Table.Td><TextInput {...form.getInputProps('declinations.instrumental')} size={"xs"}/></Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Prepositional</strong></Table.Td>
-            <Table.Td><TextInput {...form.getInputProps('cases.prepositional')} size={"xs"}/></Table.Td>
+            <Table.Td><TextInput {...form.getInputProps('declinations.prepositional')} size={"xs"}/></Table.Td>
           </Table.Tr>
         </Table.Tbody>
       </Table>

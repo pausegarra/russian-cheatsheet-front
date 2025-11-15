@@ -5,13 +5,14 @@ import { Card, Table, TextInput, Title } from "@mantine/core";
 type props = {
   form: UseFormReturnType<WordEntity>;
   title: string;
+  disabled?: boolean;
   rows: {
     form: string;
     conjugationName: string;
   }[]
 }
 
-export function WordConjugationForm({form, title, rows}: props) {
+export function WordConjugationForm({form, title, rows, disabled = false}: props) {
   return (
     <Card shadow="md" padding="lg" radius="md" withBorder>
       <Title order={3} mb="md">{title}</Title>
@@ -30,6 +31,7 @@ export function WordConjugationForm({form, title, rows}: props) {
               </Table.Td>
               <Table.Td>
                 <TextInput
+                  disabled={disabled}
                   {...form.getInputProps(`conjugations.${row.conjugationName}`)}
                 />
               </Table.Td>

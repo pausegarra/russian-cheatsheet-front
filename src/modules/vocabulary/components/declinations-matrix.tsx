@@ -1,0 +1,117 @@
+import { WordDeclinationMatrixEntity } from "../entities/word-declination-matrix.ts";
+import { Table, Title } from "@mantine/core";
+
+type props = {
+  declinations: WordDeclinationMatrixEntity
+}
+
+export function DeclinationsMatrix({declinations}: props) {
+  return (
+    <>
+      <Title order={2}>Cases</Title>
+      <Table>
+        <Table.Thead>
+          <Table.Tr>
+            <Table.Th></Table.Th>
+            <Table.Th>Masculine</Table.Th>
+            <Table.Th>Feminine</Table.Th>
+            <Table.Th>Neuter</Table.Th>
+            <Table.Th>Plural</Table.Th>
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody>
+          <Table.Tr>
+            <Table.Td><strong>Nominative</strong></Table.Td>
+            <Table.Td>
+              {declinations.nominativeMasculine}
+            </Table.Td>
+            <Table.Td>
+              {declinations.nominativeFeminine}
+            </Table.Td>
+            <Table.Td>
+              {declinations.nominativeNeuter}
+            </Table.Td>
+            <Table.Td>
+              {declinations.nominativePlural}
+            </Table.Td>
+          </Table.Tr>
+          <Table.Tr>
+            <Table.Td><strong>Accusative</strong></Table.Td>
+            <Table.Td>
+              {declinations.accusativeMasculine}
+            </Table.Td>
+            <Table.Td>
+              {declinations.accusativeFeminine}
+            </Table.Td>
+            <Table.Td>
+              {declinations.accusativeNeuter}
+            </Table.Td>
+            <Table.Td>
+              {declinations.accusativePlural}
+            </Table.Td>
+          </Table.Tr>
+          <Table.Tr>
+            <Table.Td><strong>Genitive</strong></Table.Td>
+            <Table.Td>
+              {declinations.genitiveMasculine}
+            </Table.Td>
+            <Table.Td>
+              {declinations.genitiveFeminine}
+            </Table.Td>
+            <Table.Td>
+              {declinations.genitiveNeuter}
+            </Table.Td>
+            <Table.Td>
+              {declinations.genitivePlural}
+            </Table.Td>
+          </Table.Tr>
+          <Table.Tr>
+            <Table.Td><strong>Dative</strong></Table.Td>
+            <Table.Td>
+              {declinations.dativeMasculine}
+            </Table.Td>
+            <Table.Td>
+              {declinations.dativeFeminine}
+            </Table.Td>
+            <Table.Td>
+              {declinations.dativeNeuter}
+            </Table.Td>
+            <Table.Td>
+              {declinations.dativePlural}
+            </Table.Td>
+          </Table.Tr>
+          <Table.Tr>
+            <Table.Td><strong>Instrumental</strong></Table.Td>
+            <Table.Td>
+              {declinations.instrumentalMasculine}
+            </Table.Td>
+            <Table.Td>
+              {declinations.instrumentalFeminine}
+            </Table.Td>
+            <Table.Td>
+              {declinations.instrumentalNeuter}
+            </Table.Td>
+            <Table.Td>
+              {declinations.instrumentalPlural}
+            </Table.Td>
+          </Table.Tr>
+          <Table.Tr>
+            <Table.Td><strong>Prepositional</strong></Table.Td>
+            <Table.Td>
+              {declinations.prepositionalMasculine}
+            </Table.Td>
+            <Table.Td>
+              {declinations.prepositionalFeminine}
+            </Table.Td>
+            <Table.Td>
+              {declinations.prepositionalNeuter}
+            </Table.Td>
+            <Table.Td>
+              {declinations.prepositionalPlural}
+            </Table.Td>
+          </Table.Tr>
+        </Table.Tbody>
+      </Table>
+    </>
+  )
+}
