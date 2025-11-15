@@ -22,12 +22,12 @@ export function Conjugations({conjugations}: props) {
 
       <Grid.Col span={{base: 12, md: 6}}>
         <ConjugationTable title='Perfective - Present' rows={[
-          { label: 'я', value: conjugations.perfectivePresentFirstPersonSingular },
-          { label: 'ты', value: conjugations.perfectivePresentSecondPersonSingular },
-          { label: 'он/она/оно', value: conjugations.perfectivePresentThirdPersonSingular },
-          { label: 'мы', value: conjugations.perfectivePresentFirstPersonPlural },
-          { label: 'вы', value: conjugations.perfectivePresentSecondPersonPlural },
-          { label: 'они', value: conjugations.perfectivePresentThirdPersonPlural },
+          { label: 'я', value: '-' },
+          { label: 'ты', value: '-' },
+          { label: 'он/она/оно', value: '-' },
+          { label: 'мы', value: '-' },
+          { label: 'вы', value: '-' },
+          { label: 'они', value: '-' },
         ]} />
       </Grid.Col>
 
