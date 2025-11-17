@@ -18,6 +18,18 @@ export class AuthServiceImpl implements AuthService {
       checkLoginIframe: false,
     })
 
+    setInterval(() => {
+      this.keycloak.updateToken(30)
+        .then(refreshed => {
+          if (refreshed) {
+            console.log("Token refreshed");
+          }
+        })
+        .catch(() => {
+          console.error("Failed to refresh token");
+        });
+    }, 10_000)
+
     cb()
   }
 
