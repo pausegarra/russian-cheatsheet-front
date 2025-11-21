@@ -53,7 +53,13 @@ export function CreateVocabulary() {
         dative: '',
         accusative: '',
         instrumental: '',
-        prepositional: ''
+        prepositional: '',
+        nominativePlural: '',
+        genitivePlural: '',
+        dativePlural: '',
+        accusativePlural: '',
+        instrumentalPlural: '',
+        prepositionalPlural: ''
       },
       declinationMatrix: {
         nominativeMasculine: '',

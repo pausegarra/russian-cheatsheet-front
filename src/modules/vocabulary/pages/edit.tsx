@@ -57,7 +57,13 @@ export function EditWordPage() {
         dative: '',
         accusative: '',
         instrumental: '',
-        prepositional: ''
+        prepositional: '',
+        nominativePlural: '',
+        genitivePlural: '',
+        dativePlural: '',
+        accusativePlural: '',
+        instrumentalPlural: '',
+        prepositionalPlural: ''
       },
       declinationMatrix: {
         nominativeMasculine: '',
