@@ -23,91 +23,91 @@ export function DeclinationsMatrix({declinations}: props) {
           <Table.Tr>
             <Table.Td><strong>Nominative</strong></Table.Td>
             <Table.Td>
-              {declinations.nominativeMasculine}
+              {declinations.nominativeMasculine || '-'}
             </Table.Td>
             <Table.Td>
-              {declinations.nominativeFeminine}
+              {declinations.nominativeFeminine || '-'}
             </Table.Td>
             <Table.Td>
-              {declinations.nominativeNeuter}
+              {declinations.nominativeNeuter || '-'}
             </Table.Td>
             <Table.Td>
-              {declinations.nominativePlural}
+              {declinations.nominativePlural || '-'}
             </Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Accusative</strong></Table.Td>
             <Table.Td>
-              {declinations.accusativeMasculine}
+              {declinations.accusativeMasculine || '-'}
             </Table.Td>
             <Table.Td>
-              {declinations.accusativeFeminine}
+              {declinations.accusativeFeminine || '-'}
             </Table.Td>
             <Table.Td>
-              {declinations.accusativeNeuter}
+              {declinations.accusativeNeuter || '-'}
             </Table.Td>
             <Table.Td>
-              {declinations.accusativePlural}
+              {declinations.accusativePlural || '-'}
             </Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Genitive</strong></Table.Td>
             <Table.Td>
-              {declinations.genitiveMasculine}
+              {declinations.genitiveMasculine || '-'}
             </Table.Td>
             <Table.Td>
-              {declinations.genitiveFeminine}
+              {declinations.genitiveFeminine || '-'}
             </Table.Td>
             <Table.Td>
-              {declinations.genitiveNeuter}
+              {declinations.genitiveNeuter || '-'}
             </Table.Td>
             <Table.Td>
-              {declinations.genitivePlural}
+              {declinations.genitivePlural || '-'}
             </Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Dative</strong></Table.Td>
             <Table.Td>
-              {declinations.dativeMasculine}
+              {declinations.dativeMasculine || '-'}
             </Table.Td>
             <Table.Td>
-              {declinations.dativeFeminine}
+              {declinations.dativeFeminine || '-'}
             </Table.Td>
             <Table.Td>
-              {declinations.dativeNeuter}
+              {declinations.dativeNeuter || '-'}
             </Table.Td>
             <Table.Td>
-              {declinations.dativePlural}
+              {declinations.dativePlural || '-'}
             </Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Instrumental</strong></Table.Td>
             <Table.Td>
-              {declinations.instrumentalMasculine}
+              {declinations.instrumentalMasculine || '-'}
             </Table.Td>
             <Table.Td>
-              {declinations.instrumentalFeminine}
+              {declinations.instrumentalFeminine || '-'}
             </Table.Td>
             <Table.Td>
-              {declinations.instrumentalNeuter}
+              {declinations.instrumentalNeuter || '-'}
             </Table.Td>
             <Table.Td>
-              {declinations.instrumentalPlural}
+              {declinations.instrumentalPlural || '-'}
             </Table.Td>
           </Table.Tr>
           <Table.Tr>
             <Table.Td><strong>Prepositional</strong></Table.Td>
             <Table.Td>
-              {declinations.prepositionalMasculine}
+              {declinations.prepositionalMasculine || '-'}
             </Table.Td>
             <Table.Td>
-              {declinations.prepositionalFeminine}
+              {declinations.prepositionalFeminine || '-'}
             </Table.Td>
             <Table.Td>
-              {declinations.prepositionalNeuter}
+              {declinations.prepositionalNeuter || '-'}
             </Table.Td>
             <Table.Td>
-              {declinations.prepositionalPlural}
+              {declinations.prepositionalPlural || '-'}
             </Table.Td>
           </Table.Tr>
         </Table.Tbody>
