@@ -5,4 +5,10 @@ export interface WordCasesEntity {
   accusative: string;
   instrumental: string;
   prepositional: string;
+  nominativePlural: string;
+  genitivePlural: string;
+  dativePlural: string;
+  accusativePlural: string;
+  instrumentalPlural: string;
+  prepositionalPlural: string;
 }
