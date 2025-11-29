@@ -7,3 +7,11 @@ services:
     ports:
       - "3034:80"
     restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 50M
+          cpus: '0.1'
+        reservations:
+          memory: 50M
+          cpus: '0.1'
