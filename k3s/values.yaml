@@ -2,7 +2,7 @@ appName: "russian-cheatsheet-front"
 listeningPort: 80
 
 image:
-  repository: "psegarra/perxertpassadespert-front"
+  repository: "psegarra/russian-cheatsheet-front"
 
 resources:
   limits:
