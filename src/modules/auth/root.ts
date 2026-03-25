@@ -4,7 +4,7 @@ import type { AuthService } from "./contracts/auth-service";
 import { fetchService } from "../common/root.ts";
 
 const keycloak = new Keycloak({
-  url: "https://auth.pausegarra.es",
+  url: "https://auth.pausegarra.com",
   realm: "principal",
   clientId: "russian-cheatsheet",
 });

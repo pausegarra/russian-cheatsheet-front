@@ -74,18 +74,87 @@ jobs:
     name: 🚀 Deploy Application
     runs-on: ubuntu-latest
     needs: docker
+    permissions:
+      contents: read
 
     steps:
       - name: 🔽 Checkout
         uses: actions/checkout@v4
 
-      - name: 🚀 Deploy
+      - name: Prepare image name
+        id: prep
+        run: echo "image=${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4
+
+      - name: Check out Helm charts repository
+        uses: actions/checkout@v4
+        with:
+          repository: pausegarra/helm-charts
+          path: helm-charts
+
+      - name: Configure kubeconfig
         run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_rsa
-          chmod 600 id_rsa
-          cat ./deploy/compose.yaml | ssh -o StrictHostKeyChecking=no -i id_rsa -p ${{ secrets.SSH_PORT }} \
-            ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} \
-            "docker pull ${{ secrets.DOCKER_USERNAME }}/russian-cheatsheet-front:${{ github.ref_name }} && \
-              export VERSION=${{ github.ref_name }} && \
-            docker compose -f - up -d --force-recreate"
-          rm id_rsa
+          mkdir -p "$HOME/.kube"
+          echo "${{ secrets.KUBECONFIG_B64 }}" | base64 -d > "$HOME/.kube/config"
+          chmod 600 "$HOME/.kube/config"
+
+      - name: Create/Update app secret in cluster
+        env:
+          HELM_NAMESPACE: ${{ vars.HELM_NAMESPACE }}
+        run: |
+          namespace="${HELM_NAMESPACE:-main}"
+
+          kubectl create namespace "$namespace" --dry-run=client -o yaml | kubectl apply -f -
+
+      - name: Helm upgrade
+        env:
+          HELM_RELEASE: ${{ vars.HELM_RELEASE }}
+          HELM_NAMESPACE: ${{ vars.HELM_NAMESPACE }}
+          HELM_CHART_PATH: ${{ vars.HELM_CHART_PATH }}
+          HELM_VALUES_FILE: ${{ vars.HELM_VALUES_FILE }}
+          IMAGE_REPO: ${{ steps.prep.outputs.image }}
+          IMAGE_TAG: ${{ github.ref_name }}
+        run: |
+          release="${HELM_RELEASE:-russian-cheatsheet-front}"
+          namespace="${HELM_NAMESPACE:-main}"
+          chart_path="${HELM_CHART_PATH:-helm-charts/charts/workload}"
+          values_file="${HELM_VALUES_FILE:-helm-charts/test-values.yaml}"
+
+          echo "Deploying image tag ${IMAGE_TAG} for ghcr.io/${IMAGE_REPO}"
+
+          if [ ! -d "$chart_path" ]; then
+            echo "Chart path does not exist: $chart_path"
+            exit 1
+          fi
+
+          if [ ! -f "$values_file" ]; then
+            echo "Values file does not exist: $values_file"
+            exit 1
+          fi
+
+          helm upgrade --install "$release" "$chart_path" \
+            --namespace "$namespace" \
+            --create-namespace \
+            --values "$values_file" \
+            --set image.tag="${IMAGE_TAG}"
+
+  clean-up:
+    name: 🧹 Clean up
+    runs-on: ubuntu-latest
+    needs: docker
+
+    steps:
+      - name: 🗑️ Delete Artifact
+        uses: geekyeggo/delete-artifact@v5
+        with:
+          name: build-artifacts
+
+      - name: Delete Node Modules artifact
+        uses: geekyeggo/delete-artifact@v5
+        with:
+          name: node-modules

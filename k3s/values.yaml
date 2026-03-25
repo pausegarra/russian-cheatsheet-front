@@ -1,0 +1,54 @@
+appName: "russian-cheatsheet-front"
+listeningPort: 80
+
+image:
+  repository: "psegarra/perxertpassadespert-front"
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 50Mi
+  requests:
+    cpu: 100m
+    memory: 50Mi
+
+livenessProbe:
+  path: /
+
+ingress:
+  enabled: true
+  className: "traefik"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: "russian-cheatsheet.pausegarra.com"
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - hosts:
+        - russian-cheatsheet.pausegarra.com
+      secretName: russian-cheatsheet-pausegarra-tls
+
+traefikMiddlewareRedirectRegex:
+  enabled: true
+  items:
+    - name: redirect-russian-cheatsheet-es-to-com
+      namespace: main
+      regex: ^https?://russian-cheatsheet\.pausegarra\.es(/.*)?$
+      replacement: https://russian-cheatsheet.pausegarra.com${1}
+      permanent: true
+  redirectIngress:
+    enabled: true
+    className: "traefik"
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    hosts:
+      - host: russian-cheatsheet.pausegarra.es
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - hosts:
+          - russian-cheatsheet.pausegarra.es
+        secretName: russian-cheatsheet-pausegarra-es-tls
