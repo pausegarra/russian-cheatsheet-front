@@ -70,6 +70,20 @@ export function Conjugations({conjugations}: props) {
           { label: 'Plural', value: conjugations.perfectivePastPlural },
         ]} />
       </Grid.Col>
+
+      <Grid.Col span={{base: 12, md: 6}}>
+        <ConjugationTable title='Imperfective - Imperative' rows={[
+          { label: 'ты', value: conjugations.imperfectiveImperativeSecondPersonSingular },
+          { label: 'вы', value: conjugations.imperfectiveImperativeSecondPersonPlural },
+        ]} />
+      </Grid.Col>
+
+      <Grid.Col span={{base: 12, md: 6}}>
+        <ConjugationTable title='Perfective - Imperative' rows={[
+          { label: 'ты', value: conjugations.perfectiveImperativeSecondPersonSingular },
+          { label: 'вы', value: conjugations.perfectiveImperativeSecondPersonPlural },
+        ]} />
+      </Grid.Col>
     </Grid>
   );
 }
