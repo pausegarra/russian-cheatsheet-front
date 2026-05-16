@@ -45,7 +45,11 @@ export function CreateVocabulary() {
         perfectiveFutureThirdPersonSingular: '',
         perfectiveFutureFirstPersonPlural: '',
         perfectiveFutureSecondPersonPlural: '',
-        perfectiveFutureThirdPersonPlural: ''
+        perfectiveFutureThirdPersonPlural: '',
+        imperfectiveImperativeSecondPersonSingular: '',
+        imperfectiveImperativeSecondPersonPlural: '',
+        perfectiveImperativeSecondPersonSingular: '',
+        perfectiveImperativeSecondPersonPlural: ''
       },
       declinations: {
         nominative: '',

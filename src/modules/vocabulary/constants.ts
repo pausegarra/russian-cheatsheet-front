@@ -48,6 +48,16 @@ export const perfectivePastConjugations = [
   { form: 'Plural', conjugationName: 'perfectivePastPlural' },
 ]
 
+export const imperfectiveImperativeConjugations = [
+  { form: 'ты', conjugationName: 'imperfectiveImperativeSecondPersonSingular' },
+  { form: 'вы', conjugationName: 'imperfectiveImperativeSecondPersonPlural' },
+]
+
+export const perfectiveImperativeConjugations = [
+  { form: 'ты', conjugationName: 'perfectiveImperativeSecondPersonSingular' },
+  { form: 'вы', conjugationName: 'perfectiveImperativeSecondPersonPlural' },
+]
+
 export const wordTypeOptions = [
   "NOUN", "PRONOUN", "VERB", "ADJECTIVE", "ADVERB", "NUMERAL", "ORDINAL", "PREPOSITION", "CONJUNCTION", "PARTICLE", "INTERJECTION", "GERUND", "PARTICIPLE", "PREFIX",
   "SUFFIX", "ROOT", "LETTER", "SENTENCE", "OTHER"

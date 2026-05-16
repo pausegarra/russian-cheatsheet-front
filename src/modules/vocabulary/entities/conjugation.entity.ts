@@ -29,4 +29,9 @@ export interface ConjugationEntity {
   perfectiveFutureFirstPersonPlural: string;
   perfectiveFutureSecondPersonPlural: string;
   perfectiveFutureThirdPersonPlural: string;
+
+  imperfectiveImperativeSecondPersonSingular: string;
+  imperfectiveImperativeSecondPersonPlural: string;
+  perfectiveImperativeSecondPersonSingular: string;
+  perfectiveImperativeSecondPersonPlural: string;
 }

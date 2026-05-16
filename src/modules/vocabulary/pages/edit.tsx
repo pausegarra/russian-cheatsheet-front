@@ -49,7 +49,11 @@ export function EditWordPage() {
         perfectiveFutureThirdPersonSingular: '',
         perfectiveFutureFirstPersonPlural: '',
         perfectiveFutureSecondPersonPlural: '',
-        perfectiveFutureThirdPersonPlural: ''
+        perfectiveFutureThirdPersonPlural: '',
+        imperfectiveImperativeSecondPersonSingular: '',
+        imperfectiveImperativeSecondPersonPlural: '',
+        perfectiveImperativeSecondPersonSingular: '',
+        perfectiveImperativeSecondPersonPlural: ''
       },
       declinations: {
         nominative: '',

@@ -4,9 +4,11 @@ import { WordEntity } from "../entities/word.entity.ts";
 import { WordConjugationForm } from "./word-conjugation-form.tsx";
 import {
   imperfectiveFutureConjugations,
+  imperfectiveImperativeConjugations,
   imperfectivePastConjugations,
   imperfectivePresentConjugations,
   perfectiveFutureConjugations,
+  perfectiveImperativeConjugations,
   perfectivePastConjugations,
   perfectivePresentConjugations, wordTypeOptions
 } from "../constants.ts";
@@ -77,6 +79,12 @@ export function WordForm({form}: props) {
             </Grid.Col>
             <Grid.Col span={6}>
               <WordConjugationForm form={form} title='Perfective - Past' rows={perfectivePastConjugations} />
+            </Grid.Col>
+            <Grid.Col span={6}>
+              <WordConjugationForm form={form} title='Imperfective - Imperative' rows={imperfectiveImperativeConjugations} />
+            </Grid.Col>
+            <Grid.Col span={6}>
+              <WordConjugationForm form={form} title='Perfective - Imperative' rows={perfectiveImperativeConjugations} />
             </Grid.Col>
           </Grid>
         </>
