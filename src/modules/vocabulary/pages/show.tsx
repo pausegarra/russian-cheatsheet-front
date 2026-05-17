@@ -129,20 +129,33 @@ export function ShowVocabulary() {
 
       <Divider my="md" />
 
-      {word.type === 'VERB' && word.conjugations && <Conjugations conjugations={word.conjugations} />}
+      {(() => {
+        const type = word.type
+        const showConjugations = type === 'VERB'
+        const showDeclinations = ['NOUN', 'PRONOUN', 'NUMERAL'].includes(type)
+        const showDeclinationMatrix = [
+          'ADJECTIVE',
+          'SHORT_ADJECTIVE',
+          'PARTICIPLE',
+          'ORDINAL',
+          'PRONOUN',
+          'NUMERAL',
+        ].includes(type)
 
-      {word.type === 'NOUN' && word.declinations && <WordCases cases={word.declinations} />}
+        return (
+          <>
+            {showConjugations && word.conjugations && <Conjugations conjugations={word.conjugations} />}
 
-      {(
-        word.type === "ADJECTIVE" ||
-        word.type === "PRONOUN" ||
-        word.type === "PARTICIPLE" ||
-        word.type === "ORDINAL"
-      ) && (
+            {showDeclinations && word.declinations && <WordCases cases={word.declinations} />}
+
+            {showDeclinationMatrix && (
         <>
           <DeclinationsMatrix declinations={word.declinationMatrix} />
         </>
-      )}
+            )}
+          </>
+        )
+      })()}
     </Layout>
   )
 

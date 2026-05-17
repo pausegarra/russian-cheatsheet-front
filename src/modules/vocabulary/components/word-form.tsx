@@ -55,7 +55,22 @@ export function WordForm({form}: props) {
         </Grid.Col>
       </Grid>
 
-      {form.values.type === 'VERB' && (
+      {(() => {
+        const type = form.values.type
+        const showConjugations = type === 'VERB'
+        const showDeclinations = ['NOUN', 'PRONOUN', 'NUMERAL'].includes(type)
+        const showDeclinationMatrix = [
+          'ADJECTIVE',
+          'SHORT_ADJECTIVE',
+          'PARTICIPLE',
+          'ORDINAL',
+          'PRONOUN',
+          'NUMERAL',
+        ].includes(type)
+
+        return (
+          <>
+      {showConjugations && (
         <>
           <Divider my="md" />
 
@@ -90,7 +105,7 @@ export function WordForm({form}: props) {
         </>
       )}
 
-      {(form.values.type === 'NOUN') && (
+      {showDeclinations && (
         <>
           <Divider my="md" />
 
@@ -100,12 +115,7 @@ export function WordForm({form}: props) {
         </>
       )}
 
-      {(
-        form.values.type === "ADJECTIVE" ||
-        form.values.type === "PRONOUN" ||
-        form.values.type === "PARTICIPLE" ||
-        form.values.type === "ORDINAL"
-      ) && (
+      {showDeclinationMatrix && (
         <>
           <Divider my="md" />
 
@@ -114,6 +124,9 @@ export function WordForm({form}: props) {
           <WordDeclinationMatrixForm form={form} />
         </>
       )}
+          </>
+        )
+      })()}
     </>
   )
 }
