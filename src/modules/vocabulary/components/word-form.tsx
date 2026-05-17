@@ -58,14 +58,14 @@ export function WordForm({form}: props) {
       {(() => {
         const type = form.values.type
         const showConjugations = type === 'VERB'
-        const showDeclinations = ['NOUN', 'PRONOUN', 'NUMERAL'].includes(type)
+        const showDeclinations = ['NOUN', 'PRONOUN_NOUN', 'NUMERAL_CARDINAL'].includes(type)
         const showDeclinationMatrix = [
           'ADJECTIVE',
           'SHORT_ADJECTIVE',
           'PARTICIPLE',
           'ORDINAL',
-          'PRONOUN',
-          'NUMERAL',
+          'PRONOUN_ADJECTIVE',
+          'NUMERAL_ADJECTIVE',
         ].includes(type)
 
         return (
