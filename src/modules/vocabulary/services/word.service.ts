@@ -46,6 +46,13 @@ export class WordService {
     });
   }
 
+  public async deleteWord(wordId: string): Promise<void> {
+    const token = this.authService.getAccessToken()
+    await this.fetch.delete<void>(`/api/words/${wordId}`, {
+      Authorization: `Bearer ${token}`
+    });
+  }
+
   public async createWord(word: WordEntity): Promise<string> {
     try {
       const token = this.authService.getAccessToken()
