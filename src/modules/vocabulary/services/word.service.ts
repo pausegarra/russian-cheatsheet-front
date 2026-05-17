@@ -38,12 +38,18 @@ export class WordService {
 
   public async publishWord(word: WordEntity): Promise<void> {
     const token = this.authService.getAccessToken()
-    await fetch(`${import.meta.env.VITE_API_URL}/api/words/${word.id}/publish`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/words/${word.id}/publish`, {
       method: 'PATCH',
       headers: {
         'Authorization': `Bearer ${token}`
       }
     });
+
+    if (!response.ok) {
+      throw {
+        status: response.status
+      };
+    }
   }
 
   public async deleteWord(wordId: string): Promise<void> {

@@ -1,16 +1,18 @@
 import { Button, Group, Table } from "@mantine/core"
 import { WordEntity } from "../entities/word.entity"
 import { Link } from "react-router-dom";
-import { IconEdit, IconEye, IconTrash } from "@tabler/icons-react";
+import { IconCheck, IconEdit, IconEye, IconTrash } from "@tabler/icons-react";
 import { HasPermission } from "../../common/components/has-permission.tsx";
 
 type props = {
   word: WordEntity;
   onDelete?: (word: WordEntity) => void;
+  onPublish?: (word: WordEntity) => void;
   isDeleting?: boolean;
+  isPublishing?: boolean;
 }
 
-export function WordRow({word, onDelete, isDeleting = false}: props) {
+export function WordRow({word, onDelete, onPublish, isDeleting = false, isPublishing = false}: props) {
   return (
     <Table.Tr>
       <Table.Td>{word.russian}</Table.Td>
@@ -32,6 +34,13 @@ export function WordRow({word, onDelete, isDeleting = false}: props) {
               <IconTrash size={16} stroke={1.6}/>
             </Button>
           </HasPermission>
+          {onPublish && (
+            <HasPermission permission={"words#publish"}>
+              <Button size={"compact-xs"} bg={"green"} onClick={() => onPublish(word)} loading={isPublishing} disabled={isPublishing}>
+                <IconCheck size={16} stroke={1.6}/>
+              </Button>
+            </HasPermission>
+          )}
         </Group>
       </Table.Td>
     </Table.Tr>

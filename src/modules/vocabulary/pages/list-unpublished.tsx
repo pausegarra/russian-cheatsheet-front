@@ -18,6 +18,7 @@ export function ListUnpublished() {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useDebouncedState('', 500);
   const [deletingWordId, setDeletingWordId] = useState<string | null>(null);
+  const [publishingWordId, setPublishingWordId] = useState<string | null>(null);
   const {showBoundary} = useErrorBoundary();
 
   const loadWords = useCallback(async (targetPage: number, targetSearch: string) => {
@@ -83,6 +84,50 @@ export function ListUnpublished() {
     }
   }, [loadWords, page, search, showBoundary, words.data]);
 
+  const handlePublish = useCallback(async (word: WordEntity) => {
+    setPublishingWordId(word.id);
+
+    try {
+      await wordService.publishWord(word);
+      notificationsService.success('Word published');
+
+      const currentLength = words.data?.length ?? 0;
+      if (currentLength === 1 && page > 1) {
+        setPage((previous) => previous - 1);
+      } else {
+        setWords((previous) => new Paginated<WordEntity>(
+          previous.data?.filter((item) => item.id !== word.id) ?? [],
+          previous.page,
+          previous.pageSize,
+          previous.totalPages,
+          Math.max(0, previous.totalElements - 1),
+          previous.hasNextPage,
+          previous.hasPreviousPage
+        ));
+      }
+    } catch (e: any) {
+      if (e.status === 401) {
+        showBoundary('You must be logged in');
+        return;
+      }
+
+      if (e.status === 403) {
+        notificationsService.error("You don't have permissions to publish this word");
+        return;
+      }
+
+      if (e.status === 404) {
+        notificationsService.error('Word does not exist or was already published');
+        await loadWords(page, search);
+        return;
+      }
+
+      notificationsService.error('Unexpected error publishing word');
+    } finally {
+      setPublishingWordId(null);
+    }
+  }, [loadWords, page, search, showBoundary, words.data]);
+
   useEffect(() => {
     loadWords(page, search);
   }, [loadWords, page, search]);
@@ -118,7 +163,14 @@ export function ListUnpublished() {
           </Table.Thead>
           <Table.Tbody>
             {words.data?.map(word => (
-              <WordRow key={word.id} word={word} onDelete={handleDelete} isDeleting={deletingWordId === word.id}/>
+              <WordRow
+                key={word.id}
+                word={word}
+                onDelete={handleDelete}
+                onPublish={handlePublish}
+                isDeleting={deletingWordId === word.id}
+                isPublishing={publishingWordId === word.id}
+              />
             ))}
           </Table.Tbody>
         </Table>
