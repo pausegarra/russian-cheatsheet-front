@@ -1,64 +1,70 @@
-export const imperfectivePresentConjugations = [
-  { form: 'я', conjugationName: 'imperfectivePresentFirstPersonSingular' },
-  { form: 'ты', conjugationName: 'imperfectivePresentSecondPersonSingular' },
-  { form: 'он/она/оно', conjugationName: 'imperfectivePresentThirdPersonSingular' },
-  { form: 'мы', conjugationName: 'imperfectivePresentFirstPersonPlural' },
-  { form: 'вы', conjugationName: 'imperfectivePresentSecondPersonPlural' },
-  { form: 'они', conjugationName: 'imperfectivePresentThirdPersonPlural' },
-]
+import { WordAspect, WordFormType, WordForms, WordType } from './entities/word.entity.ts';
 
-export const perfectivePresentConjugations = [
-  { form: 'я', conjugationName: 'perfectivePresentFirstPersonSingular' },
-  { form: 'ты', conjugationName: 'perfectivePresentSecondPersonSingular' },
-  { form: 'он/она/оно', conjugationName: 'perfectivePresentThirdPersonSingular' },
-  { form: 'мы', conjugationName: 'perfectivePresentFirstPersonPlural' },
-  { form: 'вы', conjugationName: 'perfectivePresentSecondPersonPlural' },
-  { form: 'они', conjugationName: 'perfectivePresentThirdPersonPlural' },
-]
+export interface WordFormGroup {
+  title: string;
+  fields: WordFormType[];
+}
 
-export const imperfectiveFutureConjugations = [
-  { form: 'я', conjugationName: 'imperfectiveFutureFirstPersonSingular' },
-  { form: 'ты', conjugationName: 'imperfectiveFutureSecondPersonSingular' },
-  { form: 'он/она/оно', conjugationName: 'imperfectiveFutureThirdPersonSingular' },
-  { form: 'мы', conjugationName: 'imperfectiveFutureFirstPersonPlural' },
-  { form: 'вы', conjugationName: 'imperfectiveFutureSecondPersonPlural' },
-  { form: 'они', conjugationName: 'imperfectiveFutureThirdPersonPlural' },
-]
-
-export const perfectiveFutureConjugations = [
-  { form: 'я', conjugationName: 'perfectiveFutureFirstPersonSingular' },
-  { form: 'ты', conjugationName: 'perfectiveFutureSecondPersonSingular' },
-  { form: 'он/она/оно', conjugationName: 'perfectiveFutureThirdPersonSingular' },
-  { form: 'мы', conjugationName: 'perfectiveFutureFirstPersonPlural' },
-  { form: 'вы', conjugationName: 'perfectiveFutureSecondPersonPlural' },
-  { form: 'они', conjugationName: 'perfectiveFutureThirdPersonPlural' },
-]
-
-export const imperfectivePastConjugations = [
-  { form: 'Masculine', conjugationName: 'imperfectivePastMasculine' },
-  { form: 'Feminine', conjugationName: 'imperfectivePastFeminine' },
-  { form: 'Neuter', conjugationName: 'imperfectivePastNeuter' },
-  { form: 'Plural', conjugationName: 'imperfectivePastPlural' },
+export const wordTypeOptions: WordType[] = [
+  'noun', 'pronoun', 'verb', 'adjective', 'adverb', 'expression', 'other'
 ];
 
-export const perfectivePastConjugations = [
-  { form: 'Masculine', conjugationName: 'perfectivePastMasculine' },
-  { form: 'Feminine', conjugationName: 'perfectivePastFeminine' },
-  { form: 'Neuter', conjugationName: 'perfectivePastNeuter' },
-  { form: 'Plural', conjugationName: 'perfectivePastPlural' },
-]
+export const wordAspectOptions: WordAspect[] = ['imperfective', 'perfective', 'both'];
 
-export const imperfectiveImperativeConjugations = [
-  { form: 'ты', conjugationName: 'imperfectiveImperativeSecondPersonSingular' },
-  { form: 'вы', conjugationName: 'imperfectiveImperativeSecondPersonPlural' },
-]
+const baseGroup: WordFormGroup = { title: 'Base', fields: ['ru_base'] };
+const nounGroups: WordFormGroup[] = [
+  { title: 'Noun · singular', fields: ['ru_noun_sg_nom', 'ru_noun_sg_gen', 'ru_noun_sg_dat', 'ru_noun_sg_acc', 'ru_noun_sg_inst', 'ru_noun_sg_prep'] },
+  { title: 'Noun · plural', fields: ['ru_noun_pl_nom', 'ru_noun_pl_gen', 'ru_noun_pl_dat', 'ru_noun_pl_acc', 'ru_noun_pl_inst', 'ru_noun_pl_prep'] }
+];
+const verbGroups: WordFormGroup[] = [
+  { title: 'Verb · imperative', fields: ['ru_verb_imperative_sg', 'ru_verb_imperative_pl'] },
+  { title: 'Verb · past', fields: ['ru_verb_past_m', 'ru_verb_past_f', 'ru_verb_past_n', 'ru_verb_past_pl'] },
+  { title: 'Verb · present/future', fields: ['ru_verb_presfut_sg1', 'ru_verb_presfut_sg2', 'ru_verb_presfut_sg3', 'ru_verb_presfut_pl1', 'ru_verb_presfut_pl2', 'ru_verb_presfut_pl3'] },
+  { title: 'Verb · gerunds', fields: ['ru_verb_gerund_present', 'ru_verb_gerund_past'] },
+  { title: 'Verb · active participles', fields: ['ru_verb_participle_active_present', 'ru_verb_participle_active_past'] },
+  { title: 'Verb · passive participles', fields: ['ru_verb_participle_passive_present', 'ru_verb_participle_passive_past'] }
+];
+const adjectiveGroups: WordFormGroup[] = [
+  { title: 'Adjective · masculine', fields: ['ru_adj_m_nom', 'ru_adj_m_gen', 'ru_adj_m_dat', 'ru_adj_m_acc', 'ru_adj_m_inst', 'ru_adj_m_prep'] },
+  { title: 'Adjective · feminine', fields: ['ru_adj_f_nom', 'ru_adj_f_gen', 'ru_adj_f_dat', 'ru_adj_f_acc', 'ru_adj_f_inst', 'ru_adj_f_prep'] },
+  { title: 'Adjective · neuter', fields: ['ru_adj_n_nom', 'ru_adj_n_gen', 'ru_adj_n_dat', 'ru_adj_n_acc', 'ru_adj_n_inst', 'ru_adj_n_prep'] },
+  { title: 'Adjective · plural', fields: ['ru_adj_pl_nom', 'ru_adj_pl_gen', 'ru_adj_pl_dat', 'ru_adj_pl_acc', 'ru_adj_pl_inst', 'ru_adj_pl_prep'] },
+  { title: 'Adjective · short forms', fields: ['ru_adj_short_m', 'ru_adj_short_f', 'ru_adj_short_n', 'ru_adj_short_pl'] },
+  { title: 'Adjective · degrees', fields: ['ru_adj_comparative', 'ru_adj_superlative'] }
+];
 
-export const perfectiveImperativeConjugations = [
-  { form: 'ты', conjugationName: 'perfectiveImperativeSecondPersonSingular' },
-  { form: 'вы', conjugationName: 'perfectiveImperativeSecondPersonPlural' },
-]
+export function wordFormGroups(type: WordType | ''): WordFormGroup[] {
+  switch (type) {
+    case 'noun':
+      return [baseGroup, ...nounGroups];
+    case 'verb':
+      return [baseGroup, ...verbGroups];
+    case 'adjective':
+    case 'pronoun':
+      return [baseGroup, ...adjectiveGroups];
+    case 'adverb':
+    case 'expression':
+    case 'other':
+    default:
+      return [baseGroup];
+  }
+}
 
-export const wordTypeOptions = [
-  "NOUN", "PRONOUN_NOUN", "PRONOUN_ADJECTIVE", "VERB", "ADJECTIVE", "ADVERB", "NUMERAL_CARDINAL", "NUMERAL_ADJECTIVE", "ORDINAL", "PREPOSITION", "CONJUNCTION", "PARTICLE", "INTERJECTION", "GERUND", "PARTICIPLE", "PREFIX",
-  "SUFFIX", "ROOT", "LETTER", "SENTENCE", "OTHER"
-]
+const allFormTypes = [
+  ...baseGroup.fields,
+  ...nounGroups.flatMap(group => group.fields),
+  ...verbGroups.flatMap(group => group.fields),
+  ...adjectiveGroups.flatMap(group => group.fields)
+];
+
+export function emptyWordForms(): WordForms {
+  return Object.fromEntries(allFormTypes.map(formType => [formType, ''])) as WordForms;
+}
+
+export function normalizeWordForms(forms?: WordForms | null): WordForms {
+  const normalized = emptyWordForms();
+  allFormTypes.forEach(formType => {
+    normalized[formType] = forms?.[formType] ?? '';
+  });
+  return normalized;
+}

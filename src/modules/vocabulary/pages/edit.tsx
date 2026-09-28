@@ -1,6 +1,6 @@
 import { Layout } from "../../common/components/layout.tsx";
 import { useParams } from "react-router-dom";
-import { WordEntity } from "../entities/word.entity.ts";
+import { WordEntity, WordTranslationEntity } from "../entities/word.entity.ts";
 import { useCallback, useEffect } from "react";
 import { wordService } from "../root.ts";
 import { Button, Divider, Group, Title } from "@mantine/core";
@@ -11,6 +11,24 @@ import { notificationsService } from "../../common/root.ts";
 import { useFetch } from "../../common/hooks/use-fetch.ts";
 import { useErrorBoundary } from "react-error-boundary";
 import { HasPermission } from "../../common/components/has-permission.tsx";
+import { emptyWordForms, normalizeWordForms } from "../constants.ts";
+
+function editableTranslations(translations: WordTranslationEntity[]): WordTranslationEntity[] {
+  const manualTranslations = translations.filter(translation => translation.managedBy === 'MANUAL');
+
+  for (const language of ['en', 'es']) {
+    if (!manualTranslations.some(translation => translation.language === language)) {
+      manualTranslations.push({
+        language,
+        text: '',
+        position: manualTranslations.length,
+        managedBy: 'MANUAL'
+      });
+    }
+  }
+
+  return manualTranslations;
+}
 
 export function EditWordPage() {
   const {id} = useParams();
@@ -20,81 +38,13 @@ export function EditWordPage() {
     initialValues: {
       id: '',
       russian: '',
-      english: '',
-      spanish: '',
+      translations: [
+        { language: 'en', text: '', position: 0, managedBy: 'MANUAL' },
+        { language: 'es', text: '', position: 1, managedBy: 'MANUAL' }
+      ],
       type: '',
-      conjugations: {
-        imperfectivePresentFirstPersonSingular: '',
-        imperfectivePresentSecondPersonSingular: '',
-        imperfectivePresentThirdPersonSingular: '',
-        imperfectivePresentFirstPersonPlural: '',
-        imperfectivePresentSecondPersonPlural: '',
-        imperfectivePresentThirdPersonPlural: '',
-        imperfectivePastMasculine: '',
-        imperfectivePastFeminine: '',
-        imperfectivePastNeuter: '',
-        imperfectivePastPlural: '',
-        imperfectiveFutureFirstPersonSingular: '',
-        imperfectiveFutureSecondPersonSingular: '',
-        imperfectiveFutureThirdPersonSingular: '',
-        imperfectiveFutureFirstPersonPlural: '',
-        imperfectiveFutureSecondPersonPlural: '',
-        imperfectiveFutureThirdPersonPlural: '',
-        perfectivePastMasculine: '',
-        perfectivePastFeminine: '',
-        perfectivePastNeuter: '',
-        perfectivePastPlural: '',
-        perfectiveFutureFirstPersonSingular: '',
-        perfectiveFutureSecondPersonSingular: '',
-        perfectiveFutureThirdPersonSingular: '',
-        perfectiveFutureFirstPersonPlural: '',
-        perfectiveFutureSecondPersonPlural: '',
-        perfectiveFutureThirdPersonPlural: '',
-        imperfectiveImperativeSecondPersonSingular: '',
-        imperfectiveImperativeSecondPersonPlural: '',
-        perfectiveImperativeSecondPersonSingular: '',
-        perfectiveImperativeSecondPersonPlural: ''
-      },
-      declinations: {
-        nominative: '',
-        genitive: '',
-        dative: '',
-        accusative: '',
-        instrumental: '',
-        prepositional: '',
-        nominativePlural: '',
-        genitivePlural: '',
-        dativePlural: '',
-        accusativePlural: '',
-        instrumentalPlural: '',
-        prepositionalPlural: ''
-      },
-      declinationMatrix: {
-        nominativeMasculine: '',
-        nominativeFeminine: '',
-        nominativeNeuter: '',
-        nominativePlural: '',
-        accusativeMasculine: '',
-        accusativeFeminine: '',
-        accusativeNeuter: '',
-        accusativePlural: '',
-        genitiveMasculine: '',
-        genitiveFeminine: '',
-        genitiveNeuter: '',
-        genitivePlural: '',
-        dativeMasculine: '',
-        dativeFeminine: '',
-        dativeNeuter: '',
-        dativePlural: '',
-        instrumentalMasculine: '',
-        instrumentalFeminine: '',
-        instrumentalNeuter: '',
-        instrumentalPlural: '',
-        prepositionalMasculine: '',
-        prepositionalFeminine: '',
-        prepositionalNeuter: '',
-        prepositionalPlural: ''
-      },
+      aspect: null,
+      forms: emptyWordForms(),
       publishedAt: null
     }
   })
@@ -110,23 +60,12 @@ export function EditWordPage() {
       ...form.getValues(),
       id: word.id,
       russian: word.russian,
-      english: word.english,
-      spanish: word.spanish,
+      translations: editableTranslations(word.translations ?? []),
       type: word.type,
+      aspect: word.aspect ?? null,
+      forms: normalizeWordForms(word.forms),
       publishedAt: word.publishedAt
     };
-
-    if (word.declinations !== null) {
-      values.declinations = word.declinations;
-    }
-
-    if (word.declinationMatrix !== null) {
-      values.declinationMatrix = word.declinationMatrix;
-    }
-
-    if (word.conjugations !== null) {
-      values.conjugations = word.conjugations;
-    }
 
     form.setValues(values);
   }, [id, form]);
@@ -150,7 +89,7 @@ export function EditWordPage() {
   return (
     <Layout>
       <Group align={"center"} justify={"space-between"}>
-        <Title order={2} mb="lg">Edit Word: {form.getValues().russian} ({form.getValues().english} / {form.getValues().spanish})</Title>
+        <Title order={2} mb="lg">Edit Word: {form.getValues().russian}</Title>
         {form.getValues().publishedAt === null && (
           <HasPermission permission={"words#publish"}>
             <Button variant="gradient" gradient={{ from: "green", to: "blue" }} onClick={handlePublish} leftSection={<IconCheck size={16}/>}>
