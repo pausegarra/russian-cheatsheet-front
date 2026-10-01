@@ -1,12 +1,11 @@
 export interface ExampleSentenceEntity {
   id: string;
-  externalId: string;
   russian: string;
   translations: ExampleTranslationEntity[];
   contributor: string | null;
   audioUrl: string | null;
   checksum: string;
-  linkedWordExternalIds: string[];
+  linkedWordIds: string[];
 }
 
 export interface ExampleTranslationEntity {
