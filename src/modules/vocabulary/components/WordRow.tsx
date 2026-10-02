@@ -1,5 +1,5 @@
 import { Button, Group, Table } from "@mantine/core"
-import { WordEntity } from "../entities/word.entity"
+import { WordEntity, translationText } from "../entities/word.entity"
 import { Link } from "react-router-dom";
 import { IconCheck, IconEdit, IconEye, IconTrash } from "@tabler/icons-react";
 import { HasPermission } from "../../common/components/has-permission.tsx";
@@ -16,8 +16,8 @@ export function WordRow({word, onDelete, onPublish, isDeleting = false, isPublis
   return (
     <Table.Tr>
       <Table.Td>{word.russian}</Table.Td>
-      <Table.Td>{word.english}</Table.Td>
-      <Table.Td>{word.spanish}</Table.Td>
+      <Table.Td>{translationText(word, 'en')}</Table.Td>
+      <Table.Td>{translationText(word, 'es')}</Table.Td>
       <Table.Td>{word.type}</Table.Td>
       <Table.Td>
         <Group>

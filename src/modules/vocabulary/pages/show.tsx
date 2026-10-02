@@ -1,18 +1,17 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { WordEntity } from "../entities/word.entity.ts";
+import { WordEntity, translationText } from "../entities/word.entity.ts";
 import { useCallback, useEffect, useState } from "react";
 import { wordService } from "../root.ts";
-import { Button, Divider, Grid, Group, Text, Title } from "@mantine/core";
+import { Anchor, Button, Divider, Grid, Group, Text, Title } from "@mantine/core";
 import { Layout } from "../../common/components/layout.tsx";
 import { HasPermission } from "../../common/components/has-permission.tsx";
 import { IconCheck, IconEdit, IconTrash } from "@tabler/icons-react";
-import { Conjugations } from "../components/conjugations.tsx";
 import { useFetch } from "../../common/hooks/use-fetch.ts";
 import { useErrorBoundary } from "react-error-boundary";
-import { WordCases } from "../components/cases.tsx";
-import { DeclinationsMatrix } from "../components/declinations-matrix.tsx";
 import { notificationsService } from "../../common/root.ts";
 import Swal from "sweetalert2";
+import { ExampleSentences } from "../components/example-sentences.tsx";
+import { WordFormsDisplay } from "../components/word-forms.tsx";
 
 export function ShowVocabulary() {
   const {id} = useParams();
@@ -89,7 +88,7 @@ export function ShowVocabulary() {
   return (
     <Layout>
       <Group align={"center"} justify={"space-between"} h="100%">
-        <Title>Vocabulary {word.russian} ({word.english})</Title>
+        <Title>Vocabulary {word.russian} ({translationText(word, 'en')})</Title>
         <Group>
           <HasPermission permission={"words#update"}>
             <Button component={Link} c={"black"} to={`/vocabulary/${id}/edit`} variant="gradient" gradient={{ from: "yellow", to: "orange" }} leftSection={<IconEdit size={16}/>}>
@@ -117,45 +116,55 @@ export function ShowVocabulary() {
           <Text><strong>Russian:</strong> {word.russian}</Text>
         </Grid.Col>
         <Grid.Col span={3}>
-          <Text><strong>English:</strong> {word.english}</Text>
+          <Text><strong>English:</strong> {translationText(word, 'en')}</Text>
         </Grid.Col>
         <Grid.Col span={3}>
-          <Text><strong>Spanish:</strong> {word.spanish}</Text>
+          <Text><strong>Spanish:</strong> {translationText(word, 'es')}</Text>
         </Grid.Col>
         <Grid.Col span={3}>
           <Text><strong>Type:</strong> {word.type}</Text>
         </Grid.Col>
+        {word.aspect && (
+          <Grid.Col span={3}>
+            <Text><strong>Aspect:</strong> {word.aspect}</Text>
+          </Grid.Col>
+        )}
+        {word.usage && (
+          <Grid.Col span={9}>
+            <Text><strong>Usage:</strong> {word.usage}</Text>
+          </Grid.Col>
+        )}
+        {word.audioUrl && (
+          <Grid.Col span={3}>
+            <Anchor href={word.audioUrl} target="_blank" rel="noreferrer">Word audio</Anchor>
+          </Grid.Col>
+        )}
       </Grid>
 
       <Divider my="md" />
 
-      {(() => {
-        const type = word.type
-        const showConjugations = type === 'VERB'
-        const showDeclinations = ['NOUN', 'PRONOUN_NOUN', 'NUMERAL_CARDINAL'].includes(type)
-        const showDeclinationMatrix = [
-          'ADJECTIVE',
-          'SHORT_ADJECTIVE',
-          'PARTICIPLE',
-          'ORDINAL',
-          'PRONOUN_ADJECTIVE',
-          'NUMERAL_ADJECTIVE',
-        ].includes(type)
+      <WordFormsDisplay type={word.type} forms={word.forms ?? null} />
 
-        return (
-          <>
-            {showConjugations && word.conjugations && <Conjugations conjugations={word.conjugations} />}
-
-            {showDeclinations && word.declinations && <WordCases cases={word.declinations} />}
-
-            {showDeclinationMatrix && (
+      {word.relatedWords && word.relatedWords.length > 0 && (
         <>
-          <DeclinationsMatrix declinations={word.declinationMatrix} />
+          <Divider my="md" />
+          <Title order={3} mb="md">Related words</Title>
+          <Grid>
+            {word.relatedWords.map(related => (
+              <Grid.Col span={{ base: 12, sm: 6, md: 4 }} key={`${related.id}-${related.relation}`}>
+                <Text>
+                  <strong>{related.relation}:</strong>{' '}
+                  <Anchor component={Link} to={`/vocabulary/${related.id}`}>
+                    {related.russian}
+                  </Anchor>
+                </Text>
+              </Grid.Col>
+            ))}
+          </Grid>
         </>
-            )}
-          </>
-        )
-      })()}
+      )}
+
+      {word.id && <ExampleSentences wordId={word.id} />}
     </Layout>
   )
 

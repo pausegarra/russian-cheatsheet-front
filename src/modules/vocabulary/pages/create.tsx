@@ -10,87 +10,20 @@ import { BadRequest } from "../../common/exception/bad-request.ts";
 import { notificationsService } from "../../common/root.ts";
 import { IconPlus } from "@tabler/icons-react";
 import { useFetch } from "../../common/hooks/use-fetch.ts";
+import { emptyWordForms } from "../constants.ts";
 
 export function CreateVocabulary() {
   const form = useForm<WordEntity>({
     initialValues: {
       id: '',
       russian: '',
-      english: '',
-      spanish: '',
+      translations: [
+        { language: 'en', text: '', position: 0, managedBy: 'MANUAL' },
+        { language: 'es', text: '', position: 1, managedBy: 'MANUAL' }
+      ],
       type: '',
-      conjugations: {
-        imperfectivePresentFirstPersonSingular: '',
-        imperfectivePresentSecondPersonSingular: '',
-        imperfectivePresentThirdPersonSingular: '',
-        imperfectivePresentFirstPersonPlural: '',
-        imperfectivePresentSecondPersonPlural: '',
-        imperfectivePresentThirdPersonPlural: '',
-        imperfectivePastMasculine: '',
-        imperfectivePastFeminine: '',
-        imperfectivePastNeuter: '',
-        imperfectivePastPlural: '',
-        imperfectiveFutureFirstPersonSingular: '',
-        imperfectiveFutureSecondPersonSingular: '',
-        imperfectiveFutureThirdPersonSingular: '',
-        imperfectiveFutureFirstPersonPlural: '',
-        imperfectiveFutureSecondPersonPlural: '',
-        imperfectiveFutureThirdPersonPlural: '',
-        perfectivePastMasculine: '',
-        perfectivePastFeminine: '',
-        perfectivePastNeuter: '',
-        perfectivePastPlural: '',
-        perfectiveFutureFirstPersonSingular: '',
-        perfectiveFutureSecondPersonSingular: '',
-        perfectiveFutureThirdPersonSingular: '',
-        perfectiveFutureFirstPersonPlural: '',
-        perfectiveFutureSecondPersonPlural: '',
-        perfectiveFutureThirdPersonPlural: '',
-        imperfectiveImperativeSecondPersonSingular: '',
-        imperfectiveImperativeSecondPersonPlural: '',
-        perfectiveImperativeSecondPersonSingular: '',
-        perfectiveImperativeSecondPersonPlural: ''
-      },
-      declinations: {
-        nominative: '',
-        genitive: '',
-        dative: '',
-        accusative: '',
-        instrumental: '',
-        prepositional: '',
-        nominativePlural: '',
-        genitivePlural: '',
-        dativePlural: '',
-        accusativePlural: '',
-        instrumentalPlural: '',
-        prepositionalPlural: ''
-      },
-      declinationMatrix: {
-        nominativeMasculine: '',
-        nominativeFeminine: '',
-        nominativeNeuter: '',
-        nominativePlural: '',
-        accusativeMasculine: '',
-        accusativeFeminine: '',
-        accusativeNeuter: '',
-        accusativePlural: '',
-        genitiveMasculine: '',
-        genitiveFeminine: '',
-        genitiveNeuter: '',
-        genitivePlural: '',
-        dativeMasculine: '',
-        dativeFeminine: '',
-        dativeNeuter: '',
-        dativePlural: '',
-        instrumentalMasculine: '',
-        instrumentalFeminine: '',
-        instrumentalNeuter: '',
-        instrumentalPlural: '',
-        prepositionalMasculine: '',
-        prepositionalFeminine: '',
-        prepositionalNeuter: '',
-        prepositionalPlural: ''
-      },
+      aspect: null,
+      forms: emptyWordForms(),
       publishedAt: null
     }
   })

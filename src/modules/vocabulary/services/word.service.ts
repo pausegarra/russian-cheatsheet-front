@@ -4,6 +4,7 @@ import { Paginated } from "../../common/responses/paginated.ts";
 import { AuthService } from "../../auth/contracts/auth-service.ts";
 import { WordAlreadyExists } from "../exception/WordAlreadyExists.ts";
 import { BadRequest } from "../../common/exception/bad-request.ts";
+import { ExampleSentenceEntity } from "../entities/example-sentence.entity.ts";
 
 export class WordService {
 
@@ -29,9 +30,13 @@ export class WordService {
     return this.fetch.get<WordEntity>(`/api/words/${id}`);
   }
 
+  public getWordExamples(id: string, page = 0, perPage = 10): Promise<Paginated<ExampleSentenceEntity>> {
+    return this.fetch.get<Paginated<ExampleSentenceEntity>>(`/api/words/${id}/examples?page=${page}&perPage=${perPage}`);
+  }
+
   public async updateWord(word: WordEntity): Promise<void> {
     const token = this.authService.getAccessToken()
-    await this.fetch.put<{ resourceId: string }>(`/api/words/${word.id}`, word, {
+    await this.fetch.put<{ resourceId: string }>(`/api/words/${word.id}`, this.toManualWordRequest(word), {
       Authorization: `Bearer ${token}`
     });
   }
@@ -62,7 +67,7 @@ export class WordService {
   public async createWord(word: WordEntity): Promise<string> {
     try {
       const token = this.authService.getAccessToken()
-      const response = await this.fetch.post<{ resourceId: string }>(`/api/words`, word, {
+      const response = await this.fetch.post<{ resourceId: string }>(`/api/words`, this.toManualWordRequest(word), {
         Authorization: `Bearer ${token}`
       });
       return response.resourceId;
@@ -77,6 +82,16 @@ export class WordService {
 
       throw e;
     }
+  }
+
+  private toManualWordRequest(word: WordEntity) {
+    return {
+      russian: word.russian,
+      type: word.type,
+      aspect: word.aspect,
+      translations: (word.translations ?? []).map(({ language, text, position }) => ({ language, text, position })),
+      forms: word.forms
+    };
   }
 
 }
