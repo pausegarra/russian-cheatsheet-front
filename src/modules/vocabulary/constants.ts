@@ -33,7 +33,7 @@ const adjectiveGroups: WordFormGroup[] = [
   { title: 'Adjective · degrees', fields: ['ru_adj_comparative', 'ru_adj_superlative'] }
 ];
 
-export function wordFormGroups(type: WordType | ''): WordFormGroup[] {
+export function wordFormGroups(type: WordType | '' | null): WordFormGroup[] {
   switch (type) {
     case 'noun':
       return [baseGroup, ...nounGroups];

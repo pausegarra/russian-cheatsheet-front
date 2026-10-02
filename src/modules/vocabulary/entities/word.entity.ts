@@ -31,7 +31,7 @@ export type WordForms = Partial<Record<WordFormType, string>>;
 export interface WordEntity {
   id: string;
   russian: string;
-  type: WordType | '';
+  type: WordType | '' | null;
   aspect: WordAspect | null;
   forms?: WordForms | null;
   publishedAt: string | null;

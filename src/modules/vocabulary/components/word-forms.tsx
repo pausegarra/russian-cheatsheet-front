@@ -30,7 +30,7 @@ export function WordFormsForm({ form }: FormProps) {
 }
 
 type DisplayProps = {
-  type: WordType | '';
+  type: WordType | '' | null;
   forms: WordForms | null;
 };
 
