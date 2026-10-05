@@ -18,8 +18,8 @@ export function CreateVocabulary() {
       id: '',
       russian: '',
       translations: [
-        { language: 'en', text: '', position: 0, managedBy: 'MANUAL' },
-        { language: 'es', text: '', position: 1, managedBy: 'MANUAL' }
+        { language: 'en', text: '', position: 0 },
+        { language: 'es', text: '', position: 1 }
       ],
       type: '',
       aspect: null,

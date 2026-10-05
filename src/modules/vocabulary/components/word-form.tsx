@@ -36,7 +36,12 @@ export function WordForm({ form }: props) {
           <TextInput label="Russian" placeholder="Russian" {...form.getInputProps('russian')} />
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 3 }}>
-          <TextInput label="English" placeholder="English" {...form.getInputProps(`translations.${englishTranslationIndex}.text`)} />
+          <TextInput
+            label={form.values.externalId ? 'English (OpenRussian)' : 'English'}
+            placeholder="English"
+            disabled={Boolean(form.values.externalId)}
+            {...form.getInputProps(`translations.${englishTranslationIndex}.text`)}
+          />
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 3 }}>
           <TextInput label="Spanish" placeholder="Spanish" {...form.getInputProps(`translations.${spanishTranslationIndex}.text`)} />
