@@ -85,11 +85,15 @@ export class WordService {
   }
 
   private toManualWordRequest(word: WordEntity) {
+    const translations = (word.translations ?? [])
+      .filter(translation => word.externalId == null || translation.language !== 'en')
+      .map(({ language, text, position }) => ({ language, text, position }));
+
     return {
       russian: word.russian,
       type: word.type,
       aspect: word.aspect,
-      translations: (word.translations ?? []).map(({ language, text, position }) => ({ language, text, position })),
+      translations,
       forms: word.forms
     };
   }

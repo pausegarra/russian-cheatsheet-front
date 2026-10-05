@@ -13,16 +13,27 @@ import { useErrorBoundary } from "react-error-boundary";
 import { HasPermission } from "../../common/components/has-permission.tsx";
 import { emptyWordForms, normalizeWordForms } from "../constants.ts";
 
-function editableTranslations(translations: WordTranslationEntity[]): WordTranslationEntity[] {
-  const manualTranslations = translations.filter(translation => translation.managedBy === 'MANUAL');
+function editableTranslations(translations: WordTranslationEntity[], importedWord: boolean): WordTranslationEntity[] {
+  const orderedTranslations = [...translations].sort((left, right) => left.position - right.position);
+  const manualTranslations = importedWord
+    ? orderedTranslations.filter(translation => translation.language !== 'en')
+    : orderedTranslations;
+
+  if (importedWord) {
+    const englishTranslations = orderedTranslations.filter(translation => translation.language === 'en');
+    manualTranslations.unshift({
+      language: 'en',
+      text: englishTranslations.map(translation => translation.text).join('; '),
+      position: englishTranslations[0]?.position ?? 0
+    });
+  }
 
   for (const language of ['en', 'es']) {
     if (!manualTranslations.some(translation => translation.language === language)) {
       manualTranslations.push({
         language,
         text: '',
-        position: manualTranslations.length,
-        managedBy: 'MANUAL'
+        position: manualTranslations.length
       });
     }
   }
@@ -37,10 +48,11 @@ export function EditWordPage() {
   const form = useForm<WordEntity>({
     initialValues: {
       id: '',
+      externalId: null,
       russian: '',
       translations: [
-        { language: 'en', text: '', position: 0, managedBy: 'MANUAL' },
-        { language: 'es', text: '', position: 1, managedBy: 'MANUAL' }
+        { language: 'en', text: '', position: 0 },
+        { language: 'es', text: '', position: 1 }
       ],
       type: '',
       aspect: null,
@@ -59,8 +71,9 @@ export function EditWordPage() {
     const values = {
       ...form.getValues(),
       id: word.id,
+      externalId: word.externalId,
       russian: word.russian,
-      translations: editableTranslations(word.translations ?? []),
+      translations: editableTranslations(word.translations ?? [], Boolean(word.externalId)),
       type: word.type,
       aspect: word.aspect ?? null,
       forms: normalizeWordForms(word.forms),
