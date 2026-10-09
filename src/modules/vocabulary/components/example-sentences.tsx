@@ -42,11 +42,13 @@ export function ExampleSentences({wordId}: props) {
         <Card key={example.id} withBorder>
           <Stack gap="xs">
             <Text>{example.russian}</Text>
-            {example.translations.map((translation, index) => (
-              <Text key={`${translation.language}-${translation.position}-${index}`} c="dimmed">
-                <strong>{translation.language.toUpperCase()}:</strong> {translation.text}
-              </Text>
-            ))}
+            {example.translations
+              .filter(translation => !translation.language.toLowerCase().startsWith('es'))
+              .map((translation, index) => (
+                <Text key={`${translation.language}-${translation.position}-${index}`} c="dimmed">
+                  <strong>{translation.language.toUpperCase()}:</strong> {translation.text}
+                </Text>
+              ))}
             <Group gap="md">
               {example.contributor && <Text size="sm" c="dimmed">Source contributor: {example.contributor}</Text>}
               {example.audioUrl && <Anchor href={example.audioUrl} target="_blank" rel="noreferrer">Audio</Anchor>}

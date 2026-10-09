@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { WordEntity, translationText } from "../entities/word.entity.ts";
 import { useCallback, useEffect, useState } from "react";
 import { wordService } from "../root.ts";
-import { Anchor, Divider, Grid, Text, Title } from "@mantine/core";
+import { Anchor, Breadcrumbs, Divider, Grid, Text, Title } from "@mantine/core";
 import { Layout } from "../../common/components/layout.tsx";
 import { useErrorBoundary } from "react-error-boundary";
 import { ExampleSentences } from "../components/example-sentences.tsx";
@@ -29,6 +29,19 @@ export function ShowVocabulary() {
   return (
     <Layout>
       <Title>Vocabulary {word.russian} ({translationText(word, 'en')})</Title>
+      {word.relatedWords && word.relatedWords.length > 0 && (
+        <Breadcrumbs mt="xs" mb="md">
+          {word.relatedWords.map(related => (
+            <Anchor
+              key={`${related.id}-${related.relation}`}
+              component={Link}
+              to={`/vocabulary/${related.id}`}
+            >
+              {related.russian}{related.relation !== 'related' && ` (${related.relation})`}
+            </Anchor>
+          ))}
+        </Breadcrumbs>
+      )}
       <Divider my="md" />
 
       <Grid>
@@ -37,9 +50,6 @@ export function ShowVocabulary() {
         </Grid.Col>
         <Grid.Col span={3}>
           <Text><strong>English:</strong> {translationText(word, 'en')}</Text>
-        </Grid.Col>
-        <Grid.Col span={3}>
-          <Text><strong>Spanish:</strong> {translationText(word, 'es')}</Text>
         </Grid.Col>
         <Grid.Col span={3}>
           <Text><strong>Type:</strong> {word.type}</Text>
@@ -63,26 +73,12 @@ export function ShowVocabulary() {
 
       <Divider my="md" />
 
-      <WordFormsDisplay type={word.type} forms={word.forms ?? null} />
-
-      {word.relatedWords && word.relatedWords.length > 0 && (
-        <>
-          <Divider my="md" />
-          <Title order={3} mb="md">Related words</Title>
-          <Grid>
-            {word.relatedWords.map(related => (
-              <Grid.Col span={{ base: 12, sm: 6, md: 4 }} key={`${related.id}-${related.relation}`}>
-                <Text>
-                  <strong>{related.relation}:</strong>{' '}
-                  <Anchor component={Link} to={`/vocabulary/${related.id}`}>
-                    {related.russian}
-                  </Anchor>
-                </Text>
-              </Grid.Col>
-            ))}
-          </Grid>
-        </>
-      )}
+      <WordFormsDisplay
+        type={word.type}
+        aspect={word.aspect}
+        russian={word.russian}
+        forms={word.forms ?? null}
+      />
 
       {word.id && <ExampleSentences wordId={word.id} />}
     </Layout>
