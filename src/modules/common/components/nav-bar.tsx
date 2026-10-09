@@ -1,50 +1,46 @@
-import { NavLink as MNavLink } from "@mantine/core";
 import { NavLink } from "react-router-dom";
 import { ReactNode } from "react";
-import { IconChevronRight } from "@tabler/icons-react";
+import classes from "./layout.module.css";
 
-export function NavBar() {
+type Props = {
+  onNavigate?: () => void;
+};
+
+export function NavBar({ onNavigate }: Props) {
   return (
     <>
-      <Nav
-        to="/"
-      >
-        Home
-      </Nav>
-      <Nav
-        to="/alphabet"
-      >
-        Alphabet
-      </Nav>
-      <Nav
-        to="/russian-cases"
-      >
-        Russian Cases
-      </Nav>
-      <Nav
-        to="/vocabulary"
-      >
-        Vocabulary
-      </Nav>
-      <Nav
-        to="/motion-verbs"
-      >
-        Motion Verbs
-      </Nav>
+      <div className={classes.categoryTitle}>Reference</div>
+      <NavItem to="/" badge="01" onNavigate={onNavigate}>Home</NavItem>
+      <NavItem to="/alphabet" badge="02" onNavigate={onNavigate}>Alphabet</NavItem>
+
+      <div className={classes.categoryTitle}>Grammar</div>
+      <NavItem to="/russian-cases" badge="03" onNavigate={onNavigate}>Russian Cases</NavItem>
+      <NavItem to="/motion-verbs" badge="04" onNavigate={onNavigate}>Motion Verbs</NavItem>
+
+      <div className={classes.categoryTitle}>Lexicon</div>
+      <NavItem to="/vocabulary" badge="05" onNavigate={onNavigate}>Vocabulary</NavItem>
     </>
-  )
+  );
 }
 
-type NavLinkProps = {
+type NavItemProps = {
   to: string;
+  badge: string;
   children: ReactNode;
-}
+  onNavigate?: () => void;
+};
 
-function Nav ({ to, children }: NavLinkProps) {
-  return <MNavLink
+function NavItem({ to, badge, children, onNavigate }: NavItemProps) {
+  return (
+    <NavLink
       to={to}
-      label={children}
-      rightSection={<IconChevronRight size={16} stroke={1.6}/>}
-      component={NavLink}
-    />
+      onClick={onNavigate}
+      className={({ isActive }) =>
+        `${classes.navLink} ${isActive ? classes.navLinkActive : ''}`
+      }
+    >
+      <span>{children}</span>
+      <span className={classes.navBadge}>{badge}</span>
+    </NavLink>
+  );
 }

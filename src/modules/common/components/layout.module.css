@@ -1,0 +1,110 @@
+.header {
+  height: 50px;
+  background-color: var(--rc-surface);
+  border-bottom: 1px solid var(--rc-border-default);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--rc-text-primary);
+}
+
+.brandText {
+  font-family: var(--rc-font-ui);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
+}
+
+.statusBadge {
+  font-family: var(--rc-font-mono);
+  font-size: 0.6875rem;
+  color: var(--rc-text-muted);
+  background-color: var(--rc-surface-raised);
+  border: 1px solid var(--rc-border-subtle);
+  border-radius: 3px;
+  padding: 2px 6px;
+}
+
+.navbar {
+  width: 240px;
+  background-color: var(--rc-surface);
+  border-right: 1px solid var(--rc-border-default);
+  padding: 1rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.categoryTitle {
+  font-family: var(--rc-font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--rc-text-muted);
+  padding: 0.75rem 0.5rem 0.25rem;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.625rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--rc-text-secondary);
+  transition: background-color 0.15s ease, color 0.15s ease;
+  position: relative;
+}
+
+.navLink:hover {
+  background-color: var(--rc-surface-raised);
+  color: var(--rc-text-primary);
+}
+
+.navLinkActive {
+  background-color: rgba(56, 189, 248, 0.08);
+  color: var(--rc-text-primary);
+  font-weight: 500;
+}
+
+.navLinkActive::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background-color: var(--rc-accent);
+  border-radius: 2px;
+}
+
+.navBadge {
+  font-family: var(--rc-font-mono);
+  font-size: 0.6875rem;
+  color: var(--rc-text-muted);
+}
+
+.mainContent {
+  background-color: var(--rc-canvas);
+  min-height: calc(100vh - 50px);
+  padding: 1.5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 1rem;
+  }
+}

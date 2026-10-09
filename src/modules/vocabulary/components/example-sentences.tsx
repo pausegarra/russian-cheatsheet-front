@@ -1,19 +1,21 @@
-import { Anchor, Button, Card, Group, Stack, Text, Title } from "@mantine/core";
+import { Anchor, Button, Group, Stack, Text } from "@mantine/core";
 import { useErrorBoundary } from "react-error-boundary";
 import { useCallback, useEffect, useState } from "react";
 import { wordService } from "../root.ts";
 import { ExampleSentenceEntity } from "../entities/example-sentence.entity.ts";
+import classes from "./vocabulary.module.css";
+import sharedClasses from "../../common/components/components.module.css";
 
-type props = {
+type Props = {
   wordId: string;
-}
+};
 
-export function ExampleSentences({wordId}: props) {
+export function ExampleSentences({ wordId }: Props) {
   const [examples, setExamples] = useState<ExampleSentenceEntity[]>([]);
   const [page, setPage] = useState(0);
   const [hasNextPage, setHasNextPage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const {showBoundary} = useErrorBoundary();
+  const { showBoundary } = useErrorBoundary();
 
   const loadExamples = useCallback(async (nextPage: number) => {
     setIsLoading(true);
@@ -36,29 +38,45 @@ export function ExampleSentences({wordId}: props) {
   }, [loadExamples]);
 
   return (
-    <Stack mt="md">
-      <Title order={3}>Examples</Title>
+    <Stack mt="md" gap="md">
+      <h2 className={classes.sectionHeading}>Usage Examples</h2>
       {examples.map(example => (
-        <Card key={example.id} withBorder>
-          <Stack gap="xs">
-            <Text>{example.russian}</Text>
-            {example.translations
-              .filter(translation => !translation.language.toLowerCase().startsWith('es'))
-              .map((translation, index) => (
-                <Text key={`${translation.language}-${translation.position}-${index}`} c="dimmed">
-                  <strong>{translation.language.toUpperCase()}:</strong> {translation.text}
-                </Text>
-              ))}
-            <Group gap="md">
-              {example.contributor && <Text size="sm" c="dimmed">Source contributor: {example.contributor}</Text>}
-              {example.audioUrl && <Anchor href={example.audioUrl} target="_blank" rel="noreferrer">Audio</Anchor>}
-            </Group>
-          </Stack>
-        </Card>
+        <div key={example.id} className={classes.exampleCard}>
+          <div className={classes.exampleRussian} lang="ru">{example.russian}</div>
+          {example.translations
+            .filter(translation => !translation.language.toLowerCase().startsWith('es'))
+            .map((translation, index) => (
+              <div key={`${translation.language}-${translation.position}-${index}`} className={classes.exampleTranslation}>
+                <span className={sharedClasses.badge} style={{ marginRight: '0.5rem' }}>
+                  {translation.language.toUpperCase()}
+                </span>
+                {translation.text}
+              </div>
+            ))}
+          <Group gap="md" mt="xs">
+            {example.contributor && (
+              <Text size="xs" c="dimmed" style={{ fontFamily: 'var(--rc-font-mono)' }}>
+                Source: {example.contributor}
+              </Text>
+            )}
+            {example.audioUrl && (
+              <Anchor href={example.audioUrl} target="_blank" rel="noreferrer" size="xs" style={{ color: 'var(--rc-accent)' }}>
+                Audio ↗
+              </Anchor>
+            )}
+          </Group>
+        </div>
       ))}
-      {examples.length === 0 && !isLoading && <Text c="dimmed">No examples available.</Text>}
+      {examples.length === 0 && !isLoading && (
+        <Text c="dimmed" size="sm">No examples available for this entry.</Text>
+      )}
       {hasNextPage && (
-        <Button variant="light" onClick={() => loadExamples(page + 1)} loading={isLoading}>
+        <Button
+          variant="light"
+          onClick={() => loadExamples(page + 1)}
+          loading={isLoading}
+          style={{ alignSelf: 'flex-start' }}
+        >
           Load more examples
         </Button>
       )}

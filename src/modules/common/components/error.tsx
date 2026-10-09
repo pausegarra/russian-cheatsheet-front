@@ -1,19 +1,23 @@
-import { Button, Center, Stack, Text, Title } from "@mantine/core";
+import { Button } from "@mantine/core";
 import { FallbackProps } from "react-error-boundary";
-import { Link } from "react-router-dom";
+import classes from "./error.module.css";
 
-export function ErrorFallback({error}: FallbackProps) {
+export function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   return (
-    <Center h="100vh">
-      <Stack align={"center"}>
-        <Title order={2}>Something went wrong</Title>
-        <Text c="red" ta="center">
-          {JSON.stringify(error)}
-        </Text>
-        <Button variant="light" color="red" component={Link} to={"/"}>
-          Go to home
+    <div className={classes.container} role="alert">
+      <div className={classes.card}>
+        <h1 className={classes.title}>System Exception Encountered</h1>
+        <p style={{ color: 'var(--rc-text-secondary)', fontSize: '0.875rem', margin: 0 }}>
+          An unexpected error occurred while executing the linguistic application:
+        </p>
+        <pre className={classes.trace}>{error.message}</pre>
+        <Button
+          onClick={resetErrorBoundary}
+          style={{ alignSelf: 'flex-start', marginTop: '0.5rem' }}
+        >
+          Recover Session
         </Button>
-      </Stack>
-    </Center>
-  )
+      </div>
+    </div>
+  );
 }

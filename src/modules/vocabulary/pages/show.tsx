@@ -2,16 +2,17 @@ import { Link, useParams } from "react-router-dom";
 import { WordEntity, translationText } from "../entities/word.entity.ts";
 import { useCallback, useEffect, useState } from "react";
 import { wordService } from "../root.ts";
-import { Anchor, Breadcrumbs, Divider, Grid, Text, Title } from "@mantine/core";
 import { Layout } from "../../common/components/layout.tsx";
 import { useErrorBoundary } from "react-error-boundary";
 import { ExampleSentences } from "../components/example-sentences.tsx";
 import { WordFormsDisplay } from "../components/word-forms.tsx";
+import classes from "../components/vocabulary.module.css";
+import sharedClasses from "../../common/components/components.module.css";
 
 export function ShowVocabulary() {
-  const {id} = useParams();
+  const { id } = useParams();
   const [word, setWord] = useState<WordEntity>({} as WordEntity);
-  const {showBoundary} = useErrorBoundary();
+  const { showBoundary } = useErrorBoundary();
 
   const getWord = useCallback(async () => {
     try {
@@ -28,59 +29,71 @@ export function ShowVocabulary() {
 
   return (
     <Layout>
-      <Title>Vocabulary {word.russian} ({translationText(word, 'en')})</Title>
-      {word.relatedWords && word.relatedWords.length > 0 && (
-        <Breadcrumbs mt="xs" mb="md">
-          {word.relatedWords.map(related => (
-            <Anchor
-              key={`${related.id}-${related.relation}`}
-              component={Link}
-              to={`/vocabulary/${related.id}`}
-            >
-              {related.russian}{related.relation !== 'related' && ` (${related.relation})`}
-            </Anchor>
-          ))}
-        </Breadcrumbs>
-      )}
-      <Divider my="md" />
+      <div className={classes.container}>
+        <div className={classes.wordHeader}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <h1 className={classes.wordHeadword} lang="ru">{word.russian}</h1>
+            {word.type && <span className={sharedClasses.badge}>{word.type}</span>}
+            {word.aspect && <span className={sharedClasses.badge}>{word.aspect}</span>}
+          </div>
+          <div className={classes.wordTranslation}>{translationText(word, 'en')}</div>
 
-      <Grid>
-        <Grid.Col span={3}>
-          <Text><strong>Russian:</strong> {word.russian}</Text>
-        </Grid.Col>
-        <Grid.Col span={3}>
-          <Text><strong>English:</strong> {translationText(word, 'en')}</Text>
-        </Grid.Col>
-        <Grid.Col span={3}>
-          <Text><strong>Type:</strong> {word.type}</Text>
-        </Grid.Col>
-        {word.aspect && (
-          <Grid.Col span={3}>
-            <Text><strong>Aspect:</strong> {word.aspect}</Text>
-          </Grid.Col>
-        )}
-        {word.usage && (
-          <Grid.Col span={9}>
-            <Text><strong>Usage:</strong> {word.usage}</Text>
-          </Grid.Col>
-        )}
-        {word.audioUrl && (
-          <Grid.Col span={3}>
-            <Anchor href={word.audioUrl} target="_blank" rel="noreferrer">Word audio</Anchor>
-          </Grid.Col>
-        )}
-      </Grid>
+          {word.relatedWords && word.relatedWords.length > 0 && (
+            <div className={classes.chipsContainer}>
+              {word.relatedWords.map((related) => (
+                <Link
+                  key={`${related.id}-${related.relation}`}
+                  to={`/vocabulary/${related.id}`}
+                  className={classes.relatedChip}
+                >
+                  <span lang="ru">{related.russian}</span>
+                  {related.relation !== 'related' && ` · ${related.relation}`}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
 
-      <Divider my="md" />
+        <div className={classes.metadataGrid}>
+          <div className={classes.metaItem}>
+            <span className={classes.metaLabel}>Headword</span>
+            <span className={classes.metaValue} lang="ru">{word.russian}</span>
+          </div>
+          <div className={classes.metaItem}>
+            <span className={classes.metaLabel}>Primary Translation</span>
+            <span className={classes.metaValue}>{translationText(word, 'en')}</span>
+          </div>
+          {word.aspect && (
+            <div className={classes.metaItem}>
+              <span className={classes.metaLabel}>Aspect</span>
+              <span className={classes.metaValue}>{word.aspect}</span>
+            </div>
+          )}
+          {word.usage && (
+            <div className={classes.metaItem}>
+              <span className={classes.metaLabel}>Usage Context</span>
+              <span className={classes.metaValue}>{word.usage}</span>
+            </div>
+          )}
+          {word.audioUrl && (
+            <div className={classes.metaItem}>
+              <span className={classes.metaLabel}>Audio Pronunciation</span>
+              <a href={word.audioUrl} target="_blank" rel="noreferrer" style={{ color: 'var(--rc-accent)', fontSize: '0.875rem' }}>
+                Play Audio ↗
+              </a>
+            </div>
+          )}
+        </div>
 
-      <WordFormsDisplay
-        type={word.type}
-        aspect={word.aspect}
-        russian={word.russian}
-        forms={word.forms ?? null}
-      />
+        <WordFormsDisplay
+          type={word.type}
+          aspect={word.aspect}
+          russian={word.russian}
+          forms={word.forms ?? null}
+        />
 
-      {word.id && <ExampleSentences wordId={word.id} />}
+        {word.id && <ExampleSentences wordId={word.id} />}
+      </div>
     </Layout>
-  )
+  );
 }
