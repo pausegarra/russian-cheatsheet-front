@@ -45,3 +45,109 @@
   border-color: var(--rc-accent);
   color: var(--rc-accent);
 }
+
+/* Word Detail View */
+.wordHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--rc-border-default);
+}
+
+.wordHeadword {
+  font-family: var(--rc-font-cyrillic);
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--rc-text-primary);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.wordTranslation {
+  font-size: 1.25rem;
+  color: var(--rc-text-secondary);
+  font-weight: 400;
+}
+
+.chipsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.relatedChip {
+  font-family: var(--rc-font-mono);
+  font-size: 0.75rem;
+  background-color: var(--rc-surface-raised);
+  border: 1px solid var(--rc-border-subtle);
+  color: var(--rc-text-primary);
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.relatedChip:hover {
+  border-color: var(--rc-accent);
+  color: var(--rc-accent);
+}
+
+.metadataGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--rc-border-default);
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metaLabel {
+  font-family: var(--rc-font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  color: var(--rc-text-muted);
+  letter-spacing: 0.05em;
+}
+
+.metaValue {
+  font-size: 0.9375rem;
+  color: var(--rc-text-primary);
+  font-weight: 500;
+}
+
+.sectionHeading {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--rc-text-primary);
+  margin: 1.5rem 0 1rem;
+}
+
+.exampleCard {
+  background-color: var(--rc-surface);
+  border: 1px solid var(--rc-border-default);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.exampleRussian {
+  font-family: var(--rc-font-cyrillic);
+  font-size: 1rem;
+  color: var(--rc-text-primary);
+  line-height: 1.5;
+}
+
+.exampleTranslation {
+  font-size: 0.875rem;
+  color: var(--rc-text-secondary);
+  line-height: 1.5;
+}

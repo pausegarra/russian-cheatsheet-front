@@ -1,6 +1,7 @@
-import { Grid, Table, Title } from '@mantine/core';
+import { Grid, Table } from '@mantine/core';
 import { WordAspect, WordFormType, WordForms, WordType } from '../entities/word.entity.ts';
 import { wordFormGroups } from '../constants.ts';
+import classes from './vocabulary.module.css';
 
 type DisplayProps = {
   type: WordType | '' | null;
@@ -133,24 +134,37 @@ export function WordFormsDisplay({ type, aspect, russian, forms }: DisplayProps)
   }
 
   return (
-    <Grid gutter="md">
-      {groups.map(group => (
-        <Grid.Col key={group.title} span={{ base: 12, md: 6 }}>
-          <section>
-            <Title order={4} mt="md" mb="sm">{group.title}</Title>
-            <Table withTableBorder striped>
-              <Table.Tbody>
-                {group.rows.map(row => (
-                  <Table.Tr key={row.label}>
-                    <Table.Th>{row.label}</Table.Th>
-                    <Table.Td>{row.value}</Table.Td>
+    <div>
+      <h2 className={classes.sectionHeading}>Morphological Forms & Inflections</h2>
+      <Grid gutter="md">
+        {groups.map(group => (
+          <Grid.Col key={group.title} span={{ base: 12, md: 6 }}>
+            <div className={classes.exampleCard}>
+              <div style={{ fontFamily: 'var(--rc-font-mono)', fontSize: '0.75rem', fontWeight: 600, color: 'var(--rc-accent)', textTransform: 'uppercase' }}>
+                {group.title}
+              </div>
+              <Table>
+                <Table.Thead>
+                  <Table.Tr>
+                    <Table.Th style={{ width: '50%' }}>Category</Table.Th>
+                    <Table.Th style={{ width: '50%' }}>Form</Table.Th>
                   </Table.Tr>
-                ))}
-              </Table.Tbody>
-            </Table>
-          </section>
-        </Grid.Col>
-      ))}
-    </Grid>
+                </Table.Thead>
+                <Table.Tbody>
+                  {group.rows.map(row => (
+                    <Table.Tr key={row.label}>
+                      <Table.Td style={{ fontSize: '0.8125rem' }}>{row.label}</Table.Td>
+                      <Table.Td style={{ fontFamily: 'var(--rc-font-cyrillic)', fontWeight: 500 }} lang="ru">
+                        {row.value}
+                      </Table.Td>
+                    </Table.Tr>
+                  ))}
+                </Table.Tbody>
+              </Table>
+            </div>
+          </Grid.Col>
+        ))}
+      </Grid>
+    </div>
   );
 }
