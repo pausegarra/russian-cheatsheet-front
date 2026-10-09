@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.searchField {
+  flex: 1;
+  max-width: 480px;
+}
+
+.wordRussian {
+  font-family: var(--rc-font-cyrillic);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--rc-text-primary);
+}
+
+.wordEnglish {
+  font-family: var(--rc-font-ui);
+  font-size: 0.875rem;
+  color: var(--rc-text-secondary);
+}
+
+.actionButton {
+  background-color: transparent;
+  border: 1px solid var(--rc-border-default);
+  color: var(--rc-text-secondary);
+  border-radius: 4px;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.actionButton:hover {
+  background-color: var(--rc-surface-raised);
+  border-color: var(--rc-accent);
+  color: var(--rc-accent);
+}
