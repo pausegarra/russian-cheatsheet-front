@@ -46,7 +46,6 @@ export interface WordEntity {
 export interface WordTranslationEntity {
   language: string;
   text: string;
-  managedBy?: 'OPENRUSSIAN' | 'MANUAL';
   position: number;
 }
 
