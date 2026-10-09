@@ -39,7 +39,6 @@ export function ListVocabulary() {
             <Table.Tr>
               <Table.Th>Russian</Table.Th>
               <Table.Th>English</Table.Th>
-              <Table.Th>Spanish</Table.Th>
               <Table.Th>Type</Table.Th>
               <Table.Th>Details</Table.Th>
             </Table.Tr>

@@ -52,9 +52,6 @@ export function ShowVocabulary() {
           <Text><strong>English:</strong> {translationText(word, 'en')}</Text>
         </Grid.Col>
         <Grid.Col span={3}>
-          <Text><strong>Spanish:</strong> {translationText(word, 'es')}</Text>
-        </Grid.Col>
-        <Grid.Col span={3}>
           <Text><strong>Type:</strong> {word.type}</Text>
         </Grid.Col>
         {word.aspect && (

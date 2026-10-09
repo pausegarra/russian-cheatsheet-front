@@ -12,7 +12,6 @@ export function WordRow({word}: props) {
     <Table.Tr>
       <Table.Td>{word.russian}</Table.Td>
       <Table.Td>{translationText(word, 'en')}</Table.Td>
-      <Table.Td>{translationText(word, 'es')}</Table.Td>
       <Table.Td>{word.type}</Table.Td>
       <Table.Td>
         <Button size="compact-xs" component={Link} to={`/vocabulary/${word.id}`} aria-label={`View ${word.russian}`}>
