@@ -1,0 +1,150 @@
+/* Tables: Precision Data Grid */
+.tableRoot {
+  background-color: var(--rc-surface);
+  border: 1px solid var(--rc-border-default);
+  border-radius: 6px;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.tableThead {
+  background-color: var(--rc-surface-raised);
+}
+
+.tableTh {
+  font-family: var(--rc-font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--rc-text-muted);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rc-border-default);
+  text-align: left;
+}
+
+.tableTd {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rc-border-subtle);
+  color: var(--rc-text-primary);
+  font-size: 0.875rem;
+}
+
+.tableTr:last-child .tableTd {
+  border-bottom: none;
+}
+
+.tableTr:hover {
+  background-color: rgba(56, 189, 248, 0.04);
+}
+
+/* Global table support for native tables in grammar pages */
+:global(.mantine-Table-table),
+:global(table) {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+:global(.mantine-Table-table th),
+:global(table th) {
+  font-family: var(--rc-font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--rc-text-muted);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rc-border-default);
+  background-color: var(--rc-surface-raised);
+  text-align: left;
+}
+
+:global(.mantine-Table-table td),
+:global(table td) {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rc-border-subtle);
+  color: var(--rc-text-primary);
+  font-size: 0.875rem;
+}
+
+:global(.mantine-Table-table tr:hover),
+:global(table tr:hover) {
+  background-color: rgba(56, 189, 248, 0.04);
+}
+
+/* Form Inputs */
+.inputRoot {
+  font-family: var(--rc-font-ui);
+}
+
+.inputInput {
+  background-color: var(--rc-surface);
+  border: 1px solid var(--rc-border-default);
+  border-radius: 4px;
+  color: var(--rc-text-primary);
+  font-size: 0.875rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.inputInput:focus {
+  border-color: var(--rc-border-focus);
+  box-shadow: 0 0 0 1px var(--rc-border-focus);
+}
+
+/* Linguistic Badges */
+.badge {
+  font-family: var(--rc-font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: var(--rc-badge-bg);
+  border: 1px solid var(--rc-badge-border);
+  color: var(--rc-accent);
+  border-radius: 3px;
+  padding: 2px 6px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Cards & Surface Panels */
+.card {
+  background-color: var(--rc-surface);
+  border: 1px solid var(--rc-border-default);
+  border-radius: 6px;
+  box-shadow: none;
+  padding: 1.25rem;
+}
+
+/* Alerts */
+.alert {
+  background-color: var(--rc-surface);
+  border: 1px solid var(--rc-border-default);
+  border-left: 3px solid var(--rc-warning);
+  border-radius: 4px;
+}
+
+/* Pagination */
+.paginationControl {
+  font-family: var(--rc-font-mono);
+  font-size: 0.8125rem;
+  border: 1px solid var(--rc-border-default);
+  border-radius: 4px;
+  background-color: transparent;
+  color: var(--rc-text-secondary);
+}
+
+.paginationControl:hover {
+  background-color: var(--rc-surface-raised);
+  color: var(--rc-text-primary);
+}
+
+.paginationControl[data-active="true"] {
+  background-color: var(--rc-accent);
+  color: var(--rc-on-accent);
+  border-color: var(--rc-accent);
+  font-weight: 600;
+}

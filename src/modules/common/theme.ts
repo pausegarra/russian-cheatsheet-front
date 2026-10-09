@@ -3,6 +3,7 @@ import {
   createTheme,
   MantineColorsTuple,
 } from '@mantine/core';
+import classes from './components/components.module.css';
 
 export const workbenchCyan: MantineColorsTuple = [
   '#E0F7FE',
@@ -45,6 +46,38 @@ export const workbenchTheme = createTheme({
   },
   defaultRadius: 'xs', // 4px
   cursorType: 'pointer',
+  components: {
+    Table: {
+      classNames: {
+        table: classes.tableRoot,
+        thead: classes.tableThead,
+        th: classes.tableTh,
+        tr: classes.tableTr,
+        td: classes.tableTd,
+      },
+    },
+    TextInput: {
+      classNames: {
+        root: classes.inputRoot,
+        input: classes.inputInput,
+      },
+    },
+    Card: {
+      classNames: {
+        root: classes.card,
+      },
+    },
+    Alert: {
+      classNames: {
+        root: classes.alert,
+      },
+    },
+    Pagination: {
+      classNames: {
+        control: classes.paginationControl,
+      },
+    },
+  },
 });
 
 export const workbenchResolver: CSSVariablesResolver = () => ({
