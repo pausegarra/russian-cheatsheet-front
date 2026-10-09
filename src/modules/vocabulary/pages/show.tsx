@@ -6,6 +6,7 @@ import { Layout } from "../../common/components/layout.tsx";
 import { useErrorBoundary } from "react-error-boundary";
 import { ExampleSentences } from "../components/example-sentences.tsx";
 import { WordFormsDisplay } from "../components/word-forms.tsx";
+import { WordAudioPlayer } from "../components/word-audio-player.tsx";
 import classes from "../components/vocabulary.module.css";
 import sharedClasses from "../../common/components/components.module.css";
 
@@ -78,9 +79,7 @@ export function ShowVocabulary() {
           {word.audioUrl && (
             <div className={classes.metaItem}>
               <span className={classes.metaLabel}>Audio Pronunciation</span>
-              <a href={word.audioUrl} target="_blank" rel="noreferrer" style={{ color: 'var(--rc-accent)', fontSize: '0.875rem' }}>
-                Play Audio ↗
-              </a>
+              <WordAudioPlayer key={word.audioUrl} audioUrl={word.audioUrl} />
             </div>
           )}
         </div>
