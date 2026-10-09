@@ -80,3 +80,58 @@
   color: var(--rc-text-secondary);
   font-size: 0.8125rem;
 }
+
+/* Russian Cases & Grammar Sections */
+.caseSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.caseHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--rc-border-default);
+  padding-bottom: 0.75rem;
+}
+
+.caseTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--rc-text-primary);
+  margin: 0;
+}
+
+.caseSubtitle {
+  font-size: 0.875rem;
+  color: var(--rc-text-secondary);
+  font-style: italic;
+}
+
+.caseExample {
+  background-color: var(--rc-surface-raised);
+  border-left: 2px solid var(--rc-accent);
+  padding: 0.75rem 1rem;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.875rem;
+  color: var(--rc-text-primary);
+}
+
+.caseExampleCyrillic {
+  font-family: var(--rc-font-cyrillic);
+  font-weight: 500;
+}
+
+.caseExampleTranslation {
+  color: var(--rc-text-secondary);
+  margin-left: 0.5rem;
+}
+
+.usageList {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--rc-text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
