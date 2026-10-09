@@ -20,14 +20,4 @@ export class WordService {
     return this.fetch.get<Paginated<ExampleSentenceEntity>>(`/api/v1/words/${id}/examples?page=${page}&perPage=${perPage}`);
   }
 
-  public async getAllWordExamples(id: string): Promise<ExampleSentenceEntity[]> {
-    const firstPage = await this.getWordExamples(id, 0);
-    const remainingPages = await Promise.all(
-      Array.from({ length: firstPage.totalPages - 1 }, (_, index) =>
-        this.getWordExamples(id, index + 1)
-      )
-    );
-    return [firstPage, ...remainingPages].flatMap(page => page.data);
-  }
-
 }
