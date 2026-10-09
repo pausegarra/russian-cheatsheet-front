@@ -1,4 +1,4 @@
-import { Anchor, Button, Card, Group, Stack, Text, Title } from "@mantine/core";
+import { Anchor, Card, Group, Stack, Text, Title } from "@mantine/core";
 import { useErrorBoundary } from "react-error-boundary";
 import { useCallback, useEffect, useState } from "react";
 import { wordService } from "../root.ts";
@@ -10,18 +10,14 @@ type props = {
 
 export function ExampleSentences({wordId}: props) {
   const [examples, setExamples] = useState<ExampleSentenceEntity[]>([]);
-  const [page, setPage] = useState(0);
-  const [hasNextPage, setHasNextPage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const {showBoundary} = useErrorBoundary();
 
-  const loadExamples = useCallback(async (nextPage: number) => {
+  const loadExamples = useCallback(async () => {
     setIsLoading(true);
     try {
-      const result = await wordService.getWordExamples(wordId, nextPage);
-      setExamples(current => nextPage === 0 ? result.data : [...current, ...result.data]);
-      setPage(result.page);
-      setHasNextPage(result.hasNextPage);
+      const result = await wordService.getAllWordExamples(wordId);
+      setExamples(result);
     } catch (error: unknown) {
       showBoundary(error instanceof Error ? error.message : "Could not load examples");
     } finally {
@@ -31,8 +27,7 @@ export function ExampleSentences({wordId}: props) {
 
   useEffect(() => {
     setExamples([]);
-    setPage(0);
-    void loadExamples(0);
+    void loadExamples();
   }, [loadExamples]);
 
   return (
@@ -55,11 +50,6 @@ export function ExampleSentences({wordId}: props) {
         </Card>
       ))}
       {examples.length === 0 && !isLoading && <Text c="dimmed">No examples available.</Text>}
-      {hasNextPage && (
-        <Button variant="light" onClick={() => loadExamples(page + 1)} loading={isLoading}>
-          Load more examples
-        </Button>
-      )}
     </Stack>
   );
 }
