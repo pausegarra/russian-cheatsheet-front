@@ -1,16 +1,23 @@
-import { Table } from "@mantine/core"
-import { LetterEntity } from "../entities/letter.entity"
+import { Table } from "@mantine/core";
+import { LetterEntity } from "../entities/letter.entity.ts";
+import classes from "./alphabet.module.css";
 
-type props = {
-  letter: LetterEntity
-}
+type Props = {
+  letter: LetterEntity;
+};
 
-export function LetterRow({letter}: props) {
+export function LetterRow({ letter }: Props) {
   return (
     <Table.Tr>
-      <Table.Td>{letter.cyrillic}</Table.Td>
-      <Table.Td>{letter.latin}</Table.Td>
-      <Table.Td>{letter.ipa}</Table.Td>
+      <Table.Td>
+        <span className={classes.cyrillicGlyph} lang="ru">{letter.cyrillic}</span>
+      </Table.Td>
+      <Table.Td>
+        <span className={classes.latinText}>{letter.latin}</span>
+      </Table.Td>
+      <Table.Td>
+        <span className={classes.ipaTag}>[{letter.ipa}]</span>
+      </Table.Td>
     </Table.Tr>
-  )
+  );
 }
