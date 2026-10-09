@@ -1,15 +1,9 @@
-import { WordAspect, WordFormType, WordForms, WordType } from './entities/word.entity.ts';
+import { WordFormType, WordType } from './entities/word.entity.ts';
 
 export interface WordFormGroup {
   title: string;
   fields: WordFormType[];
 }
-
-export const wordTypeOptions: WordType[] = [
-  'noun', 'pronoun', 'verb', 'adjective', 'adverb', 'expression', 'other'
-];
-
-export const wordAspectOptions: WordAspect[] = ['imperfective', 'perfective', 'both'];
 
 const baseGroup: WordFormGroup = { title: 'Base', fields: ['ru_base'] };
 const nounGroups: WordFormGroup[] = [
@@ -48,23 +42,4 @@ export function wordFormGroups(type: WordType | '' | null): WordFormGroup[] {
     default:
       return [baseGroup];
   }
-}
-
-const allFormTypes = [
-  ...baseGroup.fields,
-  ...nounGroups.flatMap(group => group.fields),
-  ...verbGroups.flatMap(group => group.fields),
-  ...adjectiveGroups.flatMap(group => group.fields)
-];
-
-export function emptyWordForms(): WordForms {
-  return Object.fromEntries(allFormTypes.map(formType => [formType, ''])) as WordForms;
-}
-
-export function normalizeWordForms(forms?: WordForms | null): WordForms {
-  const normalized = emptyWordForms();
-  allFormTypes.forEach(formType => {
-    normalized[formType] = forms?.[formType] ?? '';
-  });
-  return normalized;
 }
