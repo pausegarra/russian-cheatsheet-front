@@ -1,4 +1,4 @@
-import { Anchor, Button, Group, Stack, Text } from "@mantine/core";
+import { Button, Group, Stack, Text } from "@mantine/core";
 import { useErrorBoundary } from "react-error-boundary";
 import { useCallback, useEffect, useState } from "react";
 import { wordService } from "../root.ts";
@@ -53,18 +53,13 @@ export function ExampleSentences({ wordId }: Props) {
                 {translation.text}
               </div>
             ))}
-          <Group gap="md" mt="xs">
-            {example.contributor && (
+          {example.contributor && (
+            <Group gap="md" mt="xs">
               <Text size="xs" c="dimmed" style={{ fontFamily: 'var(--rc-font-mono)' }}>
                 Source: {example.contributor}
               </Text>
-            )}
-            {example.audioUrl && (
-              <Anchor href={example.audioUrl} target="_blank" rel="noreferrer" size="xs" style={{ color: 'var(--rc-accent)' }}>
-                Audio ↗
-              </Anchor>
-            )}
-          </Group>
+            </Group>
+          )}
         </div>
       ))}
       {examples.length === 0 && !isLoading && (

@@ -6,7 +6,6 @@ import { Layout } from "../../common/components/layout.tsx";
 import { useErrorBoundary } from "react-error-boundary";
 import { ExampleSentences } from "../components/example-sentences.tsx";
 import { WordFormsDisplay } from "../components/word-forms.tsx";
-import { WordAudioPlayer } from "../components/word-audio-player.tsx";
 import classes from "../components/vocabulary.module.css";
 import sharedClasses from "../../common/components/components.module.css";
 
@@ -74,12 +73,6 @@ export function ShowVocabulary() {
             <div className={classes.metaItem}>
               <span className={classes.metaLabel}>Usage Context</span>
               <span className={classes.metaValue}>{word.usage}</span>
-            </div>
-          )}
-          {word.audioUrl && (
-            <div className={classes.metaItem}>
-              <span className={classes.metaLabel}>Audio Pronunciation</span>
-              <WordAudioPlayer key={word.audioUrl} audioUrl={word.audioUrl} />
             </div>
           )}
         </div>
