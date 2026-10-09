@@ -1,0 +1,82 @@
+.heroSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.heroTitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--rc-text-primary);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.heroSubtitle {
+  font-size: 1rem;
+  color: var(--rc-text-secondary);
+  line-height: 1.6;
+  max-width: 720px;
+}
+
+.moduleGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.moduleCard {
+  background-color: var(--rc-surface);
+  border: 1px solid var(--rc-border-default);
+  border-radius: 6px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.moduleId {
+  font-family: var(--rc-font-mono);
+  font-size: 0.6875rem;
+  color: var(--rc-accent);
+  letter-spacing: 0.05em;
+}
+
+.moduleTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--rc-text-primary);
+  margin: 0;
+}
+
+.moduleDescription {
+  font-size: 0.875rem;
+  color: var(--rc-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.statusNotice {
+  background-color: var(--rc-surface);
+  border: 1px solid var(--rc-border-default);
+  border-left: 3px solid var(--rc-warning);
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.statusTitle {
+  font-weight: 600;
+  color: var(--rc-warning);
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.statusBody {
+  color: var(--rc-text-secondary);
+  font-size: 0.8125rem;
+}

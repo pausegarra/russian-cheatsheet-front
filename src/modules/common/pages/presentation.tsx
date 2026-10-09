@@ -1,40 +1,57 @@
-import { Alert, Card, Container, Stack, Text, Title, } from "@mantine/core";
-import { IconAlertCircle } from "@tabler/icons-react";
-import { Layout } from "../components/layout";
+import { IconAlertTriangle } from "@tabler/icons-react";
+import { Layout } from "../components/layout.tsx";
+import classes from "./reference.module.css";
 
 export function Presentation() {
   return (
     <Layout>
-      <Container size="md" py="xl">
-        <Stack align="center" gap="xl">
-          <img src="logo.svg" alt="logo" width={350}/>
-          <Title order={1}>
-            Welcome to Russian Cheatsheet
-          </Title>
-          <Text size="lg">
-            Your personal companion to mastering the Russian language.
-            This cheatsheet is crafted to support my journey in learning Russian,
-            and perhaps it will help others too!
-          </Text>
-          <Card shadow="md" padding="lg" radius="md" withBorder>
-            <Stack>
-              <Text size="md">
-                📚 Quickly reference essential grammar rules, vocabulary,
-                and common expressions.
-              </Text>
-              <Text size="md">
-                🚀 Speed up your study sessions with structured, easy-to-access content.
-              </Text>
-              <Text size="md">
-                🎯 Focus on what's important without getting lost in endless textbooks.
-              </Text>
-            </Stack>
-          </Card>
-          <Alert icon={<IconAlertCircle size="1.5rem" />} title="Work in Progress" color="yellow" variant="light">
-            This project is still under development. Features and content may change frequently!
-          </Alert>
-        </Stack>
-      </Container>
+      <div className={classes.heroSection}>
+        <h1 className={classes.heroTitle}>Russian Linguistic Reference & Cheatsheet</h1>
+        <p className={classes.heroSubtitle}>
+          An instrument-grade reference tool designed for Russian language learners.
+          Quickly consult grammatical case declensions, verbal aspect matrices,
+          motion verb pairs, and core vocabulary with complete morphological forms.
+        </p>
+      </div>
+
+      <div className={classes.moduleGrid}>
+        <div className={classes.moduleCard}>
+          <span className={classes.moduleId}>[MOD-01]</span>
+          <h2 className={classes.moduleTitle}>Grammar Matrices</h2>
+          <p className={classes.moduleDescription}>
+            Systematic declension endings for all six Russian cases across genders and numbers,
+            accompanied by real usage contexts and example sentences.
+          </p>
+        </div>
+
+        <div className={classes.moduleCard}>
+          <span className={classes.moduleId}>[MOD-02]</span>
+          <h2 className={classes.moduleTitle}>Lexicon & Inflections</h2>
+          <p className={classes.moduleDescription}>
+            Searchable dictionary featuring full morphological inflection tables,
+            aspectual pairings, related words, and bilingual example sentences.
+          </p>
+        </div>
+
+        <div className={classes.moduleCard}>
+          <span className={classes.moduleId}>[MOD-03]</span>
+          <h2 className={classes.moduleTitle}>Phonetics & Cyrillic</h2>
+          <p className={classes.moduleDescription}>
+            Complete 33-letter Cyrillic alphabet catalog with Latin transliteration
+            and International Phonetic Alphabet (IPA) transcriptions.
+          </p>
+        </div>
+      </div>
+
+      <div className={classes.statusNotice}>
+        <IconAlertTriangle size={20} color="var(--rc-warning)" style={{ flexShrink: 0, marginTop: 2 }} />
+        <div>
+          <div className={classes.statusTitle}>Active Development Workbench</div>
+          <div className={classes.statusBody}>
+            This application is continuously updated with refined linguistic datasets and expanded declension models.
+          </div>
+        </div>
+      </div>
     </Layout>
-  )
+  );
 }
