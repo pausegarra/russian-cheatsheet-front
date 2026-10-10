@@ -12,9 +12,10 @@ export function NavBar({ onNavigate }: Props) {
       <div className={classes.categoryTitle}>Reference</div>
       <NavItem to="/" badge="01" onNavigate={onNavigate}>Home</NavItem>
       <NavItem to="/alphabet" badge="02" onNavigate={onNavigate}>Alphabet</NavItem>
+      <NavItem to="/grammar/cases" badge="03" onNavigate={onNavigate}>Cases</NavItem>
 
       <div className={classes.categoryTitle}>Lexicon</div>
-      <NavItem to="/vocabulary" badge="03" onNavigate={onNavigate}>Vocabulary</NavItem>
+      <NavItem to="/vocabulary" badge="04" onNavigate={onNavigate}>Vocabulary</NavItem>
     </>
   );
 }
