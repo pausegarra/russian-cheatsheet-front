@@ -28,7 +28,7 @@ export function ShowVocabulary() {
   }, [getWord]);
 
   return (
-    <Layout>
+    <Layout backTo="/vocabulary">
       <div className={classes.container}>
         <div className={classes.wordHeader}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
@@ -44,6 +44,7 @@ export function ShowVocabulary() {
                 <Link
                   key={`${related.id}-${related.relation}`}
                   to={`/vocabulary/${related.id}`}
+                  state={{ fromApp: true }}
                   className={classes.relatedChip}
                 >
                   <span lang="ru">{related.russian}</span>

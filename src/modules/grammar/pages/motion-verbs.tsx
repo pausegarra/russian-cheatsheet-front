@@ -8,7 +8,7 @@ import classes from "./motion-verbs.module.css";
 
 export function MotionVerbsPage() {
   return (
-    <Layout>
+    <Layout backTo="/grammar">
       <article className={classes.container}>
         <header className={classes.header}>
           <span className={classes.eyebrow}>Grammar · Verbs of motion</span>

@@ -5,12 +5,14 @@ import { NavBar } from "./nav-bar.tsx";
 import { SiteFooter } from "./site-footer.tsx";
 import classes from "./layout.module.css";
 import { Link } from "react-router-dom";
+import { BackButton } from "./back-button.tsx";
 
 type Props = {
   children: ReactNode;
+  backTo?: string;
 };
 
-export function Layout({ children }: Props) {
+export function Layout({ children, backTo }: Props) {
   const [opened, { toggle }] = useDisclosure();
 
   return (
@@ -48,6 +50,11 @@ export function Layout({ children }: Props) {
 
         <AppShell.Main className={classes.main}>
           <div id="main-content" className={classes.mainContent}>
+            {backTo && (
+              <div className={classes.backButtonContainer}>
+                <BackButton fallbackTo={backTo} />
+              </div>
+            )}
             {children}
           </div>
           <SiteFooter />

@@ -34,6 +34,7 @@ export function Presentation() {
 
         <Link
           to="/grammar"
+          state={{ fromApp: true }}
           className={[classes.moduleCard, classes.moduleCardLink].join(" ")}
         >
           <span className={classes.moduleId}>[MOD-03]</span>

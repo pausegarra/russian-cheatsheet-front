@@ -24,6 +24,7 @@ export function WordRow({ word }: Props) {
       <Table.Td style={{ textAlign: 'center' }}>
         <Link
           to={`/vocabulary/${word.id}`}
+          state={{ fromApp: true }}
           className={classes.actionButton}
           aria-label={`View ${word.russian}`}
         >

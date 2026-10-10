@@ -41,11 +41,13 @@ export function GrammarIndexPage() {
       eyebrow="Reference · Grammar"
       title="Grammar quick references"
       intro="Short guides for common patterns. Use the vocabulary dictionary for the exact forms of an individual word."
+      backTo="/"
     >
       <div className={classes.guideGrid}>
         {grammarGuides.map((guide) => (
           <Link
             to={guide.to}
+            state={{ fromApp: true }}
             className={classes.guideCard}
             key={guide.to}
           >
