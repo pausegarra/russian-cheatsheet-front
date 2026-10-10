@@ -23,34 +23,11 @@ ingress:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
   hosts:
-    - host: "russian-cheatsheet.pausegarra.com"
+    - host: "russiancheatsheet.com"
       paths:
         - path: /
           pathType: Prefix
   tls:
     - hosts:
-        - russian-cheatsheet.pausegarra.com
-      secretName: russian-cheatsheet-pausegarra-tls
-
-traefikMiddlewareRedirectRegex:
-  enabled: true
-  items:
-    - name: redirect-russian-cheatsheet-es-to-com
-      namespace: main
-      regex: ^https?://russian-cheatsheet\.pausegarra\.es(/.*)?$
-      replacement: https://russian-cheatsheet.pausegarra.com${1}
-      permanent: true
-  redirectIngress:
-    enabled: true
-    className: "traefik"
-    annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-    hosts:
-      - host: russian-cheatsheet.pausegarra.es
-        paths:
-          - path: /
-            pathType: Prefix
-    tls:
-      - hosts:
-          - russian-cheatsheet.pausegarra.es
-        secretName: russian-cheatsheet-pausegarra-es-tls
+        - russiancheatsheet.com
+      secretName: russiancheatsheet-tls
