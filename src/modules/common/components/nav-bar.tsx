@@ -13,12 +13,8 @@ export function NavBar({ onNavigate }: Props) {
       <NavItem to="/" badge="01" onNavigate={onNavigate}>Home</NavItem>
       <NavItem to="/alphabet" badge="02" onNavigate={onNavigate}>Alphabet</NavItem>
 
-      <div className={classes.categoryTitle}>Grammar</div>
-      <NavItem to="/russian-cases" badge="03" onNavigate={onNavigate}>Russian Cases</NavItem>
-      <NavItem to="/motion-verbs" badge="04" onNavigate={onNavigate}>Motion Verbs</NavItem>
-
       <div className={classes.categoryTitle}>Lexicon</div>
-      <NavItem to="/vocabulary" badge="05" onNavigate={onNavigate}>Vocabulary</NavItem>
+      <NavItem to="/vocabulary" badge="03" onNavigate={onNavigate}>Vocabulary</NavItem>
     </>
   );
 }

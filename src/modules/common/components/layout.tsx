@@ -2,6 +2,7 @@ import { AppShell, Burger, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { ReactNode } from "react";
 import { NavBar } from "./nav-bar.tsx";
+import { SiteFooter } from "./site-footer.tsx";
 import classes from "./layout.module.css";
 import { Link } from "react-router-dom";
 
@@ -46,10 +47,11 @@ export function Layout({ children }: Props) {
           <NavBar onNavigate={() => opened && toggle()} />
         </AppShell.Navbar>
 
-        <AppShell.Main>
+        <AppShell.Main className={classes.main}>
           <div id="main-content" className={classes.mainContent}>
             {children}
           </div>
+          <SiteFooter />
         </AppShell.Main>
       </AppShell>
     </>

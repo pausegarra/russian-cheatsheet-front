@@ -95,16 +95,24 @@
   color: var(--rc-text-muted);
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 50px);
+}
+
 .mainContent {
   background-color: var(--rc-canvas);
-  min-height: calc(100vh - 50px);
-  padding: 1.5rem 2rem;
+  flex: 1;
+  box-sizing: border-box;
+  padding: 1.5rem 2rem 6rem;
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
 }
 
 @media (max-width: 768px) {
   .mainContent {
-    padding: 1rem;
+    padding: 1rem 1rem 6rem;
   }
 }
