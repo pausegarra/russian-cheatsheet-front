@@ -46,10 +46,21 @@ export function Layout({ children }: Props) {
           <NavBar onNavigate={() => opened && toggle()} />
         </AppShell.Navbar>
 
-        <AppShell.Main>
+        <AppShell.Main className={classes.main}>
           <div id="main-content" className={classes.mainContent}>
             {children}
           </div>
+          <footer className={classes.footer}>
+            <div className={classes.footerContent}>
+              <p>
+                Vocabulary, examples and related data courtesy of{" "}
+                <a href="https://en.openrussian.org/" target="_blank" rel="noopener noreferrer">
+                  OpenRussian
+                </a>.
+              </p>
+              <p>Developed by pau<strong>segarra</strong></p>
+            </div>
+          </footer>
         </AppShell.Main>
       </AppShell>
     </>
