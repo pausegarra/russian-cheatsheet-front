@@ -2,6 +2,7 @@ import { AppShell, Burger, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { ReactNode } from "react";
 import { NavBar } from "./nav-bar.tsx";
+import { SiteFooter } from "./site-footer.tsx";
 import classes from "./layout.module.css";
 import { Link } from "react-router-dom";
 
@@ -50,17 +51,7 @@ export function Layout({ children }: Props) {
           <div id="main-content" className={classes.mainContent}>
             {children}
           </div>
-          <footer className={classes.footer}>
-            <div className={classes.footerContent}>
-              <p>
-                Vocabulary, examples and related data courtesy of{" "}
-                <a href="https://en.openrussian.org/" target="_blank" rel="noopener noreferrer">
-                  OpenRussian
-                </a>.
-              </p>
-              <p>Developed by pau<strong>segarra</strong></p>
-            </div>
-          </footer>
+          <SiteFooter />
         </AppShell.Main>
       </AppShell>
     </>
