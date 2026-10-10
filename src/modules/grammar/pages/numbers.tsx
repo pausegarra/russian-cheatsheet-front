@@ -59,6 +59,12 @@ export function NumbersPage() {
         </div>
 
         <p className={classes.note}>
+          These forms describe counting phrases in the nominative. In other
+          cases, both forms can change: <span lang="ru">к двум стола́м</span>.
+          Animate accusative uses forms such as{" "}
+          <span lang="ru">вижу двух студе́нтов</span>.
+        </p>
+        <p className={classes.note}>
           For compound numbers, the last word controls the pattern:{" "}
           <span lang="ru">два́дцать оди́н год</span>,{" "}
           <span lang="ru">два́дцать два го́да</span>,{" "}

@@ -145,9 +145,12 @@ export function DeclensionsPage() {
       <aside className={classes.callout}>
         <strong>Accusative and animacy:</strong> masculine singular and plural
         animate nouns use the genitive form; inanimate nouns match the
-        nominative. Feminine singular nouns have their own{" "}
-        <span lang="ru">-у / -ю</span> endings. For example:{" "}
-        <span lang="ru">вижу стол</span>, but <span lang="ru">вижу студе́нта</span>.
+        nominative. First-declension nouns in{" "}
+        <span lang="ru">-а / -я</span> use{" "}
+        <span lang="ru">-у / -ю</span> in the singular accusative, as in{" "}
+        <span lang="ru">вижу ма́му</span>. Compare{" "}
+        <span lang="ru">вижу стол</span> and{" "}
+        <span lang="ru">вижу студе́нта</span>.
       </aside>
 
       <section className={classes.section} aria-labelledby="adjective-title">
