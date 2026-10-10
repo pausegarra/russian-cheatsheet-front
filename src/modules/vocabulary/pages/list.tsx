@@ -48,21 +48,28 @@ export function ListVocabulary() {
         </div>
 
         <Stack gap="xl" justify="center" align="center">
-          <Table>
-            <Table.Thead>
-              <Table.Tr>
-                <Table.Th style={{ width: '35%' }}>Russian</Table.Th>
-                <Table.Th style={{ width: '35%' }}>English</Table.Th>
-                <Table.Th style={{ width: '20%' }}>Type</Table.Th>
-                <Table.Th style={{ width: '10%', textAlign: 'center' }}>Details</Table.Th>
-              </Table.Tr>
-            </Table.Thead>
-            <Table.Tbody>
-              {words.data?.map(word => (
-                <WordRow key={word.id} word={word} />
-              ))}
-            </Table.Tbody>
-          </Table>
+          <div
+            className={classes.tableViewport}
+            role="region"
+            aria-label="Vocabulary words"
+            tabIndex={0}
+          >
+            <Table className={classes.vocabularyTable}>
+              <Table.Thead>
+                <Table.Tr>
+                  <Table.Th style={{ width: '35%' }}>Russian</Table.Th>
+                  <Table.Th style={{ width: '35%' }}>English</Table.Th>
+                  <Table.Th style={{ width: '20%' }}>Type</Table.Th>
+                  <Table.Th style={{ width: '10%', textAlign: 'center' }}>Details</Table.Th>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {words.data?.map(word => (
+                  <WordRow key={word.id} word={word} />
+                ))}
+              </Table.Tbody>
+            </Table>
+          </div>
 
           {words.totalPages > 1 && (
             <Pagination
