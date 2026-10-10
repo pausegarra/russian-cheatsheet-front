@@ -34,8 +34,7 @@ export function Layout({ children }: Props) {
               aria-label="Toggle navigation"
             />
             <Link to="/" className={classes.brand}>
-              <img src="/logo.svg" alt="Russian Cheatsheet" width={28} height={28} />
-              <span className={classes.brandText}>Russian Cheatsheet</span>
+              <img src="/logo.svg" alt="Russian Cheatsheet" width={112} height={40} />
             </Link>
           </Group>
           <div className={classes.statusBadge}>
