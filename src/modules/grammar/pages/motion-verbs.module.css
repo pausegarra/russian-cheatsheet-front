@@ -1,0 +1,330 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.eyebrow {
+  color: var(--rc-accent);
+  font-family: var(--rc-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.pageTitle,
+.sectionTitle {
+  color: var(--rc-text-primary);
+  font-weight: 600;
+  margin: 0;
+}
+
+.pageTitle {
+  font-size: 1.75rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+}
+
+.intro,
+.note,
+.tableHint {
+  color: var(--rc-text-secondary);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 760px;
+}
+
+.section,
+.aspectNote {
+  background: var(--rc-surface);
+  border: 1px solid var(--rc-border-default);
+  border-radius: 6px;
+  padding: 1.25rem;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contrastGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.exampleCard,
+.prefixCard {
+  min-width: 0;
+  background: var(--rc-canvas);
+  border: 1px solid var(--rc-border-default);
+  border-radius: 4px;
+  margin: 0;
+  padding: 1rem;
+}
+
+.exampleCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.cardLabel {
+  color: var(--rc-accent);
+  font-family: var(--rc-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.exampleCard blockquote,
+.prefixCard blockquote {
+  color: var(--rc-text-primary);
+  font-family: var(--rc-font-cyrillic);
+  font-size: 1.125rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.exampleCard > p,
+.prefixCard > p {
+  color: var(--rc-text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.exampleCard .cardNote {
+  color: var(--rc-text-muted);
+  font-size: 0.8125rem;
+  margin-top: 0.25rem;
+}
+
+.cardNote span,
+.aspectText span {
+  color: var(--rc-text-primary);
+  font-family: var(--rc-font-cyrillic);
+}
+
+.tableViewport {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.tableViewport:focus-visible {
+  outline: 2px solid var(--rc-border-focus);
+  outline-offset: 3px;
+}
+
+.pairTable {
+  border-collapse: collapse;
+  min-width: 38rem;
+  width: 100%;
+}
+
+.pairTable th,
+.pairTable td {
+  border-bottom: 1px solid var(--rc-border-subtle);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.pairTable th {
+  color: var(--rc-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.pairTable thead th {
+  color: var(--rc-text-muted);
+  font-family: var(--rc-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  vertical-align: bottom;
+}
+
+.tableHeaderDetail {
+  color: var(--rc-text-secondary);
+  display: block;
+  font-family: var(--rc-font-ui);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  margin-top: 0.25rem;
+  text-transform: none;
+}
+
+.pairTable tbody th {
+  color: var(--rc-text-primary);
+  font-weight: 500;
+}
+
+.pairTable td {
+  color: var(--rc-accent);
+  font-family: var(--rc-font-cyrillic);
+  font-size: 1rem;
+}
+
+.tableHint {
+  font-size: 0.8125rem;
+}
+
+.callout {
+  background: var(--rc-canvas);
+  border: 1px solid var(--rc-border-default);
+  border-radius: 4px;
+  color: var(--rc-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  padding: 1rem;
+}
+
+.prefixGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.prefixCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.prefixHeading {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.prefixHeading h3 {
+  color: var(--rc-text-primary);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.prefix {
+  color: var(--rc-accent);
+  font-family: var(--rc-font-cyrillic);
+  font-size: 1.125rem;
+}
+
+.prefixCard > .prefixForms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  color: var(--rc-text-muted);
+  font-size: 0.8125rem;
+}
+
+.prefixForms > span {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.prefixForms > span > span:first-child {
+  color: var(--rc-text-muted);
+  font-size: 0.6875rem;
+}
+
+.prefixForms > span > span[lang="ru"] {
+  color: var(--rc-text-primary);
+  font-family: var(--rc-font-cyrillic);
+  font-size: 0.875rem;
+}
+
+.prefixCard .translation {
+  font-size: 0.875rem;
+}
+
+.aspectNote {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 1rem;
+}
+
+.aspectNote > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.aspectText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.aspectText p {
+  color: var(--rc-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.source {
+  color: var(--rc-text-muted);
+  font-size: 0.8125rem;
+  margin: 0;
+}
+
+.source a {
+  color: var(--rc-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.source a:hover {
+  color: var(--rc-accent-hover);
+}
+
+.source a:focus-visible {
+  outline: 2px solid var(--rc-border-focus);
+  outline-offset: 3px;
+}
+
+.visuallyHidden {
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@media (max-width: 768px) {
+  .section,
+  .aspectNote {
+    padding: 1rem;
+  }
+
+  .contrastGrid,
+  .prefixGrid,
+  .aspectNote {
+    grid-template-columns: 1fr;
+  }
+
+  .pairTable {
+    min-width: 36rem;
+  }
+}
