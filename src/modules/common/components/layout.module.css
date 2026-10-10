@@ -11,16 +11,8 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   text-decoration: none;
   color: var(--rc-text-primary);
-}
-
-.brandText {
-  font-family: var(--rc-font-ui);
-  font-weight: 600;
-  font-size: 0.9375rem;
-  letter-spacing: -0.01em;
 }
 
 .statusBadge {
