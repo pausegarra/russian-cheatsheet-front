@@ -4,6 +4,23 @@
   gap: 1.25rem;
 }
 
+.tableViewport {
+  align-self: stretch;
+  min-width: 0;
+  margin-inline: 0.25rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.tableViewport:focus-visible {
+  outline: 2px solid var(--rc-border-focus);
+  outline-offset: 3px;
+}
+
+.vocabularyTable {
+  min-width: 42rem;
+}
+
 .toolbar {
   display: flex;
   align-items: center;
