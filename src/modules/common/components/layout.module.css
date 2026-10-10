@@ -103,6 +103,10 @@
   margin: 0 auto;
 }
 
+.backButtonContainer {
+  margin-bottom: 0.75rem;
+}
+
 @media (max-width: 768px) {
   .mainContent {
     padding: 1rem 1rem 6rem;

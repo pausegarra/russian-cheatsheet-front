@@ -12,6 +12,7 @@ type Props = {
   title: string;
   intro: string;
   sources?: GrammarSource[];
+  backTo?: string;
   children: ReactNode;
 };
 
@@ -20,10 +21,11 @@ export function GrammarGuidePage({
   title,
   intro,
   sources = [],
+  backTo = "/grammar",
   children,
 }: Props) {
   return (
-    <Layout>
+    <Layout backTo={backTo}>
       <article className={classes.container}>
         <header className={classes.header}>
           <span className={classes.eyebrow}>{eyebrow}</span>

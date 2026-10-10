@@ -52,7 +52,7 @@ export function ListVocabulary() {
   }, [location.state, search, setSearchParams, urlSearch]);
 
   return (
-    <Layout>
+    <Layout backTo="/">
       <div className={classes.container}>
         <div>
           <h1 style={{ fontSize: '1.5rem', fontWeight: 600, color: 'var(--rc-text-primary)', margin: 0 }}>

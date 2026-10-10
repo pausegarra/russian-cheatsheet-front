@@ -40,6 +40,7 @@ function NavItem({ to, badge, children, end, onNavigate }: NavItemProps) {
   return (
     <NavLink
       to={to}
+      state={{ fromApp: true }}
       end={end}
       onClick={onNavigate}
       className={({ isActive }) =>

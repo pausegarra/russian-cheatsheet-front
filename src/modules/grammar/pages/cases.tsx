@@ -8,7 +8,7 @@ export function CasesPage() {
   const [activeCase, setActiveCase] = useState<string | null>("nominative");
 
   return (
-    <Layout>
+    <Layout backTo="/grammar">
       <article className={classes.container}>
         <header className={classes.header}>
           <span className={classes.eyebrow}>Grammar · 6 cases</span>

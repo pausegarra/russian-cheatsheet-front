@@ -14,7 +14,7 @@ export function ListAlphabet() {
   }, []);
 
   return (
-    <Layout>
+    <Layout backTo="/">
       <div className={classes.container}>
         <div className={classes.headerRow}>
           <h1 className={classes.pageTitle}>Alphabet Reference</h1>
