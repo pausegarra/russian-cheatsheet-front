@@ -14,11 +14,10 @@ No test framework configured. No standalone typecheck script — `tsc -b` runs a
 ## Tech Stack
 
 - React 19, TypeScript 5.7, Vite 6
-- Mantine v7/v8 (forced dark mode via `forceColorScheme="dark"`)
+- Tailwind CSS v4 through `@tailwindcss/vite`; dark-only theme tokens in `src/app.css`
 - react-router-dom v7 (flat `<Route>` arrays, no data routers)
-- Keycloak auth (`keycloak-js`) — hardcoded realm at `auth.pausegarra.com`
 - `@betino/fetch` for HTTP — base URL from `VITE_API_URL` env var
-- PostCSS with `postcss-preset-mantine` + `postcss-simple-vars`
+- Native semantic React components, Phosphor icons, locally hosted Manrope including Cyrillic; grammar CSS modules use Tailwind `@reference` and `@apply`
 
 ## Module Architecture
 
@@ -34,14 +33,14 @@ src/modules/<name>/
   pages/           — route page components
 ```
 
-Module order in `App.tsx`: common → alphabet → vocabulary → auth.
+Module order in `App.tsx`: common → grammar → alphabet → vocabulary.
 
-Shared root services (`fetchService`, `notificationsService`) live in `src/modules/common/root.ts`. Other modules import from there and from `auth/root.ts`.
+Shared `fetchService` lives in `src/modules/common/root.ts`. The shared dictionary search lives in `src/modules/vocabulary/components/word-search.tsx` and is used by both home and word detail.
 
 ## Env Vars
 
 - `.env` — local dev (gitignored), points to `http://localhost:8080`
-- `.env.cloud` — committed, points to `https://russian-cheatsheet.pausegarra.com`
+- `.env.cloud` — committed, points to `https://russiancheatsheet.com`
 - CI swaps `.env.cloud` → `.env` before build (`mv .env.cloud .env`)
 
 Vite exposes only `VITE_*` vars to client code.
