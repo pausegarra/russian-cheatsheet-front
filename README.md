@@ -31,6 +31,8 @@ The API must allow the development origin through CORS. Production builds use `.
 
 Search debounces requests by 300 ms, preserves `search` and one-based `page` in the URL, and ignores superseded responses. Use Arrow Up/Down and Enter to open a result; Escape clears the search. Empty, loading and retry states remain local to the relevant component. The detail search expands on focus so the current word remains prominent.
 
+Word pronunciation uses optional `russianAccented` exactly as supplied by the API, including OpenRussian's apostrophe stress markers. The detail page builds `https://api.openrussian.org/read/ru/{encodeURIComponent(russianAccented)}` and lets OpenRussian redirect to its selected audio file. It never infers or removes stress. If accented text is unavailable, the player uses `audioUrl`; if resolver playback fails, a distinct stored `audioUrl` is tried once. When no source works, the page shows `Audio unavailable`. Playback starts only on click and stops when the word changes or the page closes. Existing API responses without `russianAccented` remain supported.
+
 ## Styling and assets
 
 Tailwind is integrated through `@tailwindcss/vite`. Theme tokens and shared utilities live in `src/app.css`; grammar CSS modules use `@reference` and `@apply`. The interface always uses a dark color scheme and respects reduced motion preferences. Feature modules retain existing services, entities and educational data.

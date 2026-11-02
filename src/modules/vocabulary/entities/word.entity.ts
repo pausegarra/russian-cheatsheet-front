@@ -32,6 +32,7 @@ export interface WordEntity {
   id: string;
   russian: string;
   type: WordType | '' | null;
+  russianAccented?: string | null;
   aspect: WordAspect | null;
   forms?: WordForms | null;
   publishedAt: string | null;
