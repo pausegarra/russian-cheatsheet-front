@@ -7,6 +7,7 @@ import { Layout } from "../../common/components/layout.tsx";
 import { ExampleSentences } from "../components/example-sentences.tsx";
 import { WordFormsDisplay } from "../components/word-forms.tsx";
 import { WordSearch } from "../components/word-search.tsx";
+import { WordAudio } from "../components/word-audio.tsx";
 
 export function ShowVocabulary() {
   const { id = "" } = useParams();
@@ -80,12 +81,19 @@ function WordEntry({ id }: { id: string }) {
           {word.type && <span className="badge">{word.type}</span>}
           {word.aspect && <span className="badge">{word.aspect}</span>}
         </div>
-        <h1
-          lang="ru"
-          className="text-5xl font-medium tracking-tight wrap-anywhere sm:text-7xl"
-        >
-          {word.russian}
-        </h1>
+        <div className="flex flex-wrap items-center gap-6">
+          <h1
+            lang="ru"
+            className="text-5xl font-medium tracking-tight wrap-anywhere sm:text-7xl"
+          >
+            {word.russian}
+          </h1>
+          <WordAudio
+            key={word.id}
+            russianAccented={word.russianAccented}
+            audioUrl={word.audioUrl}
+          />
+        </div>
         <p className="max-w-3xl text-xl text-muted sm:text-2xl">
           {translationText(word, "en") || "No English translation available."}
         </p>
