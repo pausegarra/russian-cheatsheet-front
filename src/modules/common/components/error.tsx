@@ -1,27 +1,24 @@
-import { Button } from "@mantine/core";
-import { FallbackProps } from "react-error-boundary";
-import { SiteFooter } from "./site-footer.tsx";
-import classes from "./error.module.css";
+import type { FallbackProps } from "react-error-boundary";
 
-export function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
+export function ErrorFallback({ resetErrorBoundary }: FallbackProps) {
   return (
-    <>
-      <div className={classes.container} role="alert">
-        <div className={classes.card}>
-          <h1 className={classes.title}>System Exception Encountered</h1>
-          <p style={{ color: 'var(--rc-text-secondary)', fontSize: '0.875rem', margin: 0 }}>
-            An unexpected error occurred while executing the linguistic application:
-          </p>
-          <pre className={classes.trace}>{error.message}</pre>
-          <Button
-            onClick={resetErrorBoundary}
-            style={{ alignSelf: 'flex-start', marginTop: '0.5rem' }}
-          >
-            Recover Session
-          </Button>
-        </div>
+    <main
+      role="alert"
+      className="mx-auto flex min-h-screen max-w-xl flex-col justify-center gap-6 px-6"
+    >
+      <p className="eyebrow">Something went wrong</p>
+      <h1 className="page-title">A little interruption.</h1>
+      <p className="text-muted">
+        This page could not be displayed. Try again to continue reading.
+      </p>
+      <div>
+        <button className="button button-primary" onClick={resetErrorBoundary}>
+          Try again
+        </button>
+        <a className="ml-4 text-sm text-sage" href="/">
+          Back to dictionary
+        </a>
       </div>
-      <SiteFooter />
-    </>
+    </main>
   );
 }

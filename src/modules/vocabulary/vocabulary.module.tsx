@@ -3,6 +3,10 @@ import { ListVocabulary } from "./pages/list.tsx";
 import { ShowVocabulary } from "./pages/show.tsx";
 
 export const vocabularyRoutes = [
-  <Route path="/vocabulary" element={<ListVocabulary/>}/>,
-  <Route path="/vocabulary/:id" element={<ShowVocabulary/>}/>,
+  <Route
+    key="vocabulary-redirect"
+    path="/vocabulary"
+    element={<ListVocabulary />}
+  />,
+  <Route key="word" path="/vocabulary/:id" element={<ShowVocabulary />} />,
 ];

@@ -1,54 +1,29 @@
-import { NavLink } from "react-router-dom";
-import { ReactNode } from "react";
-import classes from "./layout.module.css";
+import { NavLink, useLocation } from "react-router-dom";
 
-type Props = {
-  onNavigate?: () => void;
-};
-
-export function NavBar({ onNavigate }: Props) {
+export function NavBar() {
+  const { pathname } = useLocation();
   return (
-    <>
-      <div className={classes.categoryTitle}>Reference</div>
-      <NavItem to="/" badge="01" onNavigate={onNavigate}>Home</NavItem>
-      <NavItem to="/alphabet" badge="02" onNavigate={onNavigate}>Alphabet</NavItem>
-
-      <div className={classes.categoryTitle}>Lexicon</div>
-      <NavItem to="/vocabulary" badge="03" onNavigate={onNavigate}>Vocabulary</NavItem>
-
-      <div className={classes.categoryTitle}>Grammar</div>
-      <NavItem to="/grammar" badge="04" end onNavigate={onNavigate}>Overview</NavItem>
-      <NavItem to="/grammar/cases" badge="05" onNavigate={onNavigate}>Cases</NavItem>
-      <NavItem to="/grammar/declensions" badge="06" onNavigate={onNavigate}>Declensions</NavItem>
-      <NavItem to="/grammar/pronouns" badge="07" onNavigate={onNavigate}>Pronouns</NavItem>
-      <NavItem to="/grammar/numbers" badge="08" onNavigate={onNavigate}>Numbers</NavItem>
-      <NavItem to="/grammar/verbs" badge="09" onNavigate={onNavigate}>Verbs</NavItem>
-      <NavItem to="/grammar/motion-verbs" badge="10" onNavigate={onNavigate}>Motion verbs</NavItem>
-    </>
-  );
-}
-
-type NavItemProps = {
-  to: string;
-  badge: string;
-  children: ReactNode;
-  end?: boolean;
-  onNavigate?: () => void;
-};
-
-function NavItem({ to, badge, children, end, onNavigate }: NavItemProps) {
-  return (
-    <NavLink
-      to={to}
-      state={{ fromApp: true }}
-      end={end}
-      onClick={onNavigate}
-      className={({ isActive }) =>
-        `${classes.navLink} ${isActive ? classes.navLinkActive : ''}`
-      }
+    <nav
+      aria-label="Main navigation"
+      className="flex items-center gap-1 sm:gap-2"
     >
-      <span>{children}</span>
-      <span className={classes.navBadge}>{badge}</span>
-    </NavLink>
+      {[
+        ["/", "Dictionary"],
+        ["/alphabet", "Alphabet"],
+        ["/grammar", "Grammar"],
+      ].map(([to, label]) => (
+        <NavLink
+          key={to}
+          to={to}
+          end={to === "/"}
+          state={{ fromApp: true }}
+          className={({ isActive }) =>
+            `rounded-lg px-3 py-2 text-sm ${isActive || (to === "/" && pathname.startsWith("/vocabulary/")) ? "bg-raised text-sage" : "text-muted hover:text-ink hover:bg-surface"}`
+          }
+        >
+          {label}
+        </NavLink>
+      ))}
+    </nav>
   );
 }

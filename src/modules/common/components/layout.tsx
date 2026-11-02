@@ -1,65 +1,70 @@
-import { AppShell, Burger, Group } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import { ReactNode } from "react";
+import { useEffect } from "react";
+import type { ReactNode } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { NavBar } from "./nav-bar.tsx";
 import { SiteFooter } from "./site-footer.tsx";
-import classes from "./layout.module.css";
-import { Link } from "react-router-dom";
 import { BackButton } from "./back-button.tsx";
 
-type Props = {
-  children: ReactNode;
-  backTo?: string;
-};
+type Props = { children: ReactNode; backTo?: string };
 
 export function Layout({ children, backTo }: Props) {
-  const [opened, { toggle }] = useDisclosure();
-
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const titles: Record<string, string> = {
+      "/": "Your pocket reference",
+      "/alphabet": "The Cyrillic alphabet",
+      "/grammar": "Grammar quick references",
+      "/grammar/cases": "Russian grammatical cases",
+      "/grammar/declensions": "Declensions",
+      "/grammar/pronouns": "Pronouns",
+      "/grammar/numbers": "Numbers, dates and time",
+      "/grammar/verbs": "Verb quick reference",
+      "/grammar/motion-verbs": "Verbs of motion",
+    };
+    document.title = `${titles[pathname] ?? (pathname.startsWith("/vocabulary/") ? "Dictionary entry" : "Page not found")} · Russian Cheatsheet`;
+  }, [pathname]);
   return (
-    <>
-      <a href="#main-content" className="skip-link">Skip to main content</a>
-      <AppShell
-        header={{ height: 50 }}
-        navbar={{
-          width: 240,
-          breakpoint: 'sm',
-          collapsed: { mobile: !opened },
-        }}
-      >
-        <AppShell.Header className={classes.header}>
-          <Group gap="sm">
-            <Burger
-              opened={opened}
-              onClick={toggle}
-              hiddenFrom="sm"
-              size="sm"
-              aria-label="Toggle navigation"
+    <div className="flex min-h-screen flex-col">
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
+      <header className="mx-auto w-full max-w-6xl px-6 sm:px-8">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-line py-6 sm:py-8">
+          <Link
+            to="/"
+            className="flex items-center gap-3"
+            aria-label="Russian Cheatsheet home"
+          >
+            <img
+              src="/brand/mark.png"
+              width="40"
+              height="40"
+              alt=""
+              className="rounded-lg"
             />
-            <Link to="/" className={classes.brand}>
-              <img src="/logo.svg" alt="Russian Cheatsheet" width={112} height={40} />
-            </Link>
-          </Group>
-          <div className={classes.statusBadge}>
-            LEXICON v1.1
+            <span className="text-sm font-semibold leading-5">
+              Russian
+              <br />
+              <span className="font-normal text-muted">Cheatsheet</span>
+            </span>
+          </Link>
+          <NavBar />
+        </div>
+      </header>
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="mx-auto w-full max-w-6xl flex-1 px-6 pt-8 pb-16 outline-none sm:px-8 sm:pt-12 sm:pb-24"
+      >
+        {backTo && (
+          <div className="mb-8">
+            <BackButton fallbackTo={backTo} />
           </div>
-        </AppShell.Header>
-
-        <AppShell.Navbar className={classes.navbar}>
-          <NavBar onNavigate={() => opened && toggle()} />
-        </AppShell.Navbar>
-
-        <AppShell.Main className={classes.main}>
-          <div id="main-content" className={classes.mainContent}>
-            {backTo && (
-              <div className={classes.backButtonContainer}>
-                <BackButton fallbackTo={backTo} />
-              </div>
-            )}
-            {children}
-          </div>
-          <SiteFooter />
-        </AppShell.Main>
-      </AppShell>
-    </>
+        )}
+        {children}
+      </main>
+      <SiteFooter />
+    </div>
   );
 }

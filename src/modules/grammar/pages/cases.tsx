@@ -1,11 +1,10 @@
-import { Tabs } from "@mantine/core";
 import { useState } from "react";
 import { Layout } from "../../common/components/layout.tsx";
 import { russianCases } from "../data/cases.ts";
 import classes from "./cases.module.css";
 
 export function CasesPage() {
-  const [activeCase, setActiveCase] = useState<string | null>("nominative");
+  const [activeCase, setActiveCase] = useState<string>("nominative");
 
   return (
     <Layout backTo="/grammar">
@@ -14,25 +13,65 @@ export function CasesPage() {
           <span className={classes.eyebrow}>Grammar · 6 cases</span>
           <h1 className={classes.pageTitle}>Russian grammatical cases</h1>
           <p className={classes.intro}>
-            Russian changes a noun&apos;s form to show its role in a sentence. Choose a
-            case to explore its questions, uses, and examples.
+            Russian changes a noun&apos;s form to show its role in a sentence.
+            Choose a case to explore its questions, uses, and examples.
           </p>
         </header>
 
-        <Tabs value={activeCase} onChange={setActiveCase} className={classes.tabs}>
-          <Tabs.List
+        <div className={classes.tabs}>
+          <div
+            role="tablist"
             className={classes.tabList}
             aria-label="Russian grammatical cases"
           >
             {russianCases.map((item) => (
-              <Tabs.Tab key={item.id} value={item.id} className={classes.tab}>
+              <button
+                type="button"
+                role="tab"
+                key={item.id}
+                id={`tab-${item.id}`}
+                aria-controls={`panel-${item.id}`}
+                aria-selected={activeCase === item.id}
+                tabIndex={activeCase === item.id ? 0 : -1}
+                onClick={() => setActiveCase(item.id)}
+                onKeyDown={(event) => {
+                  const keys = ["ArrowLeft", "ArrowRight", "Home", "End"];
+                  if (!keys.includes(event.key)) return;
+                  event.preventDefault();
+                  const current = russianCases.findIndex(
+                    (entry) => entry.id === activeCase,
+                  );
+                  const index =
+                    event.key === "Home"
+                      ? 0
+                      : event.key === "End"
+                        ? russianCases.length - 1
+                        : (current +
+                            (event.key === "ArrowRight" ? 1 : -1) +
+                            russianCases.length) %
+                          russianCases.length;
+                  setActiveCase(russianCases[index].id);
+                  document
+                    .getElementById(`tab-${russianCases[index].id}`)
+                    ?.focus();
+                }}
+                className={classes.tab}
+              >
                 {item.name}
-              </Tabs.Tab>
+              </button>
             ))}
-          </Tabs.List>
+          </div>
 
           {russianCases.map((item) => (
-            <Tabs.Panel key={item.id} value={item.id} className={classes.tabPanel}>
+            <div
+              role="tabpanel"
+              key={item.id}
+              id={`panel-${item.id}`}
+              aria-labelledby={`tab-${item.id}`}
+              hidden={activeCase !== item.id}
+              tabIndex={0}
+              className={classes.tabPanel}
+            >
               <section
                 className={classes.casePanel}
                 aria-labelledby={`${item.id}-title`}
@@ -72,9 +111,9 @@ export function CasesPage() {
                   </figure>
                 </div>
               </section>
-            </Tabs.Panel>
+            </div>
           ))}
-        </Tabs>
+        </div>
 
         <section className={classes.section} aria-labelledby="declension-title">
           <div className={classes.sectionHeader}>
@@ -83,8 +122,9 @@ export function CasesPage() {
               How <span lang="ru">студе́нт</span> changes
             </h2>
             <p className={classes.note}>
-              This masculine animate noun uses the Genitive form for the Accusative.
-              Other endings depend on gender, number, and declension.
+              This masculine animate noun uses the Genitive form for the
+              Accusative. Other endings depend on gender, number, and
+              declension.
             </p>
           </div>
           <table className={classes.declensionTable}>
@@ -101,7 +141,11 @@ export function CasesPage() {
               {russianCases.map((item) => (
                 <tr
                   key={item.id}
-                  className={activeCase === item.id ? classes.activeDeclensionRow : undefined}
+                  className={
+                    activeCase === item.id
+                      ? classes.activeDeclensionRow
+                      : undefined
+                  }
                   aria-current={activeCase === item.id ? "true" : undefined}
                 >
                   <th scope="row">{item.name}</th>
@@ -145,7 +189,8 @@ export function CasesPage() {
             rel="noopener noreferrer"
           >
             OpenRussian grammar
-          </a>.
+          </a>
+          .
         </p>
       </article>
     </Layout>

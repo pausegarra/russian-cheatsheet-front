@@ -1,39 +1,46 @@
-import { Table } from "@mantine/core";
-import { useEffect, useState } from "react";
 import { alphabetService } from "../root.ts";
-import { LetterEntity } from "../entities/letter.entity.ts";
-import { LetterRow } from "../components/LetterRow.tsx";
 import { Layout } from "../../common/components/layout.tsx";
-import classes from "../components/alphabet.module.css";
 
+const letters = alphabetService.getAlphabet();
 export function ListAlphabet() {
-  const [letters, setLetters] = useState<LetterEntity[]>([]);
-
-  useEffect(() => {
-    setLetters(alphabetService.getAlphabet());
-  }, []);
-
   return (
     <Layout backTo="/">
-      <div className={classes.container}>
-        <div className={classes.headerRow}>
-          <h1 className={classes.pageTitle}>Alphabet Reference</h1>
-          <span className={classes.countBadge}>[33 GLYPHS]</span>
-        </div>
-        <Table>
-          <Table.Thead>
-            <Table.Tr>
-              <Table.Th style={{ width: '30%' }}>Cyrillic</Table.Th>
-              <Table.Th style={{ width: '35%' }}>Latin</Table.Th>
-              <Table.Th style={{ width: '35%' }}>IPA</Table.Th>
-            </Table.Tr>
-          </Table.Thead>
-          <Table.Tbody>
-            {letters.map((letter) => (
-              <LetterRow key={letter.id} letter={letter} />
-            ))}
-          </Table.Tbody>
-        </Table>
+      <header className="mb-12 space-y-6">
+        <p className="eyebrow">Reference · 33 letters</p>
+        <h1 className="page-title">
+          A new alphabet.
+          <br />
+          <span className="text-sage">A familiar starting point.</span>
+        </h1>
+        <p className="max-w-xl text-lg text-muted">
+          Meet the Cyrillic alphabet. Each letter, its Latin counterpart and its
+          sound, all in one place.
+        </p>
+      </header>
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6">
+        {letters.map((letter) => (
+          <article
+            key={letter.id}
+            className="rounded-xl border border-line bg-surface p-6"
+          >
+            <h2 lang="ru" className="mb-6 text-4xl font-medium text-sage">
+              {letter.cyrillic}
+              <span className="ml-1 text-muted">
+                {letter.cyrillic.toLowerCase()}
+              </span>
+            </h2>
+            <dl className="space-y-2 text-sm">
+              <div className="flex flex-wrap justify-between gap-2">
+                <dt className="text-faint">Latin</dt>
+                <dd>{letter.latin}</dd>
+              </div>
+              <div className="flex flex-wrap justify-between gap-2">
+                <dt className="text-faint">IPA</dt>
+                <dd>{letter.ipa}</dd>
+              </div>
+            </dl>
+          </article>
+        ))}
       </div>
     </Layout>
   );
