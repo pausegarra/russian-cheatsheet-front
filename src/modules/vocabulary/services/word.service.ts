@@ -9,10 +9,11 @@ export class WordService {
   public async getWords(
     page: number,
     search: string,
+    matchMode: 'precise' | 'contains' = 'precise',
   ): Promise<Paginated<WordEntity>> {
     const pageSubtracted = page - 1;
     return await this.fetch.get<Paginated<WordEntity>>(
-      `/api/v1/words?page=${pageSubtracted}&search=${encodeURIComponent(search)}&perPage=25`,
+      `/api/v1/words?page=${pageSubtracted}&search=${encodeURIComponent(search)}&perPage=25&matchMode=${matchMode}`,
     );
   }
 

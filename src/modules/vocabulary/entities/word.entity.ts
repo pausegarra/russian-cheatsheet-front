@@ -1,6 +1,19 @@
 export type WordType = 'adjective' | 'adverb' | 'expression' | 'noun' | 'other' | 'pronoun' | 'verb';
 export type WordAspect = 'imperfective' | 'perfective' | 'both';
 export type WordRelationType = 'related' | 'synonym' | 'antonym';
+export type WordSearchMatchKind =
+  | 'russian_exact'
+  | 'translation_exact'
+  | 'russian_phrase'
+  | 'translation_phrase'
+  | 'russian_prefix'
+  | 'substring';
+
+export interface WordSearchMatch {
+  kind: WordSearchMatchKind;
+  language: 'ru' | 'en' | 'es';
+  text: string;
+}
 
 export interface RelatedWordEntity {
   id: string;
@@ -42,6 +55,7 @@ export interface WordEntity {
   usage?: string | null;
   audioUrl?: string | null;
   checksum?: string | null;
+  searchMatch?: WordSearchMatch | null;
 }
 
 export interface WordTranslationEntity {
