@@ -20,6 +20,7 @@ import type { Paginated } from "../../common/responses/paginated.ts";
 type SearchResult = {
   query: string;
   page: number;
+  matchMode: 'precise' | 'contains';
   data?: Paginated<WordEntity>;
   error?: boolean;
 };
@@ -28,6 +29,8 @@ export function WordSearch({ compact = false }: { compact?: boolean }) {
   const [params, setParams] = useSearchParams();
   const query = params.get("search") ?? "";
   const term = query.trim();
+  const matchModeParam = params.get("matchMode");
+  const matchMode = matchModeParam === "contains" ? "contains" : "precise";
   const pageParam = Number(params.get("page"));
   const page = Number.isSafeInteger(pageParam) && pageParam > 0 ? pageParam : 1;
   const [result, setResult] = useState<SearchResult | null>(null);
@@ -40,9 +43,20 @@ export function WordSearch({ compact = false }: { compact?: boolean }) {
   const navigate = useNavigate();
   const id = useId();
   const current =
-    result?.query === term && result.page === page ? result : null;
+    result?.query === term && result.page === page && result.matchMode === matchMode
+      ? result
+      : null;
   const loading = term.length > 0 && (!current || pending);
   const words = current?.data?.data ?? [];
+
+  useEffect(() => {
+    if (matchModeParam === null || matchModeParam === "precise" || matchModeParam === "contains") return;
+    setParams((previous) => {
+      const next = new URLSearchParams(previous);
+      next.delete("matchMode");
+      return next;
+    }, { replace: true });
+  }, [matchModeParam, setParams]);
 
   useEffect(() => {
     if (!term) return;
@@ -50,12 +64,12 @@ export function WordSearch({ compact = false }: { compact?: boolean }) {
     const timer = window.setTimeout(() => {
       setPending(true);
       wordService
-        .getWords(page, term)
+        .getWords(page, term, matchMode)
         .then((data) => {
-          if (!cancelled) setResult({ query: term, page, data });
+          if (!cancelled) setResult({ query: term, page, matchMode, data });
         })
         .catch(() => {
-          if (!cancelled) setResult({ query: term, page, error: true });
+          if (!cancelled) setResult({ query: term, page, matchMode, error: true });
         })
         .finally(() => {
           if (!cancelled) setPending(false);
@@ -65,11 +79,11 @@ export function WordSearch({ compact = false }: { compact?: boolean }) {
       cancelled = true;
       window.clearTimeout(timer);
     };
-  }, [term, page, attempt]);
+  }, [term, page, matchMode, attempt]);
 
   useEffect(() => {
     setActiveIndex(-1);
-  }, [term, page]);
+  }, [term, page, matchMode]);
 
   useEffect(() => {
     setExpanded(!compact);
@@ -83,11 +97,24 @@ export function WordSearch({ compact = false }: { compact?: boolean }) {
         const next = new URLSearchParams(previous);
         if (value) next.set("search", value);
         else next.delete("search");
+        next.delete("matchMode");
         next.delete("page");
         return next;
       },
       { replace: true },
     );
+  }
+
+  function changeMatchMode(nextMode: 'precise' | 'contains') {
+    setActiveIndex(-1);
+    setExpanded(true);
+    setParams((previous) => {
+      const next = new URLSearchParams(previous);
+      if (nextMode === "contains") next.set("matchMode", "contains");
+      else next.delete("matchMode");
+      next.delete("page");
+      return next;
+    });
   }
 
   function changePage(nextPage: number) {
@@ -146,7 +173,7 @@ export function WordSearch({ compact = false }: { compact?: boolean }) {
           <label htmlFor={`${id}-input`} className="font-semibold text-ink">
             DICTIONARY
           </label>
-          <span className="text-faint">Russian ↔ English</span>
+          <span className="text-faint">Russian, English and Spanish</span>
         </div>
       )}
       <form
@@ -184,7 +211,7 @@ export function WordSearch({ compact = false }: { compact?: boolean }) {
             onChange={(event) => updateSearch(event.target.value)}
             onFocus={() => setExpanded(true)}
             onKeyDown={handleKey}
-            placeholder="A word in Russian or English…"
+            placeholder="A word in Russian, English or Spanish…"
             className="min-w-0 flex-1 bg-transparent py-2 text-base text-ink outline-none placeholder:text-faint sm:text-lg"
           />
           {query && (
@@ -241,6 +268,30 @@ export function WordSearch({ compact = false }: { compact?: boolean }) {
                 ? `${current.data.totalElements} ${current.data.totalElements === 1 ? "result" : "results"} for “${term}”`
                 : ""}
       </div>
+      {showResults && term && (
+        <div className="mt-2 flex items-center gap-3 text-xs text-muted">
+          {matchMode === "precise" ? (
+            <button
+              type="button"
+              className="text-sage underline-offset-4 hover:underline"
+              onClick={() => changeMatchMode("contains")}
+            >
+              Include partial matches
+            </button>
+          ) : (
+            <>
+              <span>Partial matches included</span>
+              <button
+                type="button"
+                className="text-sage underline-offset-4 hover:underline"
+                onClick={() => changeMatchMode("precise")}
+              >
+                Use precise search
+              </button>
+            </>
+          )}
+        </div>
+      )}
       {showResults && term && current?.error && !loading && (
         <div className="mt-3 rounded-xl border border-line p-6">
           <p className="mb-4 text-sm text-muted">
@@ -262,10 +313,14 @@ export function WordSearch({ compact = false }: { compact?: boolean }) {
         current?.data &&
         !loading &&
         words.length === 0 && (
-          <p className="mt-4 rounded-xl border border-line p-6 text-sm text-muted">
-            {page > 1
-              ? "No words found on this page. Return to the first page for this search."
-              : "No words found. Try another spelling, a base form, or an English translation."}
+          <div className="mt-4 rounded-xl border border-line p-6 text-sm text-muted">
+            <p>
+              {page > 1
+                ? "No words found on this page. Return to the first page for this search."
+                : matchMode === "precise"
+                  ? "No precise matches found."
+                  : "No words found. Try another spelling or translation."}
+            </p>
             {page > 1 && (
               <button
                 type="button"
@@ -275,7 +330,7 @@ export function WordSearch({ compact = false }: { compact?: boolean }) {
                 First page
               </button>
             )}
-          </p>
+          </div>
         )}
       <div
         id={`${id}-results`}
@@ -313,7 +368,14 @@ export function WordSearch({ compact = false }: { compact?: boolean }) {
                   )}
                 </div>
                 <p className="mt-1 text-sm wrap-anywhere text-muted">
-                  {translationText(word, "en") || "View word details"}
+                  {word.searchMatch?.language === "en" || word.searchMatch?.language === "es"
+                    ? word.searchMatch.text
+                    : translationText(word, "en") || translationText(word, "es") || "View word details"}
+                  {(word.searchMatch?.language === "en" || word.searchMatch?.language === "es") && (
+                    <span className="ml-2 text-xs text-faint">
+                      {word.searchMatch.language === "en" ? "English match" : "Spanish match"}
+                    </span>
+                  )}
                 </p>
               </div>
               <ArrowRightIcon
