@@ -73,6 +73,11 @@ function WordEntry({ id }: { id: string }) {
       </div>
     );
 
+  const usage = word.usage
+    ?.replace(/\r\n?/g, "\n")
+    .replace(/\\n/g, "\n")
+    .trim();
+
   return (
     <article className="space-y-12">
       <header className="space-y-6">
@@ -97,8 +102,10 @@ function WordEntry({ id }: { id: string }) {
         <p className="max-w-3xl text-xl text-muted sm:text-2xl">
           {translationText(word, "en") || "No English translation available."}
         </p>
-        {word.usage && (
-          <p className="max-w-2xl text-sm text-muted">{word.usage}</p>
+        {usage && (
+          <p className="max-w-2xl text-sm text-muted whitespace-pre-line">
+            {usage}
+          </p>
         )}
         {word.relatedWords && word.relatedWords.length > 0 && (
           <div className="flex flex-wrap gap-3">
